@@ -1,0 +1,22 @@
+{
+  "name": "gitwho",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "axios": "~0.17.1",
+    "cheerio": "~1.0.0-rc.2",
+    "defer-render-hoc": "^0.3.0",
+    "express": "~4.16.2",
+    "full-height-hoc": "~0.3.1",
+    "next": "~5.0.0",
+    "react": "~16.2.0",
+    "react-dom": "~16.2.0",
+    "react-motion": "~0.5.2"
+  },
+  "devDependencies": {
+    "next-offline": "~2.0.0"
+  }
+}
