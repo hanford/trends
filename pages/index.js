@@ -3,14 +3,20 @@ import Link from 'next/link'
 import withFullHeight from 'full-height-hoc'
 import deferRenderHoc from 'defer-render-hoc'
 import { Motion, spring, presets } from 'react-motion'
+import Drawer from 'react-drag-drawer'
+import styled, { css } from 'react-emotion'
+
 import Head from '../components/head'
 
 class Index extends PureComponent {
   state = {
     repo: '',
-    loading: false,
+    loadingIndividual: false,
+    loadingMany: false,
     email: '',
-    rendered: false
+    rendered: false,
+    drawer: false,
+    devs: []
   }
 
   componentDidMount () {
@@ -24,16 +30,38 @@ class Index extends PureComponent {
   search = async event => {
     event.preventDefault()
 
-    this.setState({ loading: true, email: '' })
+    this.setState({ loadingIndividual: true, email: '' })
 
     const res = await fetch(`/fetch?repo=${window.encodeURIComponent(this.state.repo)}`)
 
     const { email } = await res.json()
 
-    this.setState({ loading: false, email })
+    this.setState({ loadingIndividual: false, email })
+  }
+
+  getTopTrending = async event => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    if (this.state.devs.length) {
+      return this.toggleDrawer()
+    }
+
+    this.setState({ loadingMany: true })
+
+    const res = await fetch(`/top?language=javascript`)
+
+    const { top } = await res.json()
+
+    this.setState({ loadingMany: false, drawer: true, devs: top })
+  }
+
+  toggleDrawer = event => {
+    this.setState({ drawer: !this.state.drawer })
   }
 
   render () {
+    console.log(this.state.devs)
     return (
       <Fragment>
         <Head title='Home' />
@@ -43,96 +71,56 @@ class Index extends PureComponent {
           opacity: spring(this.state.rendered ? 1 : 0)
         }}>
           {({ scale, opacity }) => (
-            <div className='hero' style={{transform: `scale(${scale})`, opacity}}>
+            <Hero style={{transform: `scale(${scale})`, opacity}}>
               <Spy />
               <br />
-              <form onSubmit={this.search}>
-                <input
+              <Form onSubmit={this.search}>
+                <SearchInput
                   placeholder='hanford/next-offline'
-                  className='search-input'
                   type='search'
                   onChange={this.getrepo('repo')}
                   value={this.state.repo}
                 />
+              </Form>
 
-                <button className='search-btn'>{this.state.loading ? 'Loading...' : 'Search'}</button>
-              </form>
+              <SearchButton>{this.state.loadingIndividual ? 'Loading...' : 'Search'}</SearchButton>
+              <SearchButton onClick={this.getTopTrending}>{this.state.loadingMany ? 'Loading...' : 'Top JS Devs'}</SearchButton>
 
               <br />
 
               {this.state.email}
-            </div>
+            </Hero>
           )}
         </Motion>
 
-        <style jsx>{`
-          .search-input {
-            -webkit-appearance: none;
-            padding: 16px;
-            border: 2px solid rgba(0,0,0,0.25);
-            width: 300px;
-            border-radius: 4px;
-            font-size: 16px;
-          }
-
-          .search-input:active,
-          .search-input:focus {
-            border: 2px solid black;
-            outline: none;
-          }
-
-          .hero {
-            width: 100%;
-            color: #333;
-            margin: 0 auto;
-            text-align: center;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-          }
-
-          form {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-          }
-
-          @media(max-width: 767px) {
-            form {
-              flex-direction: column;
-            }
-          }
-
-          .search-btn {
-            padding: 16px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            width: 120px;
-            background-color: black;
-            margin-left: 10px;
-            color: white;
-            border: 2px solid black;
-            cursor: pointer;
-            text-transform: capatilze;
-            outline: none;
-          }
-
-          .search-btn:hover {
-            background-color: rgba(0,0,0,0.75);
-          }
-
-          @media(max-width: 767px) {
-            .search-btn {
-              width: 300px;
-              margin-top: 10px;
-              margin-left: 0px;
-            }
-          }
-        `}</style>
+        <Drawer
+          onRequestClose={this.toggleDrawer}
+          open={this.state.drawer}
+          modalElementClass={TopDevelopers}
+        >
+          <Table>
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Repo</th>
+                <th>Stars</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.devs.map(d => (
+                  <tr key={d.commitUrl}>
+                    <td>{d.user}</td>
+                    <td>{d.email}</td>
+                    <td><a href={`https://github.com/${d.user}/${d.repo}`} target='_blank'>{d.repo}</a></td>
+                    <td>{d.stars}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </Table>
+        </Drawer>
       </Fragment>
     )
   }
@@ -142,6 +130,84 @@ const hasFullHeight = withFullHeight(Index)
 
 export default deferRenderHoc(hasFullHeight)
 
+const Table = styled.table`
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 8px;
+  border-collapse: collapse;
+
+  td, th {
+    padding: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+  }
+`
+
+const SearchInput = styled.input`
+  -webkit-appearance: none;
+  padding: 16px;
+  border: 2px solid rgba(0,0,0,0.25);
+  width: 300px;
+  border-radius: 4px;
+  font-size: 16px;
+
+  &:active,
+  &:focus {
+    border: 2px solid black;
+    outline: none;
+  }
+`
+
+const Form = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media(max-width: 767px) {
+    flex-direction: column;
+  }
+`
+
+const Hero = styled.div`
+  width: 100%;
+  color: #333;
+  margin: 0 auto;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`
+
+const TopDevelopers = css`
+  width: 600px;
+  height: 100%;
+  background-color: white;
+  margin-top: 200px;
+
+  @media(max-width: 767px) {
+    overflow-y: auto;
+    max-width: 100%;
+  }
+`
+
+const SearchButton = styled.button`
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  width: 300px;
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  outline: none;
+  margin-top: 10px;
+  &:hover {
+    background-color: rgba(0,0,0,0.75);
+  }
+`
 
 const Spy = props => (
   <svg width='80px' height='80px' version='1.1' viewBox='0 0 100 100'>

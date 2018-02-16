@@ -14,6 +14,7 @@ app.prepare()
     const server = express()
 
     server.get('/fetch', fetchEmail)
+    server.get('/top', fetchTop)
 
     server.get('/service-worker.js', (req, res) => {
       return app.serveStatic(req, res, join(__dirname, '.next', 'service-worker.js'))
@@ -38,7 +39,7 @@ async function fetchEmail (req, res) {
   const resp = await get(`https://github.com/${repo}/commits/master`)
   const { data: commitPage } = await resp
 
-  let $ = cheerio.load(commitPage)
+  const $ = cheerio.load(commitPage)
   const authors = {}
 
   $('.commit-author.tooltipped.tooltipped-s.user-mention').each(function(i, elem) {
@@ -58,10 +59,46 @@ async function fetchEmail (req, res) {
     }
   })
 
-  const individualCommitPage = await get(`https://github.com/${repo}/commits?author=${biggestContributor.name}`)
+  const url = `https://github.com/${repo}/commits?author=${biggestContributor.name}`
+
+  const email = await getEmailFromCommitPage(url)
+
+  return res.send({ email })
+}
+
+async function fetchTop (req, res) {
+  const { language } = req.query
+  const resp = await get(`https://github-trending.now.sh/?language=${language}&daysAgo=2`)
+  const { data: { repos } } = await resp
+  const topDevs = {}
+
+  repos.forEach(({ stargazers_count, owner, full_name, name }) => {
+    if (stargazers_count > 5) {
+      topDevs[full_name] = {
+        repo: name,
+        user: owner.login,
+        stars: stargazers_count,
+        commitUrl: `https://github.com/${full_name}/commits?author=${owner.login}`
+      }
+    }
+  })
+
+  const top = await Promise.all(Object.entries(topDevs).map(async ([key, value]) => {
+    const email = await getEmailFromCommitPage(value.commitUrl)
+
+    value.email = email[0]
+
+    return value
+  }))
+
+  return res.send({ top })
+}
+
+async function getEmailFromCommitPage (url) {
+  const individualCommitPage = await get(url)
   const { data: individualPage } = await individualCommitPage
 
-  $ = cheerio.load(individualPage)
+  const $ = cheerio.load(individualPage)
 
   const { attribs: { href } } = $('.sha.btn.btn-outline.BtnGroup-item')[0]
   const gitData = await get(`https://github.com${href}.patch`)
@@ -70,5 +107,5 @@ async function fetchEmail (req, res) {
 
   const email = extractEmail(data)
 
-  return res.send({ email })
+  return email
 }
