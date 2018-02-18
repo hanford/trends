@@ -3,6 +3,7 @@ const next = require('next')
 const { get } = require('axios')
 const cheerio = require('cheerio')
 const { join } = require('path')
+const wrap = require('await-wrap')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -68,30 +69,38 @@ async function fetchEmail (req, res) {
 
 async function fetchTop (req, res) {
   const { language } = req.query
-  const resp = await get(`https://github-trending.now.sh/?language=${language}&daysAgo=2`)
+  const resp = await get(`https://github-trending.now.sh/?language=${language}&daysAgo=5`)
   const { data: { repos } } = await resp
   const topDevs = {}
 
-  repos.forEach(({ stargazers_count, owner, full_name, name }) => {
-    if (stargazers_count > 5) {
-      topDevs[full_name] = {
-        repo: name,
-        user: owner.login,
-        stars: stargazers_count,
-        commitUrl: `https://github.com/${full_name}/commits?author=${owner.login}`
+    repos.forEach(({ stargazers_count, owner, full_name, name }) => {
+      if (stargazers_count > 5) {
+        topDevs[full_name] = {
+          repo: name,
+          user: owner.login,
+          stars: stargazers_count,
+          commitUrl: `https://github.com/${full_name}/commits?author=${owner.login}`
+        }
       }
-    }
-  })
+    })
 
-  const top = await Promise.all(Object.entries(topDevs).map(async ([key, value]) => {
-    const email = await getEmailFromCommitPage(value.commitUrl)
+  const top = await Promise.all(
+    Object
+      .entries(topDevs)
+      .map(async ([_, value]) => {
+        const email = await getEmailFromCommitPage(value.commitUrl)
+        const isUser = await verifyIsUser(value.user)
 
-    value.email = email[0]
+        if (isUser && email) {
+          return {
+            ...value,
+            email: email ? email[0] : ''
+          }
+        }
+      })
+  )
 
-    return value
-  }))
-
-  return res.send({ top })
+  return res.send({ top: top.filter(Boolean) })
 }
 
 async function getEmailFromCommitPage (url) {
@@ -100,12 +109,25 @@ async function getEmailFromCommitPage (url) {
 
   const $ = cheerio.load(individualPage)
 
-  const { attribs: { href } } = $('.sha.btn.btn-outline.BtnGroup-item')[0]
+  const shaBtn = $('.sha.btn.btn-outline.BtnGroup-item') ? $('.sha.btn.btn-outline.BtnGroup-item')[0] : null
+
+  if (!shaBtn) return
+
+  const { attribs: { href } } = shaBtn
+
+  if (!href) return
+
   const gitData = await get(`https://github.com${href}.patch`)
   const { data } = await gitData
-
-
   const email = extractEmail(data)
 
   return email
+}
+
+async function verifyIsUser (user) {
+  console.log(`https://github.com/orgs/${user}/people`)
+
+  const { err } = await wrap(get(`https://github.com/orgs/${user}/people`))
+
+  return err !== undefined
 }
