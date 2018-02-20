@@ -3,24 +3,37 @@ import Link from 'next/link'
 import withFullHeight from 'full-height-hoc'
 import deferRenderHoc from 'defer-render-hoc'
 import { Motion, spring, presets } from 'react-motion'
-import Drawer from 'react-drag-drawer'
+import { get } from 'axios'
+// import Drawer from 'react-drag-drawer'
 import styled, { css } from 'react-emotion'
 
 import Head from '../components/head'
+import Card from '../components/card'
 
 class Index extends PureComponent {
+  // static async getInitialProps () {
+  //   const res = await fetch(`/trending?language=javascript`)
+  //   const { repos } = await res.json()
+
+  //   return {
+  //     repos
+  //   }
+  // }
+
   state = {
     repo: '',
     loadingIndividual: false,
     loadingMany: false,
     email: '',
     rendered: false,
-    drawer: false,
-    devs: []
+    topTable: false,
+    devs: [],
+    repos: []
   }
 
   componentDidMount () {
     this.setState({ rendered: true })
+    this.getTrending()
   }
 
   getrepo = name => ({ target: { value }}) => {
@@ -32,9 +45,9 @@ class Index extends PureComponent {
 
     this.setState({ loadingIndividual: true, email: '' })
 
-    const res = await fetch(`/fetch?repo=${window.encodeURIComponent(this.state.repo)}`)
+    const res = await get(`/fetch?repo=${window.encodeURIComponent(this.state.repo)}`)
 
-    const { email } = await res.json()
+    const { email } = await res.data
 
     this.setState({ loadingIndividual: false, email })
   }
@@ -44,82 +57,90 @@ class Index extends PureComponent {
     event.stopPropagation()
 
     if (this.state.devs.length) {
-      return this.toggleDrawer()
+      return this.toggleTopTable()
     }
 
     this.setState({ loadingMany: true })
 
-    const res = await fetch(`/top?language=javascript`)
+    const res = await get(`/top?language=javascript`)
 
-    const { top } = await res.json()
+    const { top } = await res.data
 
-    this.setState({ loadingMany: false, drawer: true, devs: top })
+    this.setState({ loadingMany: false, topTable: true, devs: top })
   }
 
-  toggleDrawer = event => {
-    this.setState({ drawer: !this.state.drawer })
+  getTrending = async () => {
+    this.setState({ loadingMany: true })
+
+    const res = await get(`/trending?language=javascript`)
+
+    const { repos } = await res.data
+
+    this.setState({ loadingMany: false, repos })
+  }
+
+  toggleTopTable = event => {
+    this.setState({ topTable: !this.state.topTable })
   }
 
   render () {
-    console.log(this.state.devs)
     return (
       <Fragment>
         <Head title='Home' />
 
-        <Motion defaultStyle={{scale: 0.5, slideDown: 20, opacity: 0}} style={{
-          scale: spring(this.state.rendered ? 1 : 0.5, presets.stiff),
-          opacity: spring(this.state.rendered ? 1 : 0)
-        }}>
-          {({ scale, opacity }) => (
-            <Hero style={{transform: `scale(${scale})`, opacity}}>
-              <Navbar>
-                <Spy />
+        <Hero>
+          <Navbar>
+            <Spy />
 
-                <Form onSubmit={this.search}>
-                  <SearchInput
-                    placeholder='hanford/next-offline'
-                    type='search'
-                    onChange={this.getrepo('repo')}
-                    value={this.state.repo}
-                  />
-                </Form>
+            <Form onSubmit={this.search}>
+              <SearchInput
+                placeholder='hanford/next-offline'
+                type='search'
+                onChange={this.getrepo('repo')}
+                value={this.state.repo}
+              />
+            </Form>
 
-                <SearchButton>{this.state.loadingIndividual ? 'Loading...' : 'Search'}</SearchButton>
-                <SearchButton onClick={this.getTopTrending}>{this.state.loadingMany ? 'Loading...' : 'Top JS Devs'}</SearchButton>
-              </Navbar>
+            <SearchButton>{this.state.loadingIndividual ? 'Loading...' : 'Search'}</SearchButton>
+            <SearchButton onClick={this.getTopTrending}>{this.state.loadingMany ? 'Loading...' : 'Top JS Devs'}</SearchButton>
+          </Navbar>
 
-              {this.state.email}
+          <br />
 
-              <TableContainer display={this.state.drawer ? 'block' : 'none'}>
-                <Table>
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>User</th>
-                      <th>Email</th>
-                      <th>Repo</th>
-                      <th>Stars</th>
+          {this.state.email}
+
+          <Row>
+            {this.state.repos.map(repo => <Card repo={repo} />)}
+          </Row>
+
+          <TableContainer display={this.state.topTable ? 'block' : 'none'}>
+            <Table>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Repo</th>
+                  <th>Stars</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  this.state.devs.map((d, i) => (
+                    <tr key={d.commitUrl}>
+                      <td>{i + 1}</td>
+                      <td><a href={`https://github.com/${d.user}`} target='_blank'>{d.user}</a></td>
+                      <td><a href={`https://github.com/${d.user}/${d.repo}`} target='_blank'>{d.repo}</a></td>
+                      {/* https://mail.google.com/mail/?view=cm&fs=1&to=&body=hello%20jack%20hanford&su=hello%20jack */}
+                      <td>{d.email}</td>
+                      <td>{d.stars}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      this.state.devs.map((d, i) => (
-                        <tr key={d.commitUrl}>
-                          <td>{i + 1}</td>
-                          <td><a href={`https://github.com/${d.user}`} target='_blank'>{d.user}</a></td>
-                          <td><a href={`https://github.com/${d.user}/${d.repo}`} target='_blank'>{d.repo}</a></td>
-                          {/* https://mail.google.com/mail/?view=cm&fs=1&to=&body=hello%20jack%20hanford&su=hello%20jack */}
-                          <td>{d.email}</td>
-                          <td>{d.stars}</td>
-                        </tr>
-                      ))
-                    }
-                  </tbody>
-                </Table>
-              </TableContainer>
-            </Hero>
-          )}
-        </Motion>
+                  ))
+                }
+              </tbody>
+            </Table>
+          </TableContainer>
+        </Hero>
       </Fragment>
     )
   }
@@ -136,7 +157,7 @@ const Spy = props => (
   </StyledSpy>
 )
 
-const MAX_WIDTH = 840
+const MAX_WIDTH = 900
 
 const StyledSpy = styled.div`
   position: absolute;
@@ -144,7 +165,8 @@ const StyledSpy = styled.div`
   top: 8px;
 
   @media(max-width: 767px) {
-    top: 18px;
+    top: 26px;
+    left: 16px;
   }
 `
 
@@ -223,12 +245,15 @@ const Navbar = styled.div`
   justify-content: center;
   max-width: ${MAX_WIDTH}px;
   width: 100%;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
 
   @media(max-width: 767px) {
     flex-direction: column;
     width: 100%;
-    margin-top: 60px;
+    padding: 8px;
   }
 `
 
@@ -265,5 +290,21 @@ const SearchButton = styled.button`
 
   &:hover {
     background-color: rgba(0,0,0,0.75);
+  }
+`
+
+const Row = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-gap: 8px;
+
+
+  @media(max-width: 900px) {
+    grid-template-columns: repeat(2, 50%);
+  }
+
+  @media(max-width: 767px) {
+    grid-template-columns: repeat(1, 100%);
+    max-width: 100%;
   }
 `

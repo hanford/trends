@@ -22,6 +22,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <style dangerouslySetInnerHTML={{ __html: `* { box-sizing: border-box !important; }` }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
         </Head>
         <body>
