@@ -16,13 +16,13 @@ app.prepare()
   .then(() => {
     const server = express()
 
+    // `git clone --bare #{ARGV[1] || "https://github.com/"}#{repo_name}.git #{dir}`
+    // `git log --pretty=format:'%an %ae%n%cn %ce'`
+
     server.get('/fetch', Individual)
     server.get('/top', Top)
     server.get('/trending', Trending)
-
-    server.get('/service-worker.js', (req, res) => {
-      return app.serveStatic(req, res, join(__dirname, '.next', 'service-worker.js'))
-    })
+    server.get('/service-worker.js', ServiceWorker(app))
 
     server.get('*', (req, res) => {
       return handle(req, res)
@@ -34,3 +34,9 @@ app.prepare()
     })
   })
 
+
+const ServiceWorker = app => (req, res) => {
+  const filePath = join(__dirname, '../', '.next', 'service-worker.js')
+
+  app.serveStatic(req, res, filePath)
+}

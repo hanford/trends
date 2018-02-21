@@ -4,8 +4,8 @@ const wrap = require('await-wrap')
 const { getEmailFromCommitPage, verifyIsUser, extractEmail } = require('../helpers')
 
 module.exports = async function Top (req, res) {
-  const { language } = req.query
-  const resp = await get(`/trending?language=${language}&daysAgo=5`)
+  const { language, daysAgo } = req.query
+  const resp = await get(`/trending?language=${language}&daysAgo=${daysAgo || 5}`)
   const { data: { repos } } = await resp
   const topDevs = {}
 

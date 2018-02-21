@@ -3,17 +3,23 @@ import styled from 'react-emotion'
 
 export default class extends PureComponent {
   render () {
-    const { repo } = this.props
-    console.log(repo)
+    const { repo, getEmail } = this.props
+
     return (
-      <Card image={repo.owner.avatar_url}>
+      <Card image={repo.owner.avatar_url} onClick={() => getEmail(repo.full_name)}>
         <About>
           <div>
             <Name>{repo.name}</Name>
             <Description>{repo.description}</Description>
           </div>
           <Row>
-            <Fullname>{repo.full_name}</Fullname>
+            <Fullname
+              onClick={e => e.stopPropagation()}
+              href={`https://github.com/${repo.full_name}`}
+              target='_blank'
+            >
+              {repo.full_name}
+            </Fullname>
             <div>{repo.stargazers_count} ★</div>
           </Row>
         </About>
@@ -59,9 +65,12 @@ const Row = styled.div`
   width: 100%;
 `
 
-const Fullname = styled.div`
+const Fullname = styled.a`
   overflow: hidden;
-  max-width: 85%;
+  max-width: 80%;
   white-space: nowrap;
   text-overflow: ellipsis;
+  color: black !important;
+  text-decoration: underline;
+  cursor: pointer;
 `

@@ -4,31 +4,40 @@ import withFullHeight from 'full-height-hoc'
 import deferRenderHoc from 'defer-render-hoc'
 import { Motion, spring, presets } from 'react-motion'
 import { get } from 'axios'
-// import Drawer from 'react-drag-drawer'
+import Drawer from 'react-drag-drawer'
 import styled, { css } from 'react-emotion'
 
 import Head from '../components/head'
 import Card from '../components/card'
 
+const languages = {
+  'Top Overall': encodeURIComponent('javascript language:python language:go language:html language:css language:java'),
+  'Top Go': 'go',
+  'Top Javascript': 'javascript',
+  'Top Web': 'html language:css',
+  'Top CSS': 'css',
+  'Top C#': encodeURIComponent('C#'),
+  'Top Python': 'python',
+  'Top Java': 'java'
+}
+
+const time = {
+  'Past Week': 8,
+  'Past Day': 2,
+  'Past Month': 32,
+  'Past Year': 365
+}
+
 class Index extends PureComponent {
-  // static async getInitialProps () {
-  //   const res = await fetch(`/trending?language=javascript`)
-  //   const { repos } = await res.json()
-
-  //   return {
-  //     repos
-  //   }
-  // }
-
   state = {
     repo: '',
     loadingIndividual: false,
     loadingMany: false,
     email: '',
     rendered: false,
-    topTable: false,
-    devs: [],
-    repos: []
+    repos: [],
+    language: languages['Top Overall'],
+    time: time['Past Week']
   }
 
   componentDidMount () {
@@ -52,35 +61,32 @@ class Index extends PureComponent {
     this.setState({ loadingIndividual: false, email })
   }
 
-  getTopTrending = async event => {
-    event.preventDefault()
-    event.stopPropagation()
+  getEmail = async name => {
+    this.setState({ loadingIndividual: true, email: '' })
 
-    if (this.state.devs.length) {
-      return this.toggleTopTable()
-    }
+    const res = await get(`/fetch?repo=${window.encodeURIComponent(name)}`)
 
-    this.setState({ loadingMany: true })
+    const { email } = await res.data
 
-    const res = await get(`/top?language=javascript`)
-
-    const { top } = await res.data
-
-    this.setState({ loadingMany: false, topTable: true, devs: top })
+    this.setState({ loadingIndividual: false, email })
   }
 
   getTrending = async () => {
     this.setState({ loadingMany: true })
-
-    const res = await get(`/trending?language=javascript`)
+    console.log(`/trending?language=${this.state.language}&daysAgo=${this.state.time}`)
+    const res = await get(`/trending?language=${this.state.language}&daysAgo=${this.state.time}`)
 
     const { repos } = await res.data
 
     this.setState({ loadingMany: false, repos })
   }
 
-  toggleTopTable = event => {
-    this.setState({ topTable: !this.state.topTable })
+  changeLanguage = event => {
+    this.setState({ language: event.target.value }, () => this.getTrending())
+  }
+
+  changeTime = event => {
+    this.setState({ time: event.target.value }, () => this.getTrending())
   }
 
   render () {
@@ -100,46 +106,33 @@ class Index extends PureComponent {
                 value={this.state.repo}
               />
             </Form>
-
             <SearchButton>{this.state.loadingIndividual ? 'Loading...' : 'Search'}</SearchButton>
-            <SearchButton onClick={this.getTopTrending}>{this.state.loadingMany ? 'Loading...' : 'Top JS Devs'}</SearchButton>
           </Navbar>
+
+          <div style={{display: 'flex', marginTop: 16, marginBottom: 16}}>
+            Showing&nbsp;
+            <select onChange={this.changeLanguage}>
+              {Object.entries(languages).map(([key, value]) => (
+                <option key={key} value={value}>{key}</option>
+              ))}
+            </select>
+            &nbsp;in the&nbsp;
+            <select onChange={this.changeTime}>
+              {Object.entries(time).map(([key, value]) => (
+                <option key={key} value={value}>{key}</option>
+              ))}
+            </select>
+          </div>
 
           <br />
 
-          {this.state.email}
-
           <Row>
-            {this.state.repos.map(repo => <Card repo={repo} />)}
+            {this.state.repos.map(repo => <Card getEmail={this.getEmail} repo={repo} />)}
           </Row>
 
-          <TableContainer display={this.state.topTable ? 'block' : 'none'}>
-            <Table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>User</th>
-                  <th>Email</th>
-                  <th>Repo</th>
-                  <th>Stars</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  this.state.devs.map((d, i) => (
-                    <tr key={d.commitUrl}>
-                      <td>{i + 1}</td>
-                      <td><a href={`https://github.com/${d.user}`} target='_blank'>{d.user}</a></td>
-                      <td><a href={`https://github.com/${d.user}/${d.repo}`} target='_blank'>{d.repo}</a></td>
-                      {/* https://mail.google.com/mail/?view=cm&fs=1&to=&body=hello%20jack%20hanford&su=hello%20jack */}
-                      <td>{d.email}</td>
-                      <td>{d.stars}</td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </Table>
-          </TableContainer>
+          <Drawer open={this.state.email} onRequestClose={() => this.setState({ email: '' })} modalElementClass={DrawerCard}>
+            {this.state.email}
+          </Drawer>
         </Hero>
       </Fragment>
     )
@@ -167,36 +160,6 @@ const StyledSpy = styled.div`
   @media(max-width: 767px) {
     top: 26px;
     left: 16px;
-  }
-`
-
-const Table = styled.table`
-  width: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  padding: 8px;
-  border-collapse: collapse;
-  max-width: 100%;
-  width: ${MAX_WIDTH}px;
-  margin-top: 20px;
-
-  td, th {
-    padding: 8px;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-  }
-
-  @media(max-width: 767px) {
-    overflow-y: auto;
-  }
-`
-
-const TableContainer = styled.div`
-  display: ${({ display }) => display};
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  margin: 0 auto;
-
-  @media(max-width: 767px) {
-    width: 100%;
   }
 `
 
@@ -279,11 +242,9 @@ const SearchButton = styled.button`
   border: 2px solid black;
   cursor: pointer;
   outline: none;
-  margin-right: 10px;
   width: 200px;
 
   @media(max-width: 767px) {
-    margin-right: 0;
     margin-top: 10px;
     width: 100%;
   }
@@ -307,4 +268,13 @@ const Row = styled.div`
     grid-template-columns: repeat(1, 100%);
     max-width: 100%;
   }
+`
+
+const DrawerCard = css`
+  height: 100%;
+  margin-top: 200px;
+  background-color: white;
+  width: 100%;
+  text-align: center;
+  padding-top: 20px;
 `

@@ -21,12 +21,12 @@
     "react": "~16.2.0",
     "react-dom": "~16.2.0",
     "react-emotion": "~9.0.1",
-    "react-motion": "~0.5.2"
+    "react-motion": "~0.5.2",
+    "react-drag-drawer": "~1.12.1",
+    "next-offline": "~2.1.0"
   },
   "devDependencies": {
-    "babel-plugin-emotion": "~9.0.1",
-    "next-offline": "~2.0.1",
-    "react-drag-drawer": "~1.12.1"
+    "babel-plugin-emotion": "~9.0.1"
   },
   "now": {
     "alias": [
