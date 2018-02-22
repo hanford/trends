@@ -31,8 +31,7 @@ const time = {
 class Index extends PureComponent {
   state = {
     repo: '',
-    loadingIndividual: false,
-    loadingMany: false,
+    loading: false,
     email: '',
     rendered: false,
     repos: [],
@@ -52,33 +51,33 @@ class Index extends PureComponent {
   search = async event => {
     event.preventDefault()
 
-    this.setState({ loadingIndividual: true, email: '' })
+    this.setState({ loading: true, email: '' })
 
     const res = await get(`/fetch?repo=${window.encodeURIComponent(this.state.repo)}`)
 
     const { email } = await res.data
 
-    this.setState({ loadingIndividual: false, email })
+    this.setState({ loading: false, email })
   }
 
   getEmail = async name => {
-    this.setState({ loadingIndividual: true, email: '' })
+    this.setState({ loading: true, email: '' })
 
     const res = await get(`/fetch?repo=${window.encodeURIComponent(name)}`)
 
     const { email } = await res.data
 
-    this.setState({ loadingIndividual: false, email })
+    this.setState({ loading: false, email })
   }
 
   getTrending = async () => {
-    this.setState({ loadingMany: true })
+    this.setState({ loading: true })
     console.log(`/trending?language=${this.state.language}&daysAgo=${this.state.time}`)
     const res = await get(`/trending?language=${this.state.language}&daysAgo=${this.state.time}`)
 
     const { repos } = await res.data
 
-    this.setState({ loadingMany: false, repos })
+    this.setState({ loading: false, repos })
   }
 
   changeLanguage = event => {
@@ -106,7 +105,7 @@ class Index extends PureComponent {
                 value={this.state.repo}
               />
             </Form>
-            <SearchButton>{this.state.loadingIndividual ? 'Loading...' : 'Search'}</SearchButton>
+            <SearchButton>{this.state.loading ? 'Loading...' : 'Search'}</SearchButton>
           </Navbar>
 
           <div style={{display: 'flex', marginTop: 16, marginBottom: 16}}>
