@@ -29,11 +29,16 @@ export default class extends PureComponent {
 }
 
 const Card = styled.div`
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 2px solid rgba(0,0,0,0.1);
   border-radius: 4px;
   background-color: white;
   padding: 8px;
   position: relative;
+  cursor: pointer;
+
+  &:hover {
+    border: 2px solid black;
+  }
 `
 
 const About = styled.div`
