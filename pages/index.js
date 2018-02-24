@@ -196,25 +196,24 @@ const IconSpace = styled.div`
   display: flex;
   height: 100%;
   align-items: center;
-
-  @media(max-width: 767px) {
-    left: 16px;
-  }
 `
 
 const TuneContainer = styled.div`
   margin: 16px 0;
+  display: flex;
+  width: 100%;
+
 `
 
 const SearchInput = styled.input`
   -webkit-appearance: none;
   padding: 16px;
   border: 2px solid rgba(0,0,0,0.25);
-  border-radius: 40px;
+  border-radius: 4px;
   font-size: 16px;
 
   width: 100%;
-  padding-left: 60px;
+  padding-left: 54px;
 
   &:active,
   &:focus {
@@ -285,7 +284,7 @@ const Row = styled.div`
   }
 
   @media(max-width: 767px) {
-    grid-template-columns: repeat(1, calc(100% - 8px));
+    grid-template-columns: repeat(1, 100%);
     max-width: 100%;
   }
 `
@@ -309,5 +308,9 @@ const Select = styled.select`
 
   &:first-of-type {
     margin-right: 8px;
+  }
+
+  @media(max-width: 767px) {
+    width: 100%;
   }
 `
