@@ -196,7 +196,7 @@ const IconSpace = styled.div`
   top: 8px;
 
   @media(max-width: 767px) {
-    top: 16px;
+    top: 8px;
     left: 16px;
   }
 `
