@@ -193,10 +193,11 @@ const MAX_WIDTH = 900
 const IconSpace = styled.div`
   position: absolute;
   left: 8px;
-  top: 8px;
+  display: flex;
+  height: 100%;
+  align-items: center;
 
   @media(max-width: 767px) {
-    top: 8px;
     left: 16px;
   }
 `
