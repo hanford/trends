@@ -1,25 +1,28 @@
 import { PureComponent } from 'react'
 import styled from 'react-emotion'
+import { Motion, spring, presets } from 'react-motion'
 
 export default class extends PureComponent {
   render () {
-    const { repo, getEmail } = this.props
+    const { repo, getEmail, expand } = this.props
 
     return (
-      <Card image={repo.owner.avatar_url} onClick={() => getEmail(repo.full_name)}>
+      <Card
+        onClick={e => e.stopPropagation()}
+        href={`https://github.com/${repo.full_name}`}
+        target='_blank'
+      >
         <About>
           <div>
             <Name>{repo.name}</Name>
+
+            <EmailContainer onClick={getEmail(repo.full_name)}>
+              <EmailIcon />
+            </EmailContainer>
             <Description>{repo.description}</Description>
           </div>
           <Row>
-            <Fullname
-              onClick={e => e.stopPropagation()}
-              href={`https://github.com/${repo.full_name}`}
-              target='_blank'
-            >
-              {repo.full_name}
-            </Fullname>
+            <Fullname>{repo.full_name}</Fullname>
             <div>{repo.stargazers_count} ★</div>
           </Row>
         </About>
@@ -28,13 +31,21 @@ export default class extends PureComponent {
   }
 }
 
-const Card = styled.div`
+const EmailIcon = props => (
+  <svg width='16' height='16' version='1.1' viewBox='0 0 100 100'>
+    <path d='M13.781 23L50 52.156 86.219 23zM9 26.813V77h82V26.812l-39.125 31.5a2.996 2.996 0 0 1-3.75 0z' />
+  </svg>
+)
+
+const Card = styled.a`
   border: 2px solid rgba(0,0,0,0.1);
   border-radius: 4px;
   background-color: white;
   padding: 8px;
   position: relative;
   cursor: pointer;
+  color: black !important;
+  text-decoration: none;
 
   &:hover {
     border: 2px solid black;
@@ -52,6 +63,10 @@ const About = styled.div`
 const Name = styled.div`
   font-size: 18px;
   padding-bottom: 8px;
+  overflow: hidden;
+  max-width: 80%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 const Description = styled.div`
@@ -70,7 +85,7 @@ const Row = styled.div`
   width: 100%;
 `
 
-const Fullname = styled.a`
+const Fullname = styled.div`
   overflow: hidden;
   max-width: 80%;
   white-space: nowrap;
@@ -78,4 +93,21 @@ const Fullname = styled.a`
   color: black !important;
   text-decoration: underline;
   cursor: pointer;
+`
+
+const EmailContainer = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  opacity: 0.9;
+  outline: none;
+
+  &:hover {
+    transform: scale(1.5);
+    opacity: 1;
+  }
 `

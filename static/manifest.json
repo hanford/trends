@@ -1,0 +1,11 @@
+{
+  "name": "gitwho",
+  "theme_color": "#000000",
+  "background_color": "#2196f3",
+  "display": "browser",
+  "orientation": "portrait",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": [],
+  "splash_pages": null
+}
