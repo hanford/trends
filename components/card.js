@@ -98,7 +98,7 @@ const Fullname = styled.div`
 const EmailContainer = styled.button`
   position: absolute;
   top: 8px;
-  right: 8px;
+  right: 0;
   background-color: transparent;
   border: 0px;
   cursor: pointer;

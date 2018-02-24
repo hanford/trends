@@ -199,10 +199,9 @@ const IconSpace = styled.div`
 `
 
 const TuneContainer = styled.div`
-  margin: 16px 0;
+  margin-top: 8px;
   display: flex;
   width: 100%;
-
 `
 
 const SearchInput = styled.input`
