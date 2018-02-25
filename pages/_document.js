@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <meta name='apple-mobile-web-app-capable' content='yes'>
+          <meta name='apple-mobile-web-app-capable' content='yes' />>
 
           <style dangerouslySetInnerHTML={{ __html: `* { box-sizing: border-box !important; }` }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
