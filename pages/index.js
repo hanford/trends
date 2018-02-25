@@ -134,6 +134,7 @@ class Index extends PureComponent {
           </Row>
 
           <Drawer open={this.state.email} onRequestClose={() => this.setState({ email: '' })} modalElementClass={DrawerCard}>
+            <Grabber />
             {this.state.email}
           </Drawer>
         </Hero>
@@ -295,6 +296,24 @@ const DrawerCard = css`
   width: 100%;
   text-align: center;
   padding-top: 20px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const Grabber = styled.div`
+    position: absolute;
+    top: 8px;
+    width: 40px;
+    border-radius: 10px;
+    height: 8px;
+    background-color: rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 const Select = styled.select`

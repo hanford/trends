@@ -17,6 +17,9 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <meta name='apple-mobile-web-app-capable' content='yes' />
+          <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+          <meta name='name' content='Eaze: Marijuana Delivered' />
+          <meta name='mobile-web-app-capable' content='yes' />
 
           <style dangerouslySetInnerHTML={{ __html: `* { box-sizing: border-box !important; }` }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
