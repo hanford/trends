@@ -305,15 +305,15 @@ const DrawerCard = css`
 `
 
 const Grabber = styled.div`
-    position: absolute;
-    top: 8px;
-    width: 40px;
-    border-radius: 10px;
-    height: 8px;
-    background-color: rgba(0,0,0,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 8px;
+  width: 40px;
+  border-radius: 10px;
+  height: 8px;
+  background-color: rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 const Select = styled.select`
