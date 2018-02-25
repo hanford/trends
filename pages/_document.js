@@ -5,16 +5,10 @@ export default class MyDocument extends Document {
   static getInitialProps ({ renderPage }) {
     const page = renderPage()
     const styles = extractCritical(page.html)
-    return { ...page, ...styles }
-  }
 
-  constructor (props) {
-    super(props)
-
-    const { __NEXT_DATA__, ids } = props
-
-    if (ids) {
-      __NEXT_DATA__.ids = ids
+    return {
+      ...page,
+      ...styles
     }
   }
 
@@ -22,6 +16,8 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <meta name='apple-mobile-web-app-capable' content='yes'>
+
           <style dangerouslySetInnerHTML={{ __html: `* { box-sizing: border-box !important; }` }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
 
