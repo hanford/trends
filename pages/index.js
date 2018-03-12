@@ -11,13 +11,14 @@ import Head from '../components/head'
 import Card from '../components/card'
 
 const languages = {
-  'Top Overall': encodeURIComponent('javascript language:python language:go language:html language:css language:java'),
-  'Top Go': 'go',
+  'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java'),
   'Top Javascript': 'javascript',
+  'Top Go': 'go',
   'Top Web': 'html language:css',
   'Top CSS': 'css',
   'Top C#': encodeURIComponent('C#'),
   'Top Python': 'python',
+  'Top Ruby': 'ruby',
   'Top Java': 'java'
 }
 
