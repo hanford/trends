@@ -35,14 +35,12 @@ class Index extends PureComponent {
     repo: '',
     loading: false,
     email: '',
-    rendered: false,
     repos: [],
     language: languages['Top Overall'],
     time: time['Past Week']
   }
 
   componentDidMount () {
-    this.setState({ rendered: true })
     this.getTrending()
   }
 
