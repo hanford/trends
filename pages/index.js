@@ -257,9 +257,13 @@ const Navbar = styled.div`
   box-shadow: 0 10px 10px white;
 
   @media(max-width: 767px) {
+    box-shadow: 0 -10px 10px white;
     flex-direction: column;
     width: 100%;
     padding: 8px;
+    position: fixed;
+    bottom: 0;
+    top: auto;
   }
 `
 
@@ -273,6 +277,10 @@ const Hero = styled.div`
   justify-content: center;
   flex-direction: column;
   max-width: ${MAX_WIDTH}px;
+
+  @media(max-width: 767px) {
+    flex-direction: column-reverse;
+  }
 `
 
 const Row = styled.div`
