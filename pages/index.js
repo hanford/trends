@@ -265,6 +265,14 @@ const Navbar = styled.div`
     bottom: 0;
     top: auto;
   }
+
+  /* iphoneX */
+  @media only screen
+  and (device-width : 375px)
+  and (device-height : 812px)
+  and (-webkit-device-pixel-ratio : 3) {
+    padding-bottom: 20px;
+  }
 `
 
 const Hero = styled.div`
@@ -311,14 +319,20 @@ const DrawerCard = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media(min-width: 767px) {
+    max-width: 400px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
 `
 
 const Grabber = styled.div`
   position: absolute;
   top: 8px;
-  width: 40px;
+  width: 80px;
   border-radius: 10px;
-  height: 8px;
+  height: 4px;
   background-color: rgba(0,0,0,0.25);
   display: flex;
   align-items: center;

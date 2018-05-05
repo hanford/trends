@@ -33,7 +33,7 @@ export default class extends PureComponent {
 
 const EmailIcon = props => (
   <svg width='16' height='16' version='1.1' viewBox='0 0 100 100'>
-    <path d='M13.781 23L50 52.156 86.219 23zM9 26.813V77h82V26.812l-39.125 31.5a2.996 2.996 0 0 1-3.75 0z' />
+    <path fill='currentColor' d='M13.781 23L50 52.156 86.219 23zM9 26.813V77h82V26.812l-39.125 31.5a2.996 2.996 0 0 1-3.75 0z' />
   </svg>
 )
 
@@ -105,6 +105,7 @@ const EmailContainer = styled.button`
   transition: all 0.2s linear;
   opacity: 0.9;
   outline: none;
+  color: rgba(0,0,0,0.75);
 
   &:hover {
     transform: scale(1.5);
