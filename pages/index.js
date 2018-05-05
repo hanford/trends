@@ -6,9 +6,14 @@ import { get } from 'axios'
 import Drawer from 'react-drag-drawer'
 import styled, { css } from 'react-emotion'
 import { Motion, spring, presets } from 'react-motion'
+import cookies from 'next-cookies'
+import cookie from 'cookie-cutter'
+import document from 'global/document'
 
 import Head from '../components/head'
 import Card from '../components/card'
+
+const CookieJar = cookie(document)
 
 const languages = {
   'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java'),
@@ -29,15 +34,27 @@ const time = {
   'Past Year': 365
 }
 
+const defaultState = {
+  repo: '',
+  loading: false,
+  email: '',
+  repos: [],
+  language: languages['Top Overall'],
+  time: time['Past Week']
+}
+
 class Index extends PureComponent {
 
-  state = {
-    repo: '',
-    loading: false,
-    email: '',
-    repos: [],
-    language: languages['Top Overall'],
-    time: time['Past Week']
+  state = defaultState
+
+  static getInitialProps (ctx) {
+    const { language, time } = cookies(ctx)
+
+    if (language) {
+      console.log({ language, time })
+    }
+
+    return { }
   }
 
   componentDidMount () {
@@ -74,7 +91,7 @@ class Index extends PureComponent {
 
   getTrending = async () => {
     this.setState({ loading: true })
-    console.log(`/trending?language=${this.state.language}&daysAgo=${this.state.time}`)
+
     const res = await get(`/trending?language=${this.state.language}&daysAgo=${this.state.time}`)
 
     const { repos } = await res.data
@@ -83,11 +100,23 @@ class Index extends PureComponent {
   }
 
   changeLanguage = event => {
-    this.setState({ language: event.target.value }, () => this.getTrending())
+    const { value } = event.target
+
+    this.setState({ language: value }, () => {
+      CookieJar.set('language', value)
+
+      this.getTrending()
+    })
   }
 
   changeTime = event => {
-    this.setState({ time: event.target.value }, () => this.getTrending())
+    const { value } = event.target
+
+    this.setState({ time: value }, () => {
+      CookieJar.set('time', value)
+
+      this.getTrending()
+    })
   }
 
   render () {
