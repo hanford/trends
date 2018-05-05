@@ -348,6 +348,7 @@ const Select = styled.select`
   border-radius: 4px;
   padding: 8px;
   border: 2px solid rgba(0,0,0,0.25);
+  cursor: pointer;
 
   &:first-of-type {
     margin-right: 8px;
