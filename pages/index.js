@@ -114,18 +114,18 @@ class Index extends PureComponent {
               </Form>
             </div>
 
-          <TuneContainer>
-            <Select onChange={this.changeLanguage}>
-              {Object.entries(languages).map(([key, value]) => (
-                <option key={key} value={value}>{key}</option>
-              ))}
-            </Select>
-            <Select onChange={this.changeTime}>
-              {Object.entries(time).map(([key, value]) => (
-                <option key={key} value={value}>{key}</option>
-              ))}
-            </Select>
-          </TuneContainer>
+            <TuneContainer>
+              <Select onChange={this.changeLanguage}>
+                {Object.entries(languages).map(([key, value]) => (
+                  <option key={key} value={value}>{key}</option>
+                ))}
+              </Select>
+              <Select onChange={this.changeTime}>
+                {Object.entries(time).map(([key, value]) => (
+                  <option key={key} value={value}>{key}</option>
+                ))}
+              </Select>
+            </TuneContainer>
           </Navbar>
 
           <br />
@@ -295,6 +295,7 @@ const Row = styled.div`
   display: grid;
   grid-template-columns: repeat(3, calc(300px - 8px));
   grid-gap: 8px;
+  padding-bottom: 50px;
 
   @media(max-width: 900px) {
     grid-template-columns: repeat(2, calc(50% - 8px));
@@ -303,6 +304,7 @@ const Row = styled.div`
   @media(max-width: 767px) {
     grid-template-columns: repeat(1, 100%);
     max-width: 100%;
+    padding-bottom: 130px;
   }
 `
 
