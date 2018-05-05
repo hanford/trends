@@ -266,6 +266,11 @@ const Navbar = styled.div`
     top: auto;
   }
 
+  @supports (-webkit-overflow-scrolling: touch) {
+    backdrop-filter: saturate(0) blur(20px);
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+
   /* iphoneX */
   @media only screen
   and (device-width : 375px)
