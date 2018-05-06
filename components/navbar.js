@@ -1,7 +1,7 @@
 import styled, { css } from 'react-emotion'
 import { Motion, spring, presets } from 'react-motion'
 
-export default ({ changeTime, changeLanguage, repo, search, loading, getRepo, languages, time }) => (
+export default ({ setAndFetchTime, setAndFetchLanguage, repo, search, loading, getRepo, language, time, timeOptions, languageOptions }) => (
   <Navbar>
     <div style={{display: 'flex', width: '100%', position: 'relative'}}>
       <IconSpace>
@@ -19,14 +19,14 @@ export default ({ changeTime, changeLanguage, repo, search, loading, getRepo, la
     </div>
 
     <TuneContainer>
-      <Select onChange={changeLanguage}>
-        {Object.entries(languages).map(([key, value]) => (
-          <option key={key} value={value}>{key}</option>
+      <Select onChange={event => setAndFetchLanguage(event.target.value)}>
+        {Object.entries(languageOptions).map(([key, value]) => (
+          <option selected={value === language} key={key} value={value}>{key}</option>
         ))}
       </Select>
-      <Select onChange={changeTime}>
-        {Object.entries(time).map(([key, value]) => (
-          <option key={key} value={value}>{key}</option>
+      <Select onChange={event => setAndFetchTime(event.target.value)}>
+        {Object.entries(timeOptions).map(([key, value]) => (
+          <option selected={value === Number(time)} key={key} value={value}>{key}</option>
         ))}
       </Select>
     </TuneContainer>
