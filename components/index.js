@@ -33,14 +33,11 @@ class Index extends PureComponent {
     if (language && cookies) {
       await store.dispatch(setLanguage(language))
       await store.dispatch(setTime(time))
-      await store.dispatch(getTrending())
     }
 
-    return {}
-  }
+    await store.dispatch(getTrending())
 
-  componentDidMount () {
-    this.props.getTrending()
+    return {}
   }
 
   getRepo = name => ({ target: { value }}) => {

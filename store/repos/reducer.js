@@ -29,7 +29,6 @@ const initialState = {
   email: ''
 }
 
-// REDUCERS
 export default (state = initialState, action) => {
   switch (action.type) {
     case t.REQUEST_REPOS:

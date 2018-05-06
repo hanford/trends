@@ -23,12 +23,14 @@ export const setTime = time => async dispatch => {
 
 export const setAndFetchLanguage = language => async dispatch => {
   CookieJar.set('language', language)
+
   await dispatch(setLanguage(language))
   await dispatch(getTrending())
 }
 
 export const setAndFetchTime = time => async dispatch => {
   CookieJar.set('time', time)
+
   await dispatch(setTime(time))
   await dispatch(getTrending())
 }
