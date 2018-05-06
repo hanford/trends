@@ -16,15 +16,11 @@ import { setLanguage, setTime, getTrending } from '../store/repos/actions'
 
 const CookieJar = cookie(document)
 
-const defaultState = {
-  repo: '',
-  loading: false,
-  email: ''
-}
-
 class Index extends PureComponent {
 
-  state = defaultState
+  state = {
+    repo: ''
+  }
 
   static async getInitialProps (ctx) {
     const { language, time } = cookies(ctx)
@@ -33,11 +29,15 @@ class Index extends PureComponent {
     if (language && cookies) {
       await store.dispatch(setLanguage(language))
       await store.dispatch(setTime(time))
+      // await store.dispatch(getTrending())
     }
 
-    await store.dispatch(getTrending())
-
     return {}
+  }
+
+  componentDidMount () {
+    // get initial data if we don't SSR
+    this.props.getTrending()
   }
 
   getRepo = name => ({ target: { value }}) => {

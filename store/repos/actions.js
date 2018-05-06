@@ -2,7 +2,11 @@ import t from './actionTypes'
 import cookie from 'cookie-cutter'
 import document from 'global/document'
 import { get } from 'axios'
-import getApiUrl from '../../helpers/api'
+
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
+
+console.log({publicRuntimeConfig})
 
 const CookieJar = cookie(document)
 
@@ -40,7 +44,7 @@ export const getTrending = () => async (dispatch, getState) => {
 
   await dispatch(requestRepos())
 
-  const res = await get(`${getApiUrl()}/trending?language=${state.language}&daysAgo=${state.time}`)
+  const res = await get(`/trending?language=${state.language}&daysAgo=${state.time}`)
   const { repos } = await res.data
 
   await dispatch(receiveRepos())
@@ -50,7 +54,7 @@ export const getTrending = () => async (dispatch, getState) => {
 export const fetchEmail = (repo) => async (dispatch, getState) => {
   await dispatch(requestRepos())
   console.log(repo)
-  const res = await get(`${getApiUrl()}/fetch?repo=${window.encodeURIComponent(repo)}`)
+  const res = await get(`/fetch?repo=${window.encodeURIComponent(repo)}`)
 
   await dispatch(receiveRepos())
 
