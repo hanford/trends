@@ -38,7 +38,7 @@ export const getTrending = () => async (dispatch, getState) => {
 
   await dispatch(requestRepos())
 
-  const res = await get(`${process.env.NOW_URL || ''}/trending?language=${state.language}&daysAgo=${state.time}`)
+  const res = await get(`${getApiUrl()}/trending?language=${state.language}&daysAgo=${state.time}`)
   const { repos } = await res.data
 
   await dispatch(receiveRepos())
@@ -48,7 +48,7 @@ export const getTrending = () => async (dispatch, getState) => {
 export const fetchEmail = (repo) => async (dispatch, getState) => {
   await dispatch(requestRepos())
   console.log(repo)
-  const res = await get(`${process.env.NOW_URL || ''}/fetch?repo=${window.encodeURIComponent(repo)}`)
+  const res = await get(`${getApiUrl()}/fetch?repo=${window.encodeURIComponent(repo)}`)
 
   await dispatch(receiveRepos())
 
