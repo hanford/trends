@@ -21,6 +21,10 @@ export const setEmail = email => async dispatch => {
   await dispatch({ type: t.SET_EMAIL, email })
 }
 
+export const setUser = user => async dispatch => {
+  await dispatch({ type: t.SET_USER, user })
+}
+
 export const setTime = time => async dispatch => {
   await dispatch({ type: t.SET_TIME, time })
 }
@@ -58,7 +62,8 @@ export const fetchEmail = (repo) => async (dispatch, getState) => {
 
   await dispatch(receiveRepos())
 
-  const { email } = await res.data
+  const { email, ...payload } = await res.data
 
   await dispatch(setEmail(email[0]))
+  await dispatch(setUser(payload))
 }

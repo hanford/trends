@@ -1,4 +1,4 @@
-import { PureComponent } from 'react'
+import { PureComponent, Fragment } from 'react'
 import Link from 'next/link'
 import withFullHeight from 'full-height-hoc'
 import Drawer from 'react-drag-drawer'
@@ -6,15 +6,21 @@ import styled, { css } from 'react-emotion'
 import { Motion, spring, presets } from 'react-motion'
 import cookies from 'next-cookies'
 
+import Search from '../components/search-icon'
 import Card from '../components/card'
 import Navbar from '../components/navbar'
+import Loader from '../components/loading-icon'
+import Profile from '../components/profile'
 
 import { setLanguage, setTime, getTrending } from '../store/repos/actions'
 
 class Index extends PureComponent {
 
   state = {
-    repo: ''
+    repo: '',
+    openMobileNav: false,
+    hasMounted: false,
+    loadingCards: {}
   }
 
   static async getInitialProps (ctx) {
@@ -35,6 +41,7 @@ class Index extends PureComponent {
   componentDidMount () {
     // get initial data if we don't SSR
     this.props.getTrending()
+    this.setState({ hasMounted: true })
   }
 
   getRepo = name => ({ target: { value }}) => {
@@ -53,8 +60,21 @@ class Index extends PureComponent {
     this.props.fetchEmail(this.state.repo)
   }
 
+  showMobileNav = value => event => {
+    this.setState({ openMobileNav: value === 'open' })
+  }
+
+  setCardLoading = (key, value) => event => {
+    this.setState({
+      loadingCards: {
+        ...this.state.loadingCards,
+        [key]: value
+      }
+    })
+  }
+
   render () {
-    const { repo } = this.state
+    const { repo, openMobileNav, hasMounted } = this.state
 
     const {
       setAndFetchTime,
@@ -67,40 +87,91 @@ class Index extends PureComponent {
       timeOptions = {},
       languageOptions = {},
       email,
-      setEmail
+      setEmail,
+      user
     } = this.props
 
     return (
-      <Hero>
-        <Navbar
-          setAndFetchLanguage={setAndFetchLanguage}
-          languageOptions={languageOptions}
-          setAndFetchTime={setAndFetchTime}
-          getRepo={this.getRepo}
-          search={this.fetchEmail}
-          loading={loading}
-          timeOptions={timeOptions}
-          time={time}
-          language={language}
-        />
+      <Fragment>
+        <Hero>
 
-        <br />
+          <Navbar
+            setAndFetchLanguage={setAndFetchLanguage}
+            languageOptions={languageOptions}
+            setAndFetchTime={setAndFetchTime}
+            getRepo={this.getRepo}
+            search={this.fetchEmail}
+            loading={loading}
+            timeOptions={timeOptions}
+            time={time}
+            language={language}
+            hideOnMobile={true}
+          />
 
-        <Row>
-          {repos.map(repo => <Card expand={true} getEmail={this.getEmail} repo={repo} />)}
-        </Row>
+          <br />
+
+          <Row>
+            {/* loading={this.state.loadingCards[repo.username] === true}  */}
+            {repos.map(repo => <Card expand={true} getEmail={this.getEmail} repo={repo} />)}
+          </Row>
+
+          <Motion defaultStyle={{transformY: 400}} style={{transformY: spring(hasMounted ? 0 : 400, presets.wobbly)}}>
+            {({ transformY }) => (
+              <Fab onClick={openMobileNav ? this.showMobileNav('close') : this.showMobileNav('open')} style={{transform: `translateY(${transformY}px)`}}>
+                {loading ? <Loader /> : <Search />}
+              </Fab>
+            )}
+          </Motion>
+        </Hero>
+
+        <Drawer open={openMobileNav} onRequestClose={this.showMobileNav('close')} modalElementClass={DrawerCard}>
+          <Grabber />
+
+          <Navbar
+            setAndFetchLanguage={setAndFetchLanguage}
+            languageOptions={languageOptions}
+            setAndFetchTime={setAndFetchTime}
+            getRepo={this.getRepo}
+            search={this.fetchEmail}
+            loading={loading}
+            timeOptions={timeOptions}
+            time={time}
+            language={language}
+          />
+        </Drawer>
 
         <Drawer open={email !== ''} onRequestClose={() => setEmail('')} modalElementClass={DrawerCard}>
           <Grabber />
 
-          {email}
+          <Profile user={user} />
         </Drawer>
-      </Hero>
+      </Fragment>
     )
   }
 }
 
 export default withFullHeight(Index)
+
+const Fab = styled.button`
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 3px 30px rgba(0,0,0,0.5);
+  border-radius: 50%;
+  border: none;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  padding: 16px;
+  outline: none;
+
+  @supports (-webkit-overflow-scrolling: touch) {
+    backdrop-filter: blur(20px);
+    background-color: rgba(255, 255, 255, 0.0);
+  }
+
+  @media(min-width: 767px) {
+    display: none;
+  }
+`
 
 const Hero = styled.div`
   width: 100%;
@@ -130,7 +201,9 @@ const DrawerCard = css`
   height: 100%;
   margin-top: 200px;
   background-color: white;
-  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 700px;
+  max-width: 100%;
   text-align: center;
   padding-top: 20px;
   border-top-left-radius: 4px;
@@ -141,7 +214,7 @@ const DrawerCard = css`
   align-items: center;
 
   @media(min-width: 767px) {
-    max-width: 400px;
+    max-width: 700px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
   }
@@ -151,6 +224,7 @@ const Grabber = styled.div`
   position: absolute;
   top: 8px;
   width: 80px;
+  margin: 0 auto;
   border-radius: 10px;
   height: 4px;
   background-color: rgba(0,0,0,0.25);

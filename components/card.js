@@ -1,24 +1,30 @@
 import { PureComponent } from 'react'
 import styled from 'react-emotion'
 import { Motion, spring, presets } from 'react-motion'
+import Loader from './loading-icon'
 
 export default class extends PureComponent {
   render () {
-    const { repo, getEmail, expand } = this.props
+    const { repo, getEmail, expand, loading } = this.props
 
     return (
       <Card
-        onClick={e => e.stopPropagation()}
-        href={`https://github.com/${repo.full_name}`}
-        target='_blank'
+        role='button'
+        onClick={getEmail(repo.full_name)}
       >
+        {/* <Motion defaultStyle={{scale: 0}} style={{scale: spring(loading ? 1 : 0)}}>
+          {({ scale }) => (
+            <LoadingContainer display={loading ? 'block' : 'none'}>
+              <Loader />
+            </LoadingContainer>
+          )}
+        </Motion> */}
+
         <About>
           <div>
             <Name>{repo.name}</Name>
 
-            <EmailContainer onClick={getEmail(repo.full_name)}>
-              <EmailIcon />
-            </EmailContainer>
+            <Number />
 
             <Description>{repo.description}</Description>
           </div>
@@ -38,7 +44,9 @@ const EmailIcon = props => (
   </svg>
 )
 
-const Card = styled.a`
+const LoadingContainer = styled.div``
+
+const Card = styled.div`
   border: 2px solid rgba(0,0,0,0.1);
   border-radius: 4px;
   background-color: white;
@@ -47,9 +55,21 @@ const Card = styled.a`
   cursor: pointer;
   color: black !important;
   text-decoration: none;
+  counter-increment: cardCount;
 
   &:hover {
     border: 2px solid black;
+  }
+`
+
+const Number = styled.div`
+  &:before {
+    content: counter(cardCount);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding-top: 8px;
+    padding-right: 8px;
   }
 `
 

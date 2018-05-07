@@ -26,7 +26,12 @@ const initialState = {
   loading: false,
   timeOptions: time,
   languageOptions: languages,
-  email: ''
+  email: '',
+  user: {
+    full_name: '',
+    username: '',
+    image: ''
+  }
 }
 
 export default (state = initialState, action) => {
@@ -65,6 +70,15 @@ export default (state = initialState, action) => {
       return {
         ...state,
         email: action.email
+      }
+
+
+    case t.SET_USER:
+      return {
+        ...state,
+        user: {
+          ...action.user
+        }
       }
 
     default:

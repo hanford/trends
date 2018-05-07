@@ -9,7 +9,8 @@ const mapStateToProps = (state, props) => ({
   languageOptions: state.languageOptions,
   timeOptions: state.timeOptions,
   loading: state.loading,
-  email: state.email
+  email: state.email,
+  user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({
