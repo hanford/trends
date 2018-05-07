@@ -21,7 +21,7 @@ class Index extends PureComponent {
     const { language, time } = cookies(ctx)
     const { store } = ctx
 
-    if (language && cookies) {
+    if (language && time) {
       await store.dispatch(setLanguage(language))
       await store.dispatch(setTime(time))
       // await store.dispatch(getTrending())

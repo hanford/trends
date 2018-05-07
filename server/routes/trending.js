@@ -10,6 +10,7 @@ const getSearchURL = searchParams => `https://api.github.com/search/repositories
 
 module.exports = async (req, res) => {
   const { daysAgo = 7, language: lang, bust } = parseURL(req.url, true).query || {}
+
   const language = lang ? ` language:${lang}` : ''
 
   if (bust) {
@@ -18,7 +19,7 @@ module.exports = async (req, res) => {
 
   const startDate = new Date()
 
-  startDate.setDate(startDate.getDate() - daysAgo)
+  startDate.setDate(startDate.getDate() - (daysAgo || 7))
 
   const startDateString = `
     ${startDate.getFullYear()}-${('0' + (startDate.getMonth()+1)).slice(-2)}-${('0' + startDate.getDate()).slice(-2)}

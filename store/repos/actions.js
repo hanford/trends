@@ -44,7 +44,7 @@ export const getTrending = () => async (dispatch, getState) => {
 
   await dispatch(requestRepos())
 
-  const res = await get(`/trending?language=${state.language}&daysAgo=${state.time}`)
+  const res = await get(`/trending?language=${state.language}&daysAgo=${state.time || 7}`)
   const { repos } = await res.data
 
   await dispatch(receiveRepos())
