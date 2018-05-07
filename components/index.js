@@ -21,10 +21,12 @@ class Index extends PureComponent {
     const { language, time } = cookies(ctx)
     const { store } = ctx
 
-    if (language && time) {
+    if (language) {
       await store.dispatch(setLanguage(language))
+    }
+
+    if (time) {
       await store.dispatch(setTime(time))
-      // await store.dispatch(getTrending())
     }
 
     return {}
