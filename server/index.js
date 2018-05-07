@@ -1,7 +1,6 @@
 const express = require('express')
 const next = require('next')
 const { join } = require('path')
-const getEmails = require('get-emails')
 
 const Trending = require('./routes/trending')
 const Top = require('./routes/top')
@@ -15,9 +14,6 @@ const handle = app.getRequestHandler()
 app.prepare()
   .then(() => {
     const server = express()
-
-    // `git clone --bare #{ARGV[1] || "https://github.com/"}#{repo_name}.git #{dir}`
-    // `git log --pretty=format:'%an %ae%n%cn %ce'`
 
     server.get('/fetch', Individual)
     server.get('/top', Top)

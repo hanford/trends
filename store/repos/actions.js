@@ -53,7 +53,7 @@ export const getTrending = () => async (dispatch, getState) => {
 
 export const fetchEmail = (repo) => async (dispatch, getState) => {
   await dispatch(requestRepos())
-  console.log(repo)
+
   const res = await get(`/fetch?repo=${window.encodeURIComponent(repo)}`)
 
   await dispatch(receiveRepos())

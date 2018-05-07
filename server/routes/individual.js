@@ -1,7 +1,7 @@
 const { get } = require('axios')
 const cheerio = require('cheerio')
 const wrap = require('await-wrap')
-const { getEmailFromCommitPage, verifyIsUser, extractEmail } = require('../helpers')
+const { getEmailFromCommitPage, verifyIsUser, extractEmail, getUserBasicInfo } = require('../helpers')
 
 module.exports = async function fetchEmail (req, res) {
   const { repo } = req.query
@@ -31,6 +31,7 @@ module.exports = async function fetchEmail (req, res) {
   const url = `https://github.com/${repo}/commits?author=${biggestContributor.name}`
 
   const email = await getEmailFromCommitPage(url)
+  const info = await getUserBasicInfo(biggestContributor.name)
 
-  return res.send({ email })
+  return res.send({ email, ...info })
 }

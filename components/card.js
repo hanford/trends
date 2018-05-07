@@ -19,6 +19,7 @@ export default class extends PureComponent {
             <EmailContainer onClick={getEmail(repo.full_name)}>
               <EmailIcon />
             </EmailContainer>
+
             <Description>{repo.description}</Description>
           </div>
           <Row>

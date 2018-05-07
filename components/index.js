@@ -1,20 +1,15 @@
-import { PureComponent, Fragment } from 'react'
+import { PureComponent } from 'react'
 import Link from 'next/link'
 import withFullHeight from 'full-height-hoc'
-// import deferRenderHoc from 'defer-render-hoc'
 import Drawer from 'react-drag-drawer'
 import styled, { css } from 'react-emotion'
 import { Motion, spring, presets } from 'react-motion'
 import cookies from 'next-cookies'
-import cookie from 'cookie-cutter'
-import document from 'global/document'
 
-import Head from '../components/head'
 import Card from '../components/card'
 import Navbar from '../components/navbar'
-import { setLanguage, setTime, getTrending } from '../store/repos/actions'
 
-const CookieJar = cookie(document)
+import { setLanguage, setTime, getTrending } from '../store/repos/actions'
 
 class Index extends PureComponent {
 
@@ -74,35 +69,31 @@ class Index extends PureComponent {
     } = this.props
 
     return (
-      <Fragment>
-        <Head title='gitwho' />
+      <Hero>
+        <Navbar
+          setAndFetchLanguage={setAndFetchLanguage}
+          languageOptions={languageOptions}
+          setAndFetchTime={setAndFetchTime}
+          getRepo={this.getRepo}
+          search={this.fetchEmail}
+          loading={loading}
+          timeOptions={timeOptions}
+          time={time}
+          language={language}
+        />
 
-        <Hero>
-          <Navbar
-            setAndFetchLanguage={setAndFetchLanguage}
-            languageOptions={languageOptions}
-            setAndFetchTime={setAndFetchTime}
-            getRepo={this.getRepo}
-            search={this.fetchEmail}
-            loading={loading}
-            timeOptions={timeOptions}
-            time={time}
-            language={language}
-          />
+        <br />
 
-          <br />
+        <Row>
+          {repos.map(repo => <Card expand={true} getEmail={this.getEmail} repo={repo} />)}
+        </Row>
 
-          <Row>
-            {repos.map(repo => <Card expand={true} getEmail={this.getEmail} repo={repo} />)}
-          </Row>
+        <Drawer open={email !== ''} onRequestClose={() => setEmail('')} modalElementClass={DrawerCard}>
+          <Grabber />
 
-          <Drawer open={email !== ''} onRequestClose={() => setEmail('')} modalElementClass={DrawerCard}>
-            <Grabber />
-
-            {email}
-          </Drawer>
-        </Hero>
-      </Fragment>
+          {email}
+        </Drawer>
+      </Hero>
     )
   }
 }
@@ -118,7 +109,7 @@ const Hero = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 900px;
+  max-width: 1200px;
 
   @media(max-width: 767px) {
     flex-direction: column-reverse;
@@ -127,19 +118,10 @@ const Hero = styled.div`
 
 const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, calc(300px - 8px));
+  grid-template-columns: repeat(auto-fit, minmax(calc(300px - 8px), 1fr));
   grid-gap: 8px;
   padding-bottom: 50px;
-
-  @media(max-width: 900px) {
-    grid-template-columns: repeat(2, calc(50% - 8px));
-  }
-
-  @media(max-width: 767px) {
-    grid-template-columns: repeat(1, 100%);
-    max-width: 100%;
-    padding-bottom: 130px;
-  }
+  width: 100%;
 `
 
 const DrawerCard = css`

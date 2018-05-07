@@ -3,7 +3,7 @@ import { Motion, spring, presets } from 'react-motion'
 
 export default ({ setAndFetchTime, setAndFetchLanguage, repo, search, loading, getRepo, language, time, timeOptions, languageOptions }) => (
   <Navbar>
-    <div style={{display: 'flex', width: '100%', position: 'relative'}}>
+    <SearchBar>
       <IconSpace>
         {loading ? <Loader /> : <Search />}
       </IconSpace>
@@ -16,19 +16,23 @@ export default ({ setAndFetchTime, setAndFetchLanguage, repo, search, loading, g
           value={repo}
         />
       </Form>
-    </div>
+    </SearchBar>
 
     <TuneContainer>
-      <Select onChange={event => setAndFetchLanguage(event.target.value)}>
-        {Object.entries(languageOptions).map(([key, value]) => (
-          <option selected={value === language} key={key} value={value}>{key}</option>
-        ))}
-      </Select>
-      <Select onChange={event => setAndFetchTime(event.target.value)}>
-        {Object.entries(timeOptions).map(([key, value]) => (
-          <option selected={value === Number(time)} key={key} value={value}>{key}</option>
-        ))}
-      </Select>
+      <SelectContainer>
+        <select onChange={event => setAndFetchLanguage(event.target.value)}>
+          {Object.entries(languageOptions).map(([key, value]) => (
+            <option selected={value === language} key={key} value={value}>{key}</option>
+          ))}
+        </select>
+      </SelectContainer>
+      <SelectContainer>
+        <select onChange={event => setAndFetchTime(event.target.value)}>
+          {Object.entries(timeOptions).map(([key, value]) => (
+            <option selected={value === Number(time)} key={key} value={value}>{key}</option>
+          ))}
+        </select>
+      </SelectContainer>
     </TuneContainer>
   </Navbar>
 )
@@ -77,11 +81,7 @@ const Loader = props => (
 )
 
 const Navbar = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 900px;
+  width: 100%;
   max-width: 100%;
   position: sticky;
   top: 0;
@@ -90,14 +90,17 @@ const Navbar = styled.div`
   background-color: white;
   box-shadow: 0 10px 10px white;
 
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 8px;
+
   @media(max-width: 767px) {
     box-shadow: 0 -10px 10px white;
-    flex-direction: column;
-    width: 100%;
     padding: 8px;
     position: fixed;
     bottom: 0;
     top: auto;
+    grid-template-columns: 1fr;
   }
 
   @supports (-webkit-overflow-scrolling: touch) {
@@ -114,29 +117,57 @@ const Navbar = styled.div`
   }
 `
 
-const Select = styled.select`
-  font-size: 16px;
-  -webkit-appearance: none;
-  background-color: white;
-  border-radius: 4px;
-  padding: 8px;
-  border: 2px solid rgba(0,0,0,0.25);
+const SearchBar = styled.div`
+  display: flex;
+  width: 100%;
+  position: relative;
+`
+
+const SelectContainer = styled.div`
+  width: 100%;
   cursor: pointer;
+  display: grid;
+  position: relative;
 
   &:first-of-type {
     margin-right: 8px;
   }
 
-  @media(max-width: 767px) {
-    width: 100%;
+  select {
+    padding: 8px;
+    font-size: 16px;
+    -webkit-appearance: none;
+    background-color: white;
+    border-radius: 4px;
+    border: 2px solid rgba(0,0,0,0.25);
+    cursor: pointer;
+
+    @media(max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  &::before {
+    content: '▼';
+    position: absolute;
+    pointer-events: none;
+    right: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 12px;
+    right: 8px;
   }
 `
 
 
 const TuneContainer = styled.div`
-  margin-top: 8px;
   display: flex;
   width: 100%;
+
+  @media(max-width: 767px) {
+    margin-top: 8px;
+  }
 `
 
 const SearchInput = styled.input`

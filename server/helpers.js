@@ -31,6 +31,45 @@ async function verifyIsUser (user) {
   return err !== undefined
 }
 
+async function getUserBasicInfo (user) {
+  const profile = await get(`https://github.com/${user}`)
+  const { data: userProfile } = await profile
+
+  if (!userProfile) return {}
+
+  const $ = cheerio.load(userProfile)
+
+  let response = {}
+
+  response.image = getDataFromAttr('.avatar.width-full', 'src', $)
+  response.full_name = getTextFromTag('.p-name.vcard-fullname', $)
+  response.username = getTextFromTag('.p-nickname.vcard-username', $)
+
+  console.log(response)
+
+  return response
+}
+
+function getDataFromAttr (selector, attr, $) {
+  const data = $(selector) ? $(selector)[0] : null
+  let valueToReturn = null
+
+  if (data) {
+    const { attribs: { [attr]: value } } = data
+
+    console.log({value})
+    valueToReturn = value
+  }
+
+  return valueToReturn
+}
+
+function getTextFromTag (selector, $) {
+  console.log($(selector).text())
+
+  return $(selector).text()
+}
+
 function extractEmail (text) {
   return text.match(/(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g)
 }
@@ -38,5 +77,6 @@ function extractEmail (text) {
 module.exports = {
   getEmailFromCommitPage,
   verifyIsUser,
-  extractEmail
+  extractEmail,
+  getUserBasicInfo
 }
