@@ -143,7 +143,7 @@ class Index extends PureComponent {
         <Drawer open={email !== ''} onRequestClose={() => setEmail('')} modalElementClass={DrawerCard}>
           <Grabber />
 
-          <Profile user={user} />
+          <Profile email={email} user={user} />
         </Drawer>
       </Fragment>
     )

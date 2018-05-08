@@ -9,8 +9,10 @@ export default class extends PureComponent {
 
     return (
       <Card
-        role='button'
-        onClick={getEmail(repo.full_name)}
+        href={`https://github.com/${repo.full_name}`}
+        target='_blank'
+        // role='button'
+        // onClick={getEmail(repo.full_name)}
       >
         {/* <Motion defaultStyle={{scale: 0}} style={{scale: spring(loading ? 1 : 0)}}>
           {({ scale }) => (
@@ -19,7 +21,6 @@ export default class extends PureComponent {
             </LoadingContainer>
           )}
         </Motion> */}
-
         <About>
           <div>
             <Name>{repo.name}</Name>
@@ -46,7 +47,7 @@ const EmailIcon = props => (
 
 const LoadingContainer = styled.div``
 
-const Card = styled.div`
+const Card = styled.a`
   border: 2px solid rgba(0,0,0,0.1);
   border-radius: 4px;
   background-color: white;
