@@ -19,7 +19,7 @@
     "next": "~6.0.0",
     "next-connect-redux": "~0.1.5",
     "next-cookies": "~1.0.2",
-    "next-offline": "~2.6.0",
+    "next-offline": "~2.7.0",
     "querystring": "~0.2.0",
     "react": "~16.3.2",
     "react-dom": "~16.3.2",
