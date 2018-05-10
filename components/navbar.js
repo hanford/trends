@@ -70,6 +70,7 @@ const SelectContainer = styled.div`
     border-radius: 0.4rem;
     border: 0.2rem solid rgba(0,0,0,0.25);
     cursor: pointer;
+    height: 4.8rem;
 
     @media(max-width: 767px) {
       width: 100%;
@@ -92,10 +93,6 @@ const SelectContainer = styled.div`
 const TuneContainer = styled.div`
   display: flex;
   width: 100%;
-
-  @media(max-width: 767px) {
-    margin-top: 0.8rem;
-  }
 `
 
 const Form = styled.form`
