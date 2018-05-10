@@ -1,4 +1,5 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Main } from 'next/document'
+//  Head, NextScript
 import { extractCritical } from 'emotion-server'
 
 const myScript = `
@@ -34,12 +35,6 @@ const myScript = `
   const cookies = cookieCutter(document)
 
   document.addEventListener("DOMContentLoaded", (event) => {
-
-    // document.querySelector('form[name=tune]').addEventListener('submit', () => {
-    //   console.log(document.tune.language.value)
-    //   console.log(document.tune.time.value)
-    // })
-
     document.querySelector('select[name=language]').addEventListener('change', () => {
       cookies.set('language', document.tune.language.value)
 
@@ -51,6 +46,16 @@ const myScript = `
 
       document.tune.submit()
     })
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(registration => {
+          console.log('SW registered: ', registration)
+        }).catch(registrationError => {
+          console.log('SW registration failed: ', registrationError)
+        })
+      })
+    }
   })
 `
 
@@ -68,7 +73,7 @@ export default class MyDocument extends Document {
   render () {
     return (
       <html lang='en'>
-        <Head>
+        <head>
           <meta name='apple-mobile-web-app-capable' content='yes' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
           <title>gitwho</title>
@@ -84,8 +89,7 @@ export default class MyDocument extends Document {
           <link rel='icon' type='image/png' sizes='32x32' href='/static/favicon-32x32.png' />
           <link rel='icon' type='image/png' sizes='16x16' href='/static/favicon-16x16.png' />
           <link rel='manifest' href='/static/manifest.json' />
-
-        </Head>
+        </head>
         <body>
           <Main />
 
