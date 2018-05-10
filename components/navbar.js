@@ -8,7 +8,7 @@ export default ({ setAndFetchTime, setAndFetchLanguage, repo, search, loading, g
   <Navbar>
     {/* onSubmit={search} */}
     <Form label='search' name='tune' method="GET">
-      <SearchBar>
+      {/* <SearchBar>
         <IconSpace>
           {loading ? <Loader /> : <Search />}
         </IconSpace>
@@ -22,7 +22,7 @@ export default ({ setAndFetchTime, setAndFetchLanguage, repo, search, loading, g
             aria-label='user search'
           />
         </SearchContainer>
-      </SearchBar>
+      </SearchBar> */}
 
       <TuneContainer>
         <SelectContainer>
