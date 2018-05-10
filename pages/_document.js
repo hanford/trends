@@ -81,7 +81,7 @@ export default class MyDocument extends Document {
           <meta name='mobile-web-app-capable' content='yes' />
           <meta name="theme-color" content="#000" />
 
-          <style dangerouslySetInnerHTML={{ __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }` }} />
+          <style dangerouslySetInnerHTML={{ __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; }` }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
 
           <link rel='apple-touch-icon' sizes='180x180' href='/static/apple-touch-icon.png' />
