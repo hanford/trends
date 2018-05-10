@@ -10,6 +10,7 @@
     "axios": "~0.18.0",
     "cheerio": "~1.0.0-rc.2",
     "cookie-cutter": "~0.2.0",
+    "cors": "~2.8.4",
     "emotion": "~9.0.2",
     "emotion-server": "~9.0.2",
     "express": "~4.16.3",

@@ -1,6 +1,7 @@
 const express = require('express')
 const next = require('next')
 const { join } = require('path')
+const cors = require('cors')
 
 const Trending = require('./routes/trending')
 const Top = require('./routes/top')
@@ -14,6 +15,8 @@ const handle = app.getRequestHandler()
 app.prepare()
   .then(() => {
     const server = express()
+
+    server.use(cors())
 
     server.get('/fetch', Individual)
     server.get('/top', Top)
