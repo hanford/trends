@@ -1,5 +1,62 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Main } from 'next/document'
 import { extractCritical } from 'emotion-server'
+
+const myScript = `
+  function cookieCutter (doc) {
+    if (!doc) doc = {};
+    if (typeof doc === 'string') doc = { cookie: doc };
+    if (doc.cookie === undefined) doc.cookie = '';
+
+    var self = {};
+    self.get = function (key) {
+        var splat = doc.cookie.split(/;\s*/);
+        for (var i = 0; i < splat.length; i++) {
+            var ps = splat[i].split('=');
+            var k = unescape(ps[0]);
+            if (k === key) return unescape(ps[1]);
+        }
+        return undefined;
+    };
+
+    self.set = function (key, value, opts) {
+        if (!opts) opts = {};
+        var s = escape(key) + '=' + escape(value);
+        if (opts.expires) s += '; expires=' + opts.expires;
+        if (opts.path) s += '; path=' + escape(opts.path);
+        if (opts.domain) s += '; domain=' + escape(opts.domain);
+        if (opts.secure) s += '; secure';
+        doc.cookie = s;
+        return s;
+    };
+    return self;
+  };
+
+  const cookies = cookieCutter(document)
+
+  document.addEventListener("DOMContentLoaded", (event) => {
+    document.querySelector('select[name=language]').addEventListener('change', () => {
+      cookies.set('language', document.tune.language.value)
+
+      document.tune.submit()
+    })
+
+    document.querySelector('select[name=time]').addEventListener('change', () => {
+      cookies.set('time', document.tune.time.value)
+
+      document.tune.submit()
+    })
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(registration => {
+          console.log('SW registered: ', registration)
+        }).catch(registrationError => {
+          console.log('SW registration failed: ', registrationError)
+        })
+      })
+    }
+  })
+`
 
 export default class MyDocument extends Document {
   static getInitialProps ({ renderPage }) {
@@ -15,7 +72,7 @@ export default class MyDocument extends Document {
   render () {
     return (
       <html lang='en'>
-        <Head>
+        <head>
           <meta name='apple-mobile-web-app-capable' content='yes' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
           <title>gitwho</title>
@@ -31,10 +88,11 @@ export default class MyDocument extends Document {
           <link rel='icon' type='image/png' sizes='32x32' href='/static/favicon-32x32.png' />
           <link rel='icon' type='image/png' sizes='16x16' href='/static/favicon-16x16.png' />
           <link rel='manifest' href='/static/manifest.json' />
-        </Head>
+        </head>
         <body>
           <Main />
-          <NextScript />
+
+          <script type='text/javascript' dangerouslySetInnerHTML={{__html: myScript}} />
         </body>
       </html>
     )

@@ -1,32 +1,44 @@
 import { PureComponent } from 'react'
-import { nextConnect } from '../store'
-import { getTrending, setAndFetchLanguage, setAndFetchTime, fetchEmail, setEmail, setLanguage, setTime } from '../store/repos/actions'
-import Index from '../components/index'
 import cookies from 'next-cookies'
+
+import { getTrending, setLanguage, setTime } from '../store/repos/actions'
+import Index from '../components/index'
+import { nextConnect } from '../store'
 
 const mapStateToProps = (state, props) => ({
   repos: state.repos,
   language: state.language,
   time: state.time,
   languageOptions: state.languageOptions,
-  timeOptions: state.timeOptions,
-  loading: state.loading,
-  email: state.email,
-  user: state.user
+  timeOptions: state.timeOptions
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTrending: () => dispatch(getTrending()),
-  setAndFetchLanguage: (language) => dispatch(setAndFetchLanguage(language)),
-  setAndFetchTime: (time) => dispatch(setAndFetchTime(time)),
-  fetchEmail: (email) => dispatch(fetchEmail(email)),
-  setEmail: (email) => dispatch(setEmail(email))
+  // getTrending: () => dispatch(getTrending())
 })
 
 class IndexPage extends PureComponent {
   static async getInitialProps (ctx) {
-    const { language, time } = cookies(ctx)
-    const { store } = ctx
+    const { language: languageCookie, time: timeCookie } = cookies(ctx)
+    const { store, req } = ctx
+
+    let languageReq = undefined
+    let timeReq = undefined
+
+    if (req && req.query) {
+      const { time = false, language = false } = req.query
+
+      if (time) {
+        timeReq = time
+      }
+
+      if (language) {
+        languageReq = language
+      }
+    }
+
+    const time = timeReq ? timeReq : timeCookie ? timeCookie : false
+    const language = languageReq ? languageReq : languageCookie ? languageCookie : false
 
     if (language) {
       await store.dispatch(setLanguage(language))
@@ -48,4 +60,4 @@ class IndexPage extends PureComponent {
   }
 }
 
-export default nextConnect(mapStateToProps, mapDispatchToProps)(IndexPage)
+export default nextConnect(mapStateToProps, {})(IndexPage)

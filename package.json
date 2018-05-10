@@ -6,9 +6,7 @@
     "start": "NODE_ENV=production node ./server/index.js"
   },
   "dependencies": {
-    "await-wrap": "~0.1.0",
     "axios": "~0.18.0",
-    "cheerio": "~1.0.0-rc.2",
     "cookie-cutter": "~0.2.0",
     "cors": "~2.8.4",
     "emotion": "~9.0.2",
@@ -26,7 +24,6 @@
     "react-dom": "~16.3.2",
     "react-drag-drawer": "~3.2.0",
     "react-emotion": "~9.0.2",
-    "react-motion": "~0.5.2",
     "react-redux": "~5.0.7",
     "redux": "~4.0.0",
     "redux-devtools-extension": "~2.13.2",

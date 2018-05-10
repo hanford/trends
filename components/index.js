@@ -1,94 +1,41 @@
-import { PureComponent, Fragment } from 'react'
-import Link from 'next/link'
+import { PureComponent } from 'react'
 import withFullHeight from 'full-height-hoc'
-import Drawer from 'react-drag-drawer'
 import styled, { css } from 'react-emotion'
-import { Motion, spring, presets } from 'react-motion'
 
-import Search from '../components/search-icon'
 import Card from '../components/card'
 import Navbar from '../components/navbar'
-import Loader from '../components/loading-icon'
-import Profile from '../components/profile'
-
-import { setLanguage, setTime, getTrending } from '../store/repos/actions'
 
 class Index extends PureComponent {
-
-  state = {
-    repo: ''
-  }
-
-  getRepo = name => ({ target: { value }}) => {
-    this.setState({ [name]: value })
-  }
-
-  getEmail = fullName => async event => {
-    event.preventDefault()
-
-    this.props.fetchEmail(fullName)
-  }
-
-  fetchEmail = async event => {
-    event.preventDefault()
-
-    this.props.fetchEmail(this.state.repo)
-  }
-
   render () {
-    const { repo, hasMounted } = this.state
-
     const {
-      setAndFetchTime,
-      setAndFetchLanguage,
-      getTrending,
       repos = [],
-      loading = false,
       language,
       time,
       timeOptions = {},
       languageOptions = {},
-      email,
-      setEmail,
-      user
     } = this.props
 
     return (
-      <Fragment>
-        <Hero>
-          <Navbar
-            setAndFetchLanguage={setAndFetchLanguage}
-            languageOptions={languageOptions}
-            setAndFetchTime={setAndFetchTime}
-            getRepo={this.getRepo}
-            search={this.fetchEmail}
-            loading={loading}
-            timeOptions={timeOptions}
-            time={time}
-            language={language}
-          />
+      <Hero>
+        <Navbar
+          languageOptions={languageOptions}
+          timeOptions={timeOptions}
+          time={time}
+          language={language}
+        />
 
-          <Row>
-            {
-              repos.map((repo, index) => (
-                <Card
-                  index={index}
-                  key={index}
-                  expand={true}
-                  getEmail={this.getEmail}
-                  repo={repo}
-                />
-              ))
-            }
-          </Row>
-        </Hero>
-
-        <Drawer open={email !== ''} onRequestClose={() => setEmail('')} modalElementClass={DrawerCard}>
-          <Grabber />
-
-          <Profile email={email} user={user} />
-        </Drawer>
-      </Fragment>
+        <Row>
+          {
+            repos.map((repo, index) => (
+              <Card
+                index={index}
+                key={index}
+                repo={repo}
+              />
+            ))
+          }
+        </Row>
+      </Hero>
     )
   }
 }
@@ -122,40 +69,4 @@ const Row = styled.div`
   @media(max-width: 767px) {
     margin-top: 0;
   }
-`
-
-const DrawerCard = css`
-  height: 100%;
-  margin-top: 200px;
-  background-color: white;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  width: 700px;
-  max-width: 100%;
-  text-align: center;
-  padding-top: 20px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  @media(min-width: 767px) {
-    max-width: 700px;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-`
-
-const Grabber = styled.div`
-  position: absolute;
-  top: 8px;
-  width: 80px;
-  margin: 0 auto;
-  border-radius: 10px;
-  height: 4px;
-  background-color: rgba(0,0,0,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
