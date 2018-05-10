@@ -48,6 +48,7 @@ const Navbar = styled.div`
   z-index: 10;
   background-color: white;
   box-shadow: 0 10px 10px white;
+  padding: 10px 0;
 
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -55,11 +56,9 @@ const Navbar = styled.div`
 
   @media(max-width: 767px) {
     box-shadow: 0 -10px 10px white;
-    padding: 8px;
     bottom: 0;
     top: auto;
     grid-template-columns: 1fr;
-    display: ${({ hideOnMobile }) => hideOnMobile ? 'none' : ''};
   }
 
   @supports (-webkit-overflow-scrolling: touch) {
@@ -68,10 +67,7 @@ const Navbar = styled.div`
   }
 
   /* iphoneX */
-  @media only screen
-  and (device-width : 375px)
-  and (device-height : 812px)
-  and (-webkit-device-pixel-ratio : 3) {
+  @media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
     padding-bottom: 20px;
   }
 `

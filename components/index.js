@@ -94,7 +94,6 @@ class Index extends PureComponent {
     return (
       <Fragment>
         <Hero>
-
           <Navbar
             setAndFetchLanguage={setAndFetchLanguage}
             languageOptions={languageOptions}
@@ -105,23 +104,21 @@ class Index extends PureComponent {
             timeOptions={timeOptions}
             time={time}
             language={language}
-            hideOnMobile={true}
           />
 
-          <br />
-
           <Row>
-            {/* loading={this.state.loadingCards[repo.username] === true}  */}
-            {repos.map(repo => <Card expand={true} getEmail={this.getEmail} repo={repo} />)}
+            {
+              repos.map((repo, index) => (
+                <Card
+                  index={index}
+                  key={index}
+                  expand={true}
+                  getEmail={this.getEmail}
+                  repo={repo}
+                />
+              ))
+            }
           </Row>
-
-          <Motion defaultStyle={{transformY: 400}} style={{transformY: spring(hasMounted ? 0 : 400, presets.wobbly)}}>
-            {({ transformY }) => (
-              <Fab onClick={openMobileNav ? this.showMobileNav('close') : this.showMobileNav('open')} style={{transform: `translateY(${transformY}px)`}}>
-                {loading ? <Loader /> : <Search />}
-              </Fab>
-            )}
-          </Motion>
         </Hero>
 
         <Drawer open={openMobileNav} onRequestClose={this.showMobileNav('close')} modalElementClass={DrawerCard}>
@@ -152,27 +149,6 @@ class Index extends PureComponent {
 
 export default withFullHeight(Index)
 
-const Fab = styled.button`
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 3px 30px rgba(0,0,0,0.5);
-  border-radius: 50%;
-  border: none;
-  position: fixed;
-  bottom: 15px;
-  left: 15px;
-  padding: 16px;
-  outline: none;
-
-  @supports (-webkit-overflow-scrolling: touch) {
-    backdrop-filter: blur(20px);
-    background-color: rgba(255, 255, 255, 0.0);
-  }
-
-  @media(min-width: 767px) {
-    display: none;
-  }
-`
-
 const Hero = styled.div`
   width: 100%;
   color: #333;
@@ -195,6 +171,11 @@ const Row = styled.div`
   grid-gap: 8px;
   padding-bottom: 50px;
   width: 100%;
+  margin-top: 1rem;
+
+  @media(max-width: 767px) {
+    margin-top: 0;
+  }
 `
 
 const DrawerCard = css`

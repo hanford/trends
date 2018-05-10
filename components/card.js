@@ -5,35 +5,39 @@ import Loader from './loading-icon'
 
 export default class extends PureComponent {
   render () {
-    const { repo, getEmail, expand, loading } = this.props
+    const { repo, getEmail, expand, loading, index } = this.props
 
     return (
       <Card
-        href={`https://github.com/${repo.full_name}`}
-        target='_blank'
+        // href={`https://github.com/${repo.full_name}`}
+        // target='_blank'
         // role='button'
         // onClick={getEmail(repo.full_name)}
       >
-        {/* <Motion defaultStyle={{scale: 0}} style={{scale: spring(loading ? 1 : 0)}}>
-          {({ scale }) => (
-            <LoadingContainer display={loading ? 'block' : 'none'}>
-              <Loader />
-            </LoadingContainer>
-          )}
-        </Motion> */}
         <About>
-          <div>
+
+            <Number>#{index + 1}</Number>
+
             <Name>{repo.name}</Name>
 
-            <Number />
+            <Fullname>{repo.full_name}</Fullname>
+
+            <div>{repo.stargazers_count} ★</div>
 
             <Description>{repo.description}</Description>
-          </div>
-          <Row>
-            <Fullname>{repo.full_name}</Fullname>
-            <div>{repo.stargazers_count} ★</div>
-          </Row>
+
         </About>
+
+        <Row>
+          {/* <ActionButton>Profile</ActionButton> */}
+          {/* <Seperator /> */}
+          <ActionButton
+            href={`https://github.com/${repo.full_name}`}
+            target='_blank'
+          >
+            View Github
+          </ActionButton>
+        </Row>
       </Card>
     )
   }
@@ -47,73 +51,71 @@ const EmailIcon = props => (
 
 const LoadingContainer = styled.div``
 
-const Card = styled.a`
+const Card = styled.div`
   border: 2px solid rgba(0,0,0,0.1);
   border-radius: 4px;
   background-color: white;
-  padding: 8px;
   position: relative;
-  cursor: pointer;
-  color: black !important;
   text-decoration: none;
-  counter-increment: cardCount;
-
-  &:hover {
-    border: 2px solid black;
-  }
+  display: grid;
+  overflow: hidden;
 `
 
 const Number = styled.div`
-  &:before {
-    content: counter(cardCount);
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding-top: 8px;
-    padding-right: 8px;
-  }
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 8px;
+  padding-right: 8px;
 `
 
 const About = styled.div`
-  height: 100px;
-  overflow: hidden;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  padding: 8px;
 `
 
-const Name = styled.div`
+const Name = styled.h1`
+  margin: 0;
   font-size: 18px;
-  padding-bottom: 8px;
-  overflow: hidden;
-  max-width: 80%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 `
 
 const Description = styled.div`
   font-size: 14px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
 `
 
 const Row = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   width: 100%;
+  border-top: 2px solid rgba(0,0,0,0.1);
+  margin-top: auto;
+  background: rgba(0,0,0,0.05);
+`
+
+const ActionButton = styled.a`
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+  ${'' /* text-transform: uppercase; */}
+  text-align: center;
+  font-size: 12px;
+  display: block;
+  color: black;
+  text-decoration: none;
+
+  ${'' /* // &:first-of-type {
+  //   border-right: 2px solid rgba(0,0,0,0.1);
+  // } */}
 `
 
 const Fullname = styled.div`
-  overflow: hidden;
-  max-width: 80%;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  color: black !important;
-  text-decoration: underline;
+  color: black;
   cursor: pointer;
 `
 
