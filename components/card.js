@@ -8,13 +8,15 @@ export default class extends PureComponent {
     return (
       <Card>
         <About>
-          <Title>
-            <Name>{repo.name}</Name>
-            <Number>#{index + 1}</Number>
-          </Title>
+          <Top>
+            <Title>
+              <Name>{repo.name}</Name>
+              <Number>#{index + 1}</Number>
+            </Title>
 
-          <Fullname>{repo.full_name}</Fullname>
-          <Description>{repo.description}</Description>
+            <Fullname>{repo.full_name}</Fullname>
+            <Description>{repo.description}</Description>
+          </Top>
           <div>{repo.stargazers_count} ★</div>
         </About>
 
@@ -31,12 +33,6 @@ export default class extends PureComponent {
     )
   }
 }
-
-const EmailIcon = props => (
-  <svg width='16' height='16' version='1.1' viewBox='0 0 100 100'>
-    <path fill='currentColor' d='M13.781 23L50 52.156 86.219 23zM9 26.813V77h82V26.812l-39.125 31.5a2.996 2.996 0 0 1-3.75 0z' />
-  </svg>
-)
 
 const LoadingContainer = styled.div``
 
@@ -70,6 +66,14 @@ const About = styled.div`
   flex: 1;
 `
 
+const Top = styled.div`
+  display: flex;
+  ${'' /* justify-content: space-between; */}
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+`
+
 const Name = styled.h1`
   margin: 0;
   font-size: 1.8rem;
@@ -81,6 +85,8 @@ const Name = styled.h1`
 `
 
 const Description = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 const Row = styled.div`
@@ -110,4 +116,8 @@ const Fullname = styled.h3`
   font-size: 1.6rem;
   font-weight: normal;
   margin: 0;
+  margin-top: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `
