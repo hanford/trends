@@ -15,11 +15,13 @@ export default class extends PureComponent {
         // onClick={getEmail(repo.full_name)}
       >
         <About>
-          <Number>#{index + 1}</Number>
-          <Name>{repo.name}</Name>
+          <Title>
+            <Name>{repo.name}</Name>
+            <Number>#{index + 1}</Number>
+          </Title>
           <Fullname>{repo.full_name}</Fullname>
-          <div>{repo.stargazers_count} ★</div>
           <Description>{repo.description}</Description>
+          <div>{repo.stargazers_count} ★</div>
         </About>
 
         <Row>
@@ -52,16 +54,19 @@ const Card = styled.div`
   background-color: white;
   position: relative;
   text-decoration: none;
-  display: grid;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 `
 
 const Number = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding-top: 0.8rem;
-  padding-right: 0.8rem;
+`
+
+const Title = styled.div`
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const About = styled.div`
@@ -69,16 +74,21 @@ const About = styled.div`
   justify-content: space-between;
   flex-direction: column;
   padding: 0.8rem;
+  overflow: hidden;
+  flex: 1;
 `
 
 const Name = styled.h1`
   margin: 0;
   font-size: 1.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  max-width: 90%;
 `
 
 const Description = styled.p`
-  ${'' /* font-size: 14px;
-  overflow: hidden; */}
 `
 
 const Row = styled.div`
@@ -86,7 +96,6 @@ const Row = styled.div`
   justify-content: center;
   width: 100%;
   border-top: 2px solid rgba(0,0,0,0.1);
-  margin-top: auto;
   background: rgba(0,0,0,0.03);
 `
 
@@ -97,7 +106,7 @@ const ActionButton = styled.a`
   background-color: transparent;
   outline: none;
   cursor: pointer;
-  ${'' /* text-transform: uppercase; */}
+
   text-align: center;
   font-size: 1.4rem;
   display: block;
@@ -115,20 +124,20 @@ const Fullname = styled.h3`
   margin: 0;
 `
 
-const EmailContainer = styled.button`
-  position: absolute;
-  top: 0.8rem;
-  right: 0;
-  background-color: transparent;
-  border: 0px;
-  cursor: pointer;
-  transition: all 0.2s linear;
-  opacity: 0.9;
-  outline: none;
-  color: rgba(0,0,0,0.75);
+// const EmailContainer = styled.button`
+//   position: absolute;
+//   top: 0.8rem;
+//   right: 0;
+//   background-color: transparent;
+//   border: 0px;
+//   cursor: pointer;
+//   transition: all 0.2s linear;
+//   opacity: 0.9;
+//   outline: none;
+//   color: rgba(0,0,0,0.75);
 
-  &:hover {
-    transform: scale(1.5);
-    opacity: 1;
-  }
-`
+//   &:hover {
+//     transform: scale(1.5);
+//     opacity: 1;
+//   }
+// `

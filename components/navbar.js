@@ -1,42 +1,48 @@
 import styled, { css } from 'react-emotion'
 import { Motion, spring, presets } from 'react-motion'
+
 import Search from './search-icon'
 import Loader from './loading-icon'
 
-export default ({ setAndFetchTime, setAndFetchLanguage, repo, search, loading, getRepo, language, time, timeOptions, languageOptions, hideOnMobile = false }) => (
-  <Navbar hideOnMobile={hideOnMobile}>
-    <SearchBar>
-      <IconSpace>
-        {loading ? <Loader /> : <Search />}
-      </IconSpace>
+export default ({ setAndFetchTime, setAndFetchLanguage, repo, search, loading, getRepo, language, time, timeOptions, languageOptions }) => (
+  <Navbar>
+    {/* onSubmit={search} */}
+    <Form label='search' name='tune' method="GET">
+      <SearchBar>
+        <IconSpace>
+          {loading ? <Loader /> : <Search />}
+        </IconSpace>
 
-      <Form onSubmit={search} label='search'>
-        <SearchInput
-          placeholder='hanford/next-offline'
-          type='search'
-          onChange={getRepo('repo')}
-          value={repo}
-          aria-label='user search'
-        />
-      </Form>
-    </SearchBar>
+        <SearchContainer>
+          <SearchInput
+            placeholder='hanford/next-offline'
+            type='search'
+            onChange={getRepo('repo')}
+            value={repo}
+            aria-label='user search'
+          />
+        </SearchContainer>
+      </SearchBar>
 
-    <TuneContainer>
-      <SelectContainer>
-        <select aria-label='select language' onChange={event => setAndFetchLanguage(event.target.value)}>
-          {Object.entries(languageOptions).map(([key, value]) => (
-            <option selected={value === language} key={key} value={value}>{key}</option>
-          ))}
-        </select>
-      </SelectContainer>
-      <SelectContainer>
-        <select aria-label='select time' onChange={event => setAndFetchTime(event.target.value)}>
-          {Object.entries(timeOptions).map(([key, value]) => (
-            <option selected={value === Number(time)} key={key} value={value}>{key}</option>
-          ))}
-        </select>
-      </SelectContainer>
-    </TuneContainer>
+      <TuneContainer>
+        <SelectContainer>
+          <select aria-label='select language' name='language' onchange='this.form.submit()'>
+          {/*  onChange={event => setAndFetchLanguage(event.target.value)} */}
+            {Object.entries(languageOptions).map(([key, value]) => (
+              <option selected={value === language} key={key} value={value}>{key}</option>
+            ))}
+          </select>
+        </SelectContainer>
+        <SelectContainer>
+          <select aria-label='select time' name='time' onchange='this.form.submit()'>
+          {/*  onChange={event => setAndFetchTime(event.target.value)} */}
+            {Object.entries(timeOptions).map(([key, value]) => (
+              <option selected={value === Number(time)} key={key} value={value}>{key}</option>
+            ))}
+          </select>
+        </SelectContainer>
+      </TuneContainer>
+    </Form>
   </Navbar>
 )
 
@@ -50,10 +56,6 @@ const Navbar = styled.div`
   background-color: white;
   box-shadow: 0 1rem 1rem white;
   padding: 1rem 0;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.8rem;
 
   @media(max-width: 767px) {
     box-shadow: 0 -1rem 1rem white;
@@ -151,6 +153,19 @@ const SearchInput = styled.input`
 `
 
 const Form = styled.form`
+  width: 100%;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.8rem;
+
+    @media(max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+`
+
+const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
