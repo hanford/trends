@@ -4,7 +4,6 @@ import withFullHeight from 'full-height-hoc'
 import Drawer from 'react-drag-drawer'
 import styled, { css } from 'react-emotion'
 import { Motion, spring, presets } from 'react-motion'
-import cookies from 'next-cookies'
 
 import Search from '../components/search-icon'
 import Card from '../components/card'
@@ -17,31 +16,7 @@ import { setLanguage, setTime, getTrending } from '../store/repos/actions'
 class Index extends PureComponent {
 
   state = {
-    repo: '',
-    openMobileNav: false,
-    hasMounted: false,
-    loadingCards: {}
-  }
-
-  static async getInitialProps (ctx) {
-    const { language, time } = cookies(ctx)
-    const { store } = ctx
-
-    if (language) {
-      await store.dispatch(setLanguage(language))
-    }
-
-    if (time) {
-      await store.dispatch(setTime(time))
-    }
-
-    return {}
-  }
-
-  componentDidMount () {
-    // get initial data if we don't SSR
-    this.props.getTrending()
-    this.setState({ hasMounted: true })
+    repo: ''
   }
 
   getRepo = name => ({ target: { value }}) => {
@@ -60,21 +35,8 @@ class Index extends PureComponent {
     this.props.fetchEmail(this.state.repo)
   }
 
-  showMobileNav = value => event => {
-    this.setState({ openMobileNav: value === 'open' })
-  }
-
-  setCardLoading = (key, value) => event => {
-    this.setState({
-      loadingCards: {
-        ...this.state.loadingCards,
-        [key]: value
-      }
-    })
-  }
-
   render () {
-    const { repo, openMobileNav, hasMounted } = this.state
+    const { repo, hasMounted } = this.state
 
     const {
       setAndFetchTime,
@@ -120,22 +82,6 @@ class Index extends PureComponent {
             }
           </Row>
         </Hero>
-
-        <Drawer open={openMobileNav} onRequestClose={this.showMobileNav('close')} modalElementClass={DrawerCard}>
-          <Grabber />
-
-          <Navbar
-            setAndFetchLanguage={setAndFetchLanguage}
-            languageOptions={languageOptions}
-            setAndFetchTime={setAndFetchTime}
-            getRepo={this.getRepo}
-            search={this.fetchEmail}
-            loading={loading}
-            timeOptions={timeOptions}
-            time={time}
-            language={language}
-          />
-        </Drawer>
 
         <Drawer open={email !== ''} onRequestClose={() => setEmail('')} modalElementClass={DrawerCard}>
           <Grabber />

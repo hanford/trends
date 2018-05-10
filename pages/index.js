@@ -1,6 +1,8 @@
+import { PureComponent } from 'react'
 import { nextConnect } from '../store'
-import { getTrending, setAndFetchLanguage, setAndFetchTime, fetchEmail, setEmail } from '../store/repos/actions'
-import IndexPage from '../components/index'
+import { getTrending, setAndFetchLanguage, setAndFetchTime, fetchEmail, setEmail, setLanguage, setTime } from '../store/repos/actions'
+import Index from '../components/index'
+import cookies from 'next-cookies'
 
 const mapStateToProps = (state, props) => ({
   repos: state.repos,
@@ -20,5 +22,30 @@ const mapDispatchToProps = dispatch => ({
   fetchEmail: (email) => dispatch(fetchEmail(email)),
   setEmail: (email) => dispatch(setEmail(email))
 })
+
+class IndexPage extends PureComponent {
+  static async getInitialProps (ctx) {
+    const { language, time } = cookies(ctx)
+    const { store } = ctx
+
+    if (language) {
+      await store.dispatch(setLanguage(language))
+    }
+
+    if (time) {
+      await store.dispatch(setTime(time))
+    }
+
+    await store.dispatch(getTrending())
+
+    return {}
+  }
+
+  render () {
+    return (
+      <Index {...this.props} />
+    )
+  }
+}
 
 export default nextConnect(mapStateToProps, mapDispatchToProps)(IndexPage)
