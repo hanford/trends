@@ -52,7 +52,7 @@ const Navbar = styled.div`
   padding: 1rem 0;
 
   display: grid;
-  grid-template-columns: 2fr 2fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 0.8rem;
 
   @media(max-width: 767px) {

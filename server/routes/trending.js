@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     sort: 'stars',
     order: 'desc',
     q: 'created:>' + startDateString + language,
-    per_page: '150'
+    per_page: '100'
   }))
 
   const searchURL = getSearchURL(searchParams)
