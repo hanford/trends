@@ -55,14 +55,13 @@ const myScript = `
 `
 
 export default class MyDocument extends Document {
-  static getInitialProps ({ renderPage, isServer }) {
+  static getInitialProps ({ renderPage }) {
     const page = renderPage()
     const styles = extractCritical(page.html)
 
     return {
       ...page,
-      ...styles,
-      isServer
+      ...styles
     }
   }
 
@@ -91,7 +90,6 @@ export default class MyDocument extends Document {
           <Main />
 
           <script type='text/javascript' dangerouslySetInnerHTML={{__html: myScript}} />
-          {/* <NextScript /> */}
         </body>
       </html>
     )
