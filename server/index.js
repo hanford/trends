@@ -4,8 +4,6 @@ const { join } = require('path')
 const cors = require('cors')
 
 const Trending = require('./routes/trending')
-const Top = require('./routes/top')
-const Individual = require('./routes/individual')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -18,8 +16,6 @@ app.prepare()
 
     server.use(cors())
 
-    server.get('/fetch', Individual)
-    server.get('/top', Top)
     server.get('/trending', Trending)
     server.get('/service-worker.js', ServiceWorker(app))
 

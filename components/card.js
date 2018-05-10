@@ -1,32 +1,24 @@
 import { PureComponent } from 'react'
 import styled from 'react-emotion'
-import { Motion, spring, presets } from 'react-motion'
-import Loader from './loading-icon'
 
 export default class extends PureComponent {
   render () {
-    const { repo, getEmail, expand, loading, index } = this.props
+    const { repo, index } = this.props
 
     return (
-      <Card
-        // href={`https://github.com/${repo.full_name}`}
-        // target='_blank'
-        // role='button'
-        // onClick={getEmail(repo.full_name)}
-      >
+      <Card>
         <About>
           <Title>
             <Name>{repo.name}</Name>
             <Number>#{index + 1}</Number>
           </Title>
+
           <Fullname>{repo.full_name}</Fullname>
           <Description>{repo.description}</Description>
           <div>{repo.stargazers_count} ★</div>
         </About>
 
         <Row>
-          {/* <ActionButton>Profile</ActionButton> */}
-          {/* <Seperator /> */}
           <ActionButton
             href={`https://github.com/${repo.full_name}`}
             target='_blank'

@@ -13,8 +13,8 @@ const languages = {
 }
 
 const time = {
-  'Past Week': 8,
   'Past Day': 2,
+  'Past Week': 8,
   'Past Month': 32,
   'Past Year': 365
 }
@@ -23,30 +23,12 @@ const initialState = {
   repos: [],
   language: languages['Top Overall'],
   time: time['Past Week'],
-  loading: false,
   timeOptions: time,
   languageOptions: languages,
-  email: '',
-  user: {
-    full_name: '',
-    username: '',
-    image: ''
-  }
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case t.REQUEST_REPOS:
-      return {
-        ...state,
-        loading: true
-      }
-
-    case t.RECEIVE_REPOS:
-      return {
-        ...state,
-        loading: false
-      }
 
     case t.SET_REPOS:
       return {
@@ -64,21 +46,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         time: action.time
-      }
-
-    case t.SET_EMAIL:
-      return {
-        ...state,
-        email: action.email
-      }
-
-
-    case t.SET_USER:
-      return {
-        ...state,
-        user: {
-          ...action.user
-        }
       }
 
     default:
