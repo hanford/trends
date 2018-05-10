@@ -27,6 +27,7 @@ class IndexPage extends PureComponent {
 
     if (req && req.query) {
       const { time = false, language = false } = req.query
+
       if (time) {
         timeReq = time
       }
@@ -35,9 +36,6 @@ class IndexPage extends PureComponent {
         languageReq = language
       }
     }
-
-    console.log(timeReq, timeCookie)
-    console.log(languageReq, languageCookie)
 
     const time = timeReq ? timeReq : timeCookie ? timeCookie : false
     const language = languageReq ? languageReq : languageCookie ? languageCookie : false
