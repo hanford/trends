@@ -1,5 +1,4 @@
 import Document, { Main } from 'next/document'
-//  Head, NextScript
 import { extractCritical } from 'emotion-server'
 
 const myScript = `

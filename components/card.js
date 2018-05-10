@@ -104,10 +104,6 @@ const ActionButton = styled.a`
   display: block;
   color: black;
   text-decoration: none;
-
-  ${'' /* // &:first-of-type {
-  //   border-right: 2px solid rgba(0,0,0,0.1);
-  // } */}
 `
 
 const Fullname = styled.h3`
@@ -115,21 +111,3 @@ const Fullname = styled.h3`
   font-weight: normal;
   margin: 0;
 `
-
-// const EmailContainer = styled.button`
-//   position: absolute;
-//   top: 0.8rem;
-//   right: 0;
-//   background-color: transparent;
-//   border: 0px;
-//   cursor: pointer;
-//   transition: all 0.2s linear;
-//   opacity: 0.9;
-//   outline: none;
-//   color: rgba(0,0,0,0.75);
-
-//   &:hover {
-//     transform: scale(1.5);
-//     opacity: 1;
-//   }
-// `
