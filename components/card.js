@@ -6,7 +6,11 @@ export default class extends PureComponent {
     const { repo } = this.props
 
     return (
-      <Card>
+      <Card
+        href={`https://github.com/${repo.full_name}`}
+        target='_blank'
+        rel='noopener'
+      >
         <About>
           <div>
             <Name>{repo.name}</Name>
@@ -17,21 +21,12 @@ export default class extends PureComponent {
 
           <Description>{repo.description}</Description>
         </About>
-
-
-        <ActionButton
-          href={`https://github.com/${repo.full_name}`}
-          target='_blank'
-          rel='noopener'
-        >
-          View on Github
-        </ActionButton>
       </Card>
     )
   }
 }
 
-const Card = styled.div`
+const Card = styled.a`
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   border-radius: 0.4rem;
   background-color: white;
@@ -42,6 +37,7 @@ const Card = styled.div`
   flex-direction: column;
   padding: 1.6rem;
   transition: all 0.2s ease-in;
+
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1rem, rgba(0, 0, 0, 0.2) 0px 1px 1rem;
   }
@@ -75,23 +71,7 @@ const Description = styled.p`
   font-size: 1.4rem;
   padding: 1.6rem 0;
   margin: 0;
-`
-
-const ActionButton = styled.a`
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  height: 3.6rem;
-  line-height: 3.6rem;
   color: rgba(0, 0, 0, 0.87);
-  overflow: hidden;
-  text-decoration: none;
-  position: relative;
-  letter-spacing: 0px;
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 1.4rem;
 `
 
 const Secondary = styled.h3`
