@@ -6,7 +6,7 @@ const languages = {
   'Top Go': 'go',
   'Top Web': 'html language:css',
   'Top CSS': 'css',
-  'Top C#': encodeURIComponent('C#'),
+  'Top C': 'C',
   'Top Python': 'python',
   'Top Ruby': 'ruby',
   'Top Java': 'java'

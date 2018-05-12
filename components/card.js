@@ -17,7 +17,11 @@ export default class extends PureComponent {
             <Fullname>{repo.full_name}</Fullname>
             <Description>{repo.description}</Description>
           </Top>
-          <div>{repo.stargazers_count} ★</div>
+          <StatsRow>
+            <div>{repo.stargazers_count} ★</div>
+
+            <div>{repo.language}</div>
+          </StatsRow>
         </About>
 
         <Row>
@@ -26,15 +30,13 @@ export default class extends PureComponent {
             target='_blank'
             rel='noopener'
           >
-            View Github
+            View Github Repo
           </ActionButton>
         </Row>
       </Card>
     )
   }
 }
-
-const LoadingContainer = styled.div``
 
 const Card = styled.div`
   border: 0.2rem solid rgba(0,0,0,0.1);
@@ -68,7 +70,6 @@ const About = styled.div`
 
 const Top = styled.div`
   display: flex;
-  ${'' /* justify-content: space-between; */}
   flex-direction: column;
   overflow: hidden;
   flex: 1;
@@ -95,6 +96,12 @@ const Row = styled.div`
   width: 100%;
   border-top: 2px solid rgba(0,0,0,0.1);
   background: rgba(0,0,0,0.03);
+`
+
+const StatsRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `
 
 const ActionButton = styled.a`

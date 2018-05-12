@@ -1,7 +1,7 @@
 import { PureComponent } from 'react'
 import cookies from 'next-cookies'
 
-import { getTrending, setLanguage, setTime } from '../store/repos/actions'
+import { getTrending, setLanguage, setTime } from '../store/actions'
 import Index from '../components/index'
 import { nextConnect } from '../store'
 

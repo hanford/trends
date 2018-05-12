@@ -18,11 +18,11 @@ export default class MyDocument extends Document {
         <head>
           <meta name='apple-mobile-web-app-capable' content='yes' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-          <title>trending-repos</title>
+          <title>Trending Repos</title>
           <meta name='name' content='trending-repos' />
           <meta name='description' content='trending-repos trending' />
           <meta name='mobile-web-app-capable' content='yes' />
-          <meta name="theme-color" content="#000" />
+          <meta name='theme-color' content='#000' />
 
           <style dangerouslySetInnerHTML={{ __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; }` }} />
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
@@ -44,23 +44,21 @@ export default class MyDocument extends Document {
 
 const clientSideJS = `
   function setCookie (key, value) {
-    const s = escape(key) + '=' + escape(value);
-    document.cookie = s;
-    return s;
+    const s = escape(key) + '=' + escape(value)
+
+    document.cookie = s
   }
 
-  document.addEventListener("DOMContentLoaded", (event) => {
-    document.querySelector('select[name=language]').addEventListener('change', () => {
-      setCookie('language', document.tune.language.value)
+  const submitForm = key => () => {
+    const { value } = document.tune[key]
+    setCookie(key, value)
 
-      document.tune.submit()
-    })
+    document.tune.submit()
+  }
 
-    document.querySelector('select[name=time]').addEventListener('change', () => {
-      setCookie('time', document.tune.time.value)
-
-      document.tune.submit()
-    })
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelector('select[name=language]').addEventListener('change', submitForm('language'))
+    document.querySelector('select[name=time]').addEventListener('change', submitForm('time'))
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
