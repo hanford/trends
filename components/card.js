@@ -68,7 +68,7 @@ const Name = styled.h1`
 const Description = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   padding: 1.6rem 0;
   margin: 0;
   color: rgba(0, 0, 0, 0.87);

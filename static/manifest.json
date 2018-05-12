@@ -1,6 +1,6 @@
 {
   "name": "trending-repos",
-  "short_name": "trending-repos",
+  "short_name": "Trending",
   "background_color": "#FFFFFF",
   "theme_color": "black",
   "description": "trending-repos github repos that are currently trending",
