@@ -3,43 +3,36 @@ import styled from 'react-emotion'
 
 export default class extends PureComponent {
   render () {
-    const { repo, index } = this.props
+    const { repo } = this.props
 
     return (
       <Card>
         <About>
-          <Top>
-            <Title>
-              <Name>{repo.name}</Name>
-              <Number>#{index + 1}</Number>
-            </Title>
+          <div>
+            <Name>{repo.name}</Name>
+            <Secondary>{repo.full_name}</Secondary>
+            <Secondary>{repo.language}</Secondary>
+            <Secondary>{repo.stargazers_count} ★</Secondary>
+          </div>
 
-            <Fullname>{repo.full_name}</Fullname>
-            <Description>{repo.description}</Description>
-          </Top>
-          <StatsRow>
-            <div>{repo.stargazers_count} ★</div>
-
-            <div>{repo.language}</div>
-          </StatsRow>
+          <Description>{repo.description}</Description>
         </About>
 
-        <Row>
-          <ActionButton
-            href={`https://github.com/${repo.full_name}`}
-            target='_blank'
-            rel='noopener'
-          >
-            View Github Repo
-          </ActionButton>
-        </Row>
+
+        <ActionButton
+          href={`https://github.com/${repo.full_name}`}
+          target='_blank'
+          rel='noopener'
+        >
+          View on Github
+        </ActionButton>
       </Card>
     )
   }
 }
 
 const Card = styled.div`
-  border: 0.2rem solid rgba(0,0,0,0.1);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   border-radius: 0.4rem;
   background-color: white;
   position: relative;
@@ -47,29 +40,16 @@ const Card = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
-`
-
-const Number = styled.div`
-`
-
-const Title = styled.div`
-  display: flex;
-  background-color: white;
-  align-items: center;
-  justify-content: space-between;
+  padding: 1.6rem;
+  transition: all 0.2s ease-in;
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1rem, rgba(0, 0, 0, 0.2) 0px 1px 1rem;
+  }
 `
 
 const About = styled.div`
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
-  padding: 0.8rem;
-  overflow: hidden;
-  flex: 1;
-`
-
-const Top = styled.div`
-  display: flex;
   flex-direction: column;
   overflow: hidden;
   flex: 1;
@@ -77,54 +57,55 @@ const Top = styled.div`
 
 const Name = styled.h1`
   margin: 0;
-  font-size: 1.8rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-all;
-  max-width: 90%;
+  max-width: 100%;
+
+  font-size: 2.4rem;
+  color: rgba(0, 0, 0, 0.87);
+  display: block;
+  line-height: 3.6rem;
 `
 
 const Description = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
-`
-
-const Row = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  border-top: 2px solid rgba(0,0,0,0.1);
-  background: rgba(0,0,0,0.03);
-`
-
-const StatsRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+  font-size: 1.4rem;
+  padding: 1.6rem 0;
+  margin: 0;
 `
 
 const ActionButton = styled.a`
-  width: 100%;
-  padding: 0.8rem;
-  border: 0;
-  background-color: transparent;
-  outline: none;
   cursor: pointer;
-
-  text-align: center;
-  font-size: 1.4rem;
-  display: block;
-  color: black;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  color: rgba(0, 0, 0, 0.87);
+  overflow: hidden;
   text-decoration: none;
+  position: relative;
+  letter-spacing: 0px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.4rem;
 `
 
-const Fullname = styled.h3`
-  font-size: 1.6rem;
+const Secondary = styled.h3`
   font-weight: normal;
   margin: 0;
-  margin-top: 0.8rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  font-size: 1.4rem;
+  color: rgba(0, 0, 0, 0.54);
+  display: block;
+
+  &:not(:first-of-type) {
+    margin-top: 0.4rem;
+  }
 `

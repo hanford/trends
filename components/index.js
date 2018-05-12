@@ -64,7 +64,7 @@ const Row = styled.div`
   grid-gap: 8px;
   padding-bottom: 50px;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 2rem;
 
   @media(max-width: 767px) {
     margin-top: 0;
