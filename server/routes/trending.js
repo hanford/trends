@@ -34,8 +34,6 @@ module.exports = async (req, res) => {
 
   const searchURL = getSearchURL(searchParams)
 
-  console.log(searchURL)
-
   let repos = null
   let err = false
 

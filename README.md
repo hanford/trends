@@ -1,12 +1,12 @@
-## gitwho
+## trending-repos
 
 > browse trending github repos written in your favorite language
 
-[Website](https://gitwho.now.sh)
+[Website](https://trending-repos.now.sh)
 
-![preview](https://github.com/hanford/gitwho/blob/master/audit.png)
+![preview](https://github.com/hanford/trending-repos/blob/master/audit.png)
 
-Questions? Feedback? [Please let me know](https://github.com/hanford/gitwho/issues/new)
+Questions? Feedback? [Please let me know](https://github.com/hanford/trending-repos/issues/new)
 
 ## License (MIT)
 
