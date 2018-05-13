@@ -1,6 +1,6 @@
 
 const LRU =  require('hashlru')
-const { get } = require('axios')
+const fetch = require('isomorphic-fetch')
 const { stringify } = require('querystring')
 const { parse: parseURL } = require('url')
 
@@ -56,8 +56,9 @@ const loadRepos = async (searchURL) => {
     return new Promise((resolve, reject) => resolve(cache.get(searchURL)))
   }
 
-  const res = await get(searchURL, {headers: { Accept: 'application/vnd.github.preview' }})
-  const { items } = await res.data
+  const res = await fetch(searchURL, {headers: { Accept: 'application/vnd.github.preview' }})
+  const { items } = await res.json()
+  // const { items } = await res.data
 
   cache.set(searchURL, items)
 

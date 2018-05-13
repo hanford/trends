@@ -6,8 +6,6 @@
     "start": "NODE_ENV=production node ./server/index.js"
   },
   "dependencies": {
-    "axios": "~0.18.0",
-    "cookie-cutter": "~0.2.0",
     "cors": "~2.8.4",
     "emotion": "~9.0.2",
     "emotion-server": "~9.0.2",
@@ -15,7 +13,8 @@
     "full-height-hoc": "~0.3.1",
     "global": "~4.3.2",
     "hashlru": "~2.2.1",
-    "next": "~6.0.1",
+    "isomorphic-fetch": "~2.2.1",
+    "next": "~6.0.2",
     "next-connect-redux": "~0.1.5",
     "next-cookies": "~1.0.2",
     "next-offline": "~2.7.0",

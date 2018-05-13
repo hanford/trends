@@ -3,8 +3,8 @@
   "short_name": "trends",
   "background_color": "#FFFFFF",
   "theme_color": "black",
-  "description": "github repos that are currently trending",
-  "display": "standalone",
+  "description": "view github repos that are currently trending",
+  "display": "browser",
   "start_url": "/",
   "icons": [{
     "src": "/static/icon144.png",

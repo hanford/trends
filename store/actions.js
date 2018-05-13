@@ -1,6 +1,6 @@
 import t from './actionTypes'
 import document from 'global/document'
-import { get } from 'axios'
+import fetch from 'isomorphic-fetch'
 import getConfig from 'next/config'
 
 const { publicRuntimeConfig } = getConfig()
@@ -16,8 +16,8 @@ export const setTime = time => async dispatch => {
 export const getTrending = () => async (dispatch, getState) => {
   const state = getState()
 
-  const res = await get(`${publicRuntimeConfig.api}/trending?language=${state.language}&daysAgo=${state.time}`)
-  const { repos } = await res.data
+  const res = await fetch(`${publicRuntimeConfig.api}/trending?language=${state.language}&daysAgo=${state.time}`)
+  const { repos } = await res.json()
 
   await dispatch({ type: t.SET_REPOS, repos })
 }
