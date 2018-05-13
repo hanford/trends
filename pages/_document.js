@@ -18,7 +18,7 @@ export default class MyDocument extends Document {
         <head>
           <meta name='apple-mobile-web-app-capable' content='yes' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-          <title>Trending Repos</title>
+          <title>Trends on Github</title>
           <meta name='name' content='trends' />
           <meta name='description' content='trends trending' />
           <meta name='mobile-web-app-capable' content='yes' />
@@ -49,7 +49,7 @@ const clientSideJS = `
     document.cookie = s
   }
 
-  const submitForm = key => () => {
+  const submit = key => () => {
     const { value } = document.tune[key]
     setCookie(key, value)
 
@@ -57,8 +57,8 @@ const clientSideJS = `
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelector('select[name=language]').addEventListener('change', submitForm('language'))
-    document.querySelector('select[name=time]').addEventListener('change', submitForm('time'))
+    document.querySelector('select[name=language]').addEventListener('change', submit('language'))
+    document.querySelector('select[name=time]').addEventListener('change', submit('time'))
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {

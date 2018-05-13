@@ -60,4 +60,4 @@ class IndexPage extends PureComponent {
   }
 }
 
-export default nextConnect(mapStateToProps, {})(IndexPage)
+export default nextConnect(mapStateToProps, mapDispatchToProps)(IndexPage)

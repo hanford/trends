@@ -3,22 +3,30 @@ import styled from 'react-emotion'
 
 export default class extends PureComponent {
   render () {
-    const { repo } = this.props
+    const {
+      repo: {
+        name,
+        language,
+        full_name,
+        description,
+        stargazers_count
+      }
+    } = this.props
 
     return (
       <Card
-        href={`https://github.com/${repo.full_name}`}
+        href={`https://github.com/${full_name}`}
         target='_blank'
         rel='noopener'
       >
         <About>
           <div>
-            <Name>{repo.name}</Name>
-            <Secondary>{repo.full_name}</Secondary>
-            <Secondary>{repo.language} ★{repo.stargazers_count}</Secondary>
+            <Name>{name}</Name>
+            <Secondary>{full_name}</Secondary>
+            <Secondary>{language} ★{stargazers_count}</Secondary>
           </div>
 
-          <Description>{repo.description}</Description>
+          <Description>{description}</Description>
         </About>
       </Card>
     )

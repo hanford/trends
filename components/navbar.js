@@ -5,6 +5,7 @@ export default ({ language, time, timeOptions, languageOptions }) => (
     <Form label='search' name='tune' method='GET'>
       <SelectContainer htmlFor='language'>
         <Label>Language</Label>
+
         <select aria-label='select language' name='language' id='language'>
           {Object.entries(languageOptions).map(([key, value]) => (
             <option selected={value === language} key={key} value={value}>{key}</option>
@@ -13,6 +14,7 @@ export default ({ language, time, timeOptions, languageOptions }) => (
       </SelectContainer>
       <SelectContainer htmlFor='time'>
         <Label>Time</Label>
+
         <select aria-label='select time' name='time' id='time'>
           {Object.entries(timeOptions).map(([key, value]) => (
             <option selected={value === Number(time)} key={key} value={value}>{key}</option>
@@ -43,12 +45,7 @@ const Navbar = styled.nav`
     grid-template-columns: 1fr;
   }
 
-  @supports (-webkit-overflow-scrolling: touch) {
-    backdrop-filter: blur(2rem);
-    background-color: rgba(255, 255, 255, 0.75);
-  }
-
-  /* iphoneX */
+  /* iPhone X */
   @media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
     padding-bottom: 2rem;
   }

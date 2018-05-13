@@ -8,29 +8,29 @@ import Navbar from '../components/navbar'
 class Index extends PureComponent {
   render () {
     const {
-      repos = [],
-      language,
       time,
+      language,
+      repos = [],
       timeOptions = {},
-      languageOptions = {},
+      languageOptions = {}
     } = this.props
 
     return (
       <Hero>
         <Navbar
-          languageOptions={languageOptions}
-          timeOptions={timeOptions}
           time={time}
           language={language}
+          timeOptions={timeOptions}
+          languageOptions={languageOptions}
         />
 
         <Row>
           {
             repos.map((repo, index) => (
               <Card
-                index={index}
                 key={index}
                 repo={repo}
+                index={index}
               />
             ))
           }
