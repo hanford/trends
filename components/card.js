@@ -20,10 +20,12 @@ export default class extends PureComponent {
         rel='noopener'
       >
         <About>
+          <Stars>★ {stargazers_count}</Stars>
+
           <div>
             <Name>{name}</Name>
             <Secondary>{full_name}</Secondary>
-            <Secondary>{language} ★{stargazers_count}</Secondary>
+            <Secondary>{language}</Secondary>
           </div>
 
           <Description>{description}</Description>
@@ -48,6 +50,17 @@ const Card = styled.a`
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1rem, rgba(0, 0, 0, 0.2) 0px 1px 1rem;
   }
+`
+
+const Stars = styled.div`
+  position: absolute;
+  padding: 0.4rem;
+  bottom: 0;
+  right: 0;
+  background: #fbde4b;
+  color: black;
+  border-top-left-radius: 0.4rem;
+  font-size: 1.4rem;
 `
 
 const About = styled.div`
