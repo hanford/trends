@@ -15,8 +15,7 @@ export default class extends PureComponent {
           <div>
             <Name>{repo.name}</Name>
             <Secondary>{repo.full_name}</Secondary>
-            <Secondary>{repo.language}</Secondary>
-            <Secondary>{repo.stargazers_count} ★</Secondary>
+            <Secondary>{repo.language} ★{repo.stargazers_count}</Secondary>
           </div>
 
           <Description>{repo.description}</Description>
@@ -45,7 +44,6 @@ const Card = styled.a`
 
 const About = styled.div`
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
   overflow: hidden;
   flex: 1;
