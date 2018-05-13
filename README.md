@@ -1,12 +1,12 @@
-## trending-repos
+## trends
 
 > browse trending github repos written in your favorite language
 
-[Website](https://trending-repos.now.sh)
+[Website](https://trends.now.sh)
 
-![preview](https://github.com/hanford/trending-repos/blob/master/audit.png)
+![preview](https://github.com/hanford/trends/blob/master/audit.png)
 
-Questions? Feedback? [Please let me know](https://github.com/hanford/trending-repos/issues/new)
+Questions? Feedback? [Please let me know](https://github.com/hanford/trends/issues/new)
 
 ## License (MIT)
 

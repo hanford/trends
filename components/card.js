@@ -81,11 +81,11 @@ const Secondary = styled.h3`
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: rgba(0, 0, 0, 0.54);
   display: block;
 
   &:not(:first-of-type) {
-    margin-top: 0.4rem;
+    padding-top: 0.4rem;
   }
 `

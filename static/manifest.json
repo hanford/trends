@@ -1,9 +1,9 @@
 {
-  "name": "trending-repos",
-  "short_name": "Trending",
+  "name": "trends",
+  "short_name": "trends",
   "background_color": "#FFFFFF",
   "theme_color": "black",
-  "description": "trending-repos github repos that are currently trending",
+  "description": "github repos that are currently trending",
   "display": "standalone",
   "start_url": "/",
   "icons": [{

@@ -19,8 +19,8 @@ export default class MyDocument extends Document {
           <meta name='apple-mobile-web-app-capable' content='yes' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
           <title>Trending Repos</title>
-          <meta name='name' content='trending-repos' />
-          <meta name='description' content='trending-repos trending' />
+          <meta name='name' content='trends' />
+          <meta name='description' content='trends trending' />
           <meta name='mobile-web-app-capable' content='yes' />
           <meta name='theme-color' content='#000' />
 
