@@ -2,8 +2,9 @@ import { PureComponent } from 'react'
 import withFullHeight from 'full-height-hoc'
 import styled, { css } from 'react-emotion'
 
-import Card from '../components/card'
-import Navbar from '../components/navbar'
+import Card from './card'
+import Navbar from './navbar'
+import Footer from './footer'
 
 class Index extends PureComponent {
   render () {
@@ -35,6 +36,8 @@ class Index extends PureComponent {
             ))
           }
         </Row>
+
+        <Footer />
       </Hero>
     )
   }

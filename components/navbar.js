@@ -86,6 +86,7 @@ const SelectContainer = styled.label`
     height: 4.8rem;
     border: none;
     width: 100%;
+    cursor: pointer;
   }
 
   &::before {
