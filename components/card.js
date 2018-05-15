@@ -56,7 +56,7 @@ const Card = styled.a`
 
 const Stars = styled.div`
   padding: 0.4rem;
-  background: #fbde4b;
+  background: #fff59d;
   color: black;
   font-size: 1.4rem;
   border-top-left-radius: 0.4rem;
