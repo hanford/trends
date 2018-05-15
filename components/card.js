@@ -20,15 +20,17 @@ export default class extends PureComponent {
         rel='noopener'
       >
         <About>
-          <Stars>★ {stargazers_count}</Stars>
-
           <div>
             <Name>{name}</Name>
             <Secondary>{full_name}</Secondary>
-            <Secondary>{language}</Secondary>
           </div>
 
           <Description>{description}</Description>
+
+          <Bottom>
+            {/* <Language>{language}</Language> */}
+            <Stars>★ {stargazers_count}</Stars>
+          </Bottom>
         </About>
       </Card>
     )
@@ -53,15 +55,31 @@ const Card = styled.a`
 `
 
 const Stars = styled.div`
-  position: absolute;
   padding: 0.4rem;
-  bottom: 0;
-  right: 0;
   background: #fbde4b;
   color: black;
-  border-top-left-radius: 0.4rem;
   font-size: 1.4rem;
+  border-top-left-radius: 0.4rem;
 `
+
+const Bottom = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+`
+
+// const Language = styled.div`
+//   padding-right: 1rem;
+//   color: rgba(0, 0, 0, 0.87);
+
+//   padding: 0.4rem;
+//   background: #eceff1;
+//   color: black;
+//   border-top-left-radius: 0.4rem;
+//   font-size: 1.4rem;
+// `
 
 const About = styled.div`
   display: flex;
@@ -88,7 +106,7 @@ const Description = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1.6rem;
-  padding: 1.6rem 0;
+  padding: 0.8rem 0 1.6rem;
   margin: 0;
   color: rgba(0, 0, 0, 0.87);
 `
