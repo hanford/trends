@@ -74,5 +74,6 @@ const Row = styled.div`
 
   @media(max-width: 767px) {
     margin-top: 0;
+    padding: ${gridGap};
   }
 `

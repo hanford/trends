@@ -30,16 +30,15 @@ const Navbar = styled.nav`
   width: 100%;
   position: sticky;
   top: 0;
-  padding-top: 0.8rem;
   z-index: 10;
   background-color: ${primary};
   box-shadow: 0 1rem 1rem ${primary};
+  padding: 1rem 0;
 
   @media(max-width: 767px) {
     box-shadow: 0 -1rem 1rem ${primary};
     bottom: 0;
     top: auto;
-    padding-bottom: 1rem;
   }
 
   /* iPhone X */
