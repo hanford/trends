@@ -95,6 +95,7 @@ const Description = styled.p`
   font-size: 1.6rem;
   margin: 0;
   color: rgba(0, 0, 0, 0.87);
+  padding-bottom: 1.6rem;
 `
 
 const Secondary = styled.h3`
