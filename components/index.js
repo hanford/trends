@@ -54,7 +54,7 @@ const Hero = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 1600px;
 
   @media(max-width: 767px) {
     flex-direction: column-reverse;
