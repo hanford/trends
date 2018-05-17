@@ -2,6 +2,7 @@ import { PureComponent } from 'react'
 import withFullHeight from 'full-height-hoc'
 import styled, { css } from 'react-emotion'
 
+import { primary, gridGap, maxWidth } from './style-constants'
 import Card from './card'
 import Navbar from './navbar'
 import Footer from './footer'
@@ -54,7 +55,7 @@ const Hero = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  max-width: 1600px;
+  background-color: ${primary};
 
   @media(max-width: 767px) {
     flex-direction: column-reverse;
@@ -63,11 +64,13 @@ const Hero = styled.div`
 
 const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(calc(300px - 8px), 1fr));
-  grid-gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(calc(300px - ${gridGap}), 1fr));
+  grid-gap: ${gridGap};
+  padding: 0 ${gridGap};
   padding-bottom: 50px;
   width: 100%;
   margin-top: 2rem;
+  max-width: ${maxWidth};
 
   @media(max-width: 767px) {
     margin-top: 0;

@@ -70,17 +70,6 @@ const Bottom = styled.div`
   align-items: center;
 `
 
-// const Language = styled.div`
-//   padding-right: 1rem;
-//   color: rgba(0, 0, 0, 0.87);
-
-//   padding: 0.4rem;
-//   background: #eceff1;
-//   color: black;
-//   border-top-left-radius: 0.4rem;
-//   font-size: 1.4rem;
-// `
-
 const About = styled.div`
   display: flex;
   flex-direction: column;

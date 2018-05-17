@@ -1,4 +1,5 @@
 import styled, { css } from 'react-emotion'
+import { primary, gridGap, maxWidth } from './style-constants'
 
 export default ({ language, time, timeOptions, languageOptions }) => (
   <Navbar>
@@ -27,22 +28,18 @@ export default ({ language, time, timeOptions, languageOptions }) => (
 
 const Navbar = styled.nav`
   width: 100%;
-  max-width: 100%;
   position: sticky;
   top: 0;
   padding-top: 0.8rem;
   z-index: 10;
-  background-color: white;
-  box-shadow: 0 1rem 1rem white;
-  padding: 1rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  background-color: ${primary};
+  box-shadow: 0 1rem 1rem ${primary};
 
   @media(max-width: 767px) {
-    box-shadow: 0 -1rem 1rem white;
+    box-shadow: 0 -1rem 1rem ${primary};
     bottom: 0;
     top: auto;
-    grid-template-columns: 1fr;
+    padding-bottom: 1rem;
   }
 
   /* iPhone X */
@@ -53,8 +50,8 @@ const Navbar = styled.nav`
 
 const Label = styled.span`
   position: absolute;
-  top: 0;
-  font-size: 1.2rem;
+  top: 0.5rem;
+  font-size: 1rem;
   left: 0.8rem;
 `
 
@@ -62,10 +59,11 @@ const SelectContainer = styled.label`
   width: 100%;
   cursor: pointer;
   position: relative;
-  border-bottom: 0.1rem solid rgba(0,0,0,0.25);
+  ${'' /* box-shadow: 0 0 3rem rgba(0,0,0,0.25); */}
   cursor: pointer;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
 
   &:first-of-type {
     margin-right: 0.8rem;
@@ -106,7 +104,15 @@ const Form = styled.form`
   width: 100%;
   position: relative;
 
+  padding: 1rem 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.8rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: ${gridGap};
+  padding: 0 ${gridGap};
+  max-width: ${maxWidth};
+  margin: 0 auto;
+
+  @media(max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
