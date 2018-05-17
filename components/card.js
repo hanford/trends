@@ -28,7 +28,6 @@ export default class extends PureComponent {
           <Description>{description}</Description>
 
           <Bottom>
-            {/* <Language>{language}</Language> */}
             <Stars>★ {stargazers_count}</Stars>
           </Bottom>
         </About>
@@ -38,7 +37,7 @@ export default class extends PureComponent {
 }
 
 const Card = styled.a`
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
   border-radius: 0.4rem;
   background-color: white;
   position: relative;
@@ -47,10 +46,10 @@ const Card = styled.a`
   display: flex;
   flex-direction: column;
   padding: 1.6rem;
-  transition: all 0.2s ease-in;
+  transition: box-shadow 135ms cubic-bezier(.4,0,.2,1),width 235ms cubic-bezier(.4,0,.2,1);
 
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 1rem, rgba(0, 0, 0, 0.2) 0px 1px 1rem;
+    box-shadow: 0 1px 3px 1px rgba(60,64,67,.2), 0 2px 8px 4px rgba(60,64,67,.1);
   }
 `
 
@@ -88,14 +87,12 @@ const Name = styled.h1`
   font-size: 2.4rem;
   color: rgba(0, 0, 0, 0.87);
   display: block;
-  line-height: 3.6rem;
 `
 
 const Description = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1.6rem;
-  padding: 0.8rem 0 1.6rem;
   margin: 0;
   color: rgba(0, 0, 0, 0.87);
 `
@@ -110,8 +107,5 @@ const Secondary = styled.h3`
   font-size: 1.6rem;
   color: rgba(0, 0, 0, 0.54);
   display: block;
-
-  &:not(:first-of-type) {
-    padding-top: 0.4rem;
-  }
+  padding: 0.8rem 0 1.6rem;
 `
