@@ -14,7 +14,7 @@
     "global": "~4.3.2",
     "hashlru": "~2.2.1",
     "isomorphic-fetch": "~2.2.1",
-    "next": "~6.0.2",
+    "next": "~6.0.3",
     "next-connect-redux": "~0.1.5",
     "next-cookies": "~1.0.2",
     "next-offline": "~2.7.0",
