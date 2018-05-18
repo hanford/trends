@@ -48,9 +48,11 @@ const Card = styled.a`
   padding: 1.6rem;
   transition: all 135ms cubic-bezier(.4,0,.2,1);
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0.5rem 2rem 0 rgba(60,64,67,.2);
+  @media(min-width: 767px) {
+    &:hover {
+      transform: scale(1.0125);
+      box-shadow: 0 0.5rem 2rem 0 rgba(60,64,67,.2);
+    }
   }
 `
 
