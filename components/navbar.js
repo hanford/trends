@@ -94,7 +94,7 @@ const SelectContainer = styled.label`
     display: flex;
     align-items: center;
     height: 100%;
-    font-size: 12px;
+    font-size: 1.2rem;
     right: 0.8rem;
   }
 `

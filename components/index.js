@@ -64,10 +64,10 @@ const Hero = styled.div`
 
 const Row = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(calc(300px - ${gridGap}), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(calc(30rem - ${gridGap}), 1fr));
   grid-gap: ${gridGap};
   padding: 0 ${gridGap};
-  padding-bottom: 50px;
+  padding-bottom: 5rem;
   width: 100%;
   margin-top: 2rem;
   max-width: ${maxWidth};

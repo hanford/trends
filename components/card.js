@@ -46,10 +46,11 @@ const Card = styled.a`
   display: flex;
   flex-direction: column;
   padding: 1.6rem;
-  transition: box-shadow 135ms cubic-bezier(.4,0,.2,1),width 235ms cubic-bezier(.4,0,.2,1);
+  transition: all 135ms cubic-bezier(.4,0,.2,1);
 
   &:hover {
-    box-shadow: 0 1px 3px 1px rgba(60,64,67,.2), 0 2px 8px 4px rgba(60,64,67,.1);
+    transform: scale(1.05);
+    box-shadow: 0 0.5rem 2rem 0 rgba(60,64,67,.2);
   }
 `
 
