@@ -2,7 +2,7 @@
   "name": "trends",
   "short_name": "trends",
   "background_color": "#FFFFFF",
-  "theme_color": "black",
+  "theme_color": "#3362c6",
   "description": "view github repos that are currently trending",
   "display": "minimal-ui",
   "start_url": "/",
