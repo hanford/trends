@@ -37,7 +37,7 @@ export default class extends PureComponent {
 }
 
 const Card = styled.a`
-  box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   border-radius: 0.4rem;
   background-color: white;
   position: relative;

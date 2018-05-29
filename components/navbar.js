@@ -1,5 +1,5 @@
 import styled, { css } from 'react-emotion'
-import { primary, gridGap, maxWidth } from './style-constants'
+import { gridGap, maxWidth } from './style-constants'
 
 export default ({ language, time, timeOptions, languageOptions }) => (
   <Navbar>
@@ -27,24 +27,14 @@ export default ({ language, time, timeOptions, languageOptions }) => (
 )
 
 const Navbar = styled.nav`
-  width: 100%;
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: ${primary};
-  box-shadow: 0 1rem 1rem ${primary};
+  background-color: #397af2;
+  width: 100%;
+  border-top: 1rem solid #3b6dcd;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
   padding: 1rem 0;
-
-  @media(max-width: 767px) {
-    box-shadow: 0 -1rem 1rem ${primary};
-    bottom: 0;
-    top: auto;
-  }
-
-  /* iPhone X */
-  @media only screen and (device-width : 375px) and (device-height : 812px) and (-webkit-device-pixel-ratio : 3) {
-    padding-bottom: 2rem;
-  }
 `
 
 const Label = styled.span`
@@ -52,23 +42,32 @@ const Label = styled.span`
   top: 0.5rem;
   font-size: 1rem;
   left: 0.8rem;
+  color: white;
 `
 
 const SelectContainer = styled.label`
   width: 100%;
   cursor: pointer;
   position: relative;
-  ${'' /* box-shadow: 0 0 3rem rgba(0,0,0,0.25); */}
   cursor: pointer;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.2);
+  opacity: 0.85;
+
+  &:hover {
+    opacity: 1;
+  }
 
   &:first-of-type {
     margin-right: 0.8rem;
   }
 
+  @media(max-width: 767px) {
+    opacity: 1;
+  }
+
   label {
+    color: white;
     @media(max-width: 767px) {
       width: 100%;
     }
@@ -76,26 +75,17 @@ const SelectContainer = styled.label`
 
   select {
     padding: 0.8rem;
+    outline: none;
     padding-top: 2rem;
     font-size: 1.6rem;
     -webkit-appearance: none;
-    background-color: white;
     height: 4.8rem;
     border: none;
+    background-color: #568ef4;
     width: 100%;
     cursor: pointer;
-  }
-
-  &::before {
-    content: '▼';
-    position: absolute;
-    pointer-events: none;
-    right: 0;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    font-size: 1.2rem;
-    right: 0.8rem;
+    color: white;
+    border-radius: 0.2rem;
   }
 `
 
