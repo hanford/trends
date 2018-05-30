@@ -30,9 +30,9 @@ const Navbar = styled.nav`
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #397af2;
+  background-color: #673ab7;
   width: 100%;
-  border-top: 1rem solid #3b6dcd;
+  border-top: 1rem solid rgba(0,0,0,0.2);
   box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
   padding: 1rem 0;
 `
@@ -81,7 +81,7 @@ const SelectContainer = styled.label`
     -webkit-appearance: none;
     height: 4.8rem;
     border: none;
-    background-color: #568ef4;
+    background-color: rgba(255,255,255,0.2);
     width: 100%;
     cursor: pointer;
     color: white;
