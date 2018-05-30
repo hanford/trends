@@ -3,26 +3,31 @@ import { gridGap, maxWidth } from './style-constants'
 
 export default ({ language, time, timeOptions, languageOptions, theme }) => (
   <Navbar theme={theme}>
-    <Form label='search' name='tune' method='GET'>
-      <SelectContainer htmlFor='language'>
-        <Label>Language</Label>
+    <Grid>
+      <Form label='search' name='tune' method='GET'>
+        <SelectContainer htmlFor='language'>
+          <Label>Language</Label>
 
-        <select aria-label='select language' name='language' id='language'>
-          {Object.entries(languageOptions).map(([key, value]) => (
-            <option selected={value === language} key={key} value={value}>{key}</option>
-          ))}
-        </select>
-      </SelectContainer>
-      <SelectContainer htmlFor='time'>
-        <Label>Time</Label>
+          <select aria-label='select language' name='language' id='language'>
+            {Object.entries(languageOptions).map(([key, value]) => (
+              <option selected={value === language} key={key} value={value}>{key}</option>
+            ))}
+          </select>
+        </SelectContainer>
 
-        <select aria-label='select time' name='time' id='time'>
-          {Object.entries(timeOptions).map(([key, value]) => (
-            <option selected={value === Number(time)} key={key} value={value}>{key}</option>
-          ))}
-        </select>
-      </SelectContainer>
-    </Form>
+        <SelectContainer htmlFor='time'>
+          <Label>Time</Label>
+
+          <select aria-label='select time' name='time' id='time'>
+            {Object.entries(timeOptions).map(([key, value]) => (
+              <option selected={value === Number(time)} key={key} value={value}>{key}</option>
+            ))}
+          </select>
+        </SelectContainer>
+      </Form>
+
+      <LoveMe href='https://github.com/hanford/trends' target='_blank' rel='noopener'>View on GitHub</LoveMe>
+    </Grid>
   </Navbar>
 )
 
@@ -33,8 +38,29 @@ const Navbar = styled.nav`
   background-color: ${({ theme }) => theme};
   width: 100%;
   border-top: 1rem solid rgba(0,0,0,0.2);
-  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
   padding: 1rem 0;
+`
+
+const Grid = styled.div`
+  max-width: ${maxWidth};
+  margin: 0 auto;
+
+  display: grid;
+  grid-gap: ${gridGap};
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:  'Form Form . GithubHeader';
+
+  @media(max-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:  'Form Form GithubHeader';
+  }
+
+  @media(max-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:  'Form Form';
+    grid-template-areas:  'Form Form';
+  }
 `
 
 const Label = styled.span`
@@ -87,16 +113,27 @@ const SelectContainer = styled.label`
 const Form = styled.form`
   width: 100%;
   position: relative;
-
-  padding: 1rem 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-area: Form;
   grid-gap: ${gridGap};
-  padding: 0 ${gridGap};
-  max-width: ${maxWidth};
-  margin: 0 auto;
+  padding-left: ${gridGap};
 
-  @media(max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+  @media(max-width: 767px) {
+    padding: 0 ${gridGap};
+  }
+`
+
+const LoveMe = styled.a`
+  grid-area: GithubHeader;
+  color: rgba(255,255,255,0.9) !important;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-decoration: none;
+
+  @media(max-width: 767px) {
+    display: none;
   }
 `
