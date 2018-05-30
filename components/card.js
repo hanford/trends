@@ -59,7 +59,7 @@ const Card = styled.a`
 `
 
 const Fork = styled.div`
-  padding: 0.4rem;
+  padding: 0.4rem 0.8rem;
   background: rgba(0,0,0,0.05);
   color: rgba(0, 0, 0, 0.9);
   font-size: 1.4rem;
@@ -67,7 +67,7 @@ const Fork = styled.div`
 `
 
 const Stars = styled.div`
-  padding: 0.4rem;
+  padding: 0.4rem 0.8rem;
   background: #fff59d;
   color: black;
   font-size: 1.4rem;

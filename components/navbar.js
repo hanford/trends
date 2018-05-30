@@ -52,18 +52,9 @@ const SelectContainer = styled.label`
   cursor: pointer;
   display: flex;
   align-items: center;
-  opacity: 0.85;
-
-  &:hover {
-    opacity: 1;
-  }
 
   &:first-of-type {
     margin-right: 0.8rem;
-  }
-
-  @media(max-width: 767px) {
-    opacity: 1;
   }
 
   label {
@@ -86,6 +77,10 @@ const SelectContainer = styled.label`
     cursor: pointer;
     color: white;
     border-radius: 0.2rem;
+
+    &:hover {
+      background-color: rgba(255,255,255,0.3);
+    }
   }
 `
 
