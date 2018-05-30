@@ -4,12 +4,16 @@ const languages = {
   'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java'),
   'Top Javascript': 'javascript',
   'Top Go': 'go',
+  'Top Rust': 'rust',
+  'Top Swift': 'swift',
   'Top Web': 'html language:css',
+  'Top PHP': 'php',
   'Top CSS': 'css',
   'Top C': 'C',
   'Top Python': 'python',
   'Top Ruby': 'ruby',
-  'Top Java': 'java'
+  'Top Java': 'java',
+  'Top Scala': 'scala'
 }
 
 const time = {
