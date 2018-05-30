@@ -4,13 +4,15 @@ import cookies from 'next-cookies'
 import { getTrending, setLanguage, setTime } from '../store/actions'
 import Index from '../components/index'
 import { nextConnect } from '../store'
+import { getTheme } from '../store/selectors'
 
 const mapStateToProps = (state, props) => ({
   repos: state.repos,
   language: state.language,
   time: state.time,
   languageOptions: state.languageOptions,
-  timeOptions: state.timeOptions
+  timeOptions: state.timeOptions,
+  theme: getTheme(state)
 })
 
 const mapDispatchToProps = dispatch => ({

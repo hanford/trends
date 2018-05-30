@@ -11,6 +11,7 @@ class Index extends PureComponent {
   render () {
     const {
       time,
+      theme,
       language,
       repos = [],
       timeOptions = {},
@@ -21,6 +22,7 @@ class Index extends PureComponent {
       <Hero>
         <Navbar
           time={time}
+          theme={theme}
           language={language}
           timeOptions={timeOptions}
           languageOptions={languageOptions}
@@ -28,13 +30,7 @@ class Index extends PureComponent {
 
         <Row>
           {
-            repos.map((repo, index) => (
-              <Card
-                key={index}
-                repo={repo}
-                index={index}
-              />
-            ))
+            repos.map((repo, index) => <Card key={index} repo={repo} />)
           }
         </Row>
 

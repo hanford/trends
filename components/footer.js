@@ -4,7 +4,7 @@ export default () => (
   <Footer>
     <a href='https://jackhanford.com' rel='noopener' target='_blank'>Jack Hanford</a>
     &nbsp;-&nbsp;
-    <a href='https://github.com/hanford/trends' rel='noopener' target='_blank'>View code</a>
+    <a href='https://github.com/hanford/trends' rel='noopener' target='_blank'>Github</a>
   </Footer>
 )
 

@@ -6,6 +6,7 @@ export default class extends PureComponent {
     const {
       repo: {
         name,
+        forks,
         language,
         full_name,
         description,
@@ -28,7 +29,8 @@ export default class extends PureComponent {
           <Description>{description}</Description>
 
           <Bottom>
-            <Stars>★ {stargazers_count}</Stars>
+            <Fork>Forks {forks}</Fork>
+            <Stars>Stars {stargazers_count}</Stars>
           </Bottom>
         </About>
       </Card>
@@ -56,12 +58,19 @@ const Card = styled.a`
   }
 `
 
+const Fork = styled.div`
+  padding: 0.4rem;
+  background: rgba(0,0,0,0.05);
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.4rem;
+  border-top-left-radius: 0.4rem;
+`
+
 const Stars = styled.div`
   padding: 0.4rem;
   background: #fff59d;
   color: black;
   font-size: 1.4rem;
-  border-top-left-radius: 0.4rem;
 `
 
 const Bottom = styled.div`

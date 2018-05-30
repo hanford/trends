@@ -24,7 +24,7 @@ const initialState = {
   language: languages['Top Overall'],
   time: time['Past Week'],
   timeOptions: time,
-  languageOptions: languages,
+  languageOptions: languages
 }
 
 export default (state = initialState, action) => {

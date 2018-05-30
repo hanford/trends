@@ -1,8 +1,8 @@
 import styled, { css } from 'react-emotion'
 import { gridGap, maxWidth } from './style-constants'
 
-export default ({ language, time, timeOptions, languageOptions }) => (
-  <Navbar>
+export default ({ language, time, timeOptions, languageOptions, theme }) => (
+  <Navbar theme={theme}>
     <Form label='search' name='tune' method='GET'>
       <SelectContainer htmlFor='language'>
         <Label>Language</Label>
@@ -30,10 +30,10 @@ const Navbar = styled.nav`
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: #673ab7;
+  background-color: ${({ theme }) => theme};
   width: 100%;
   border-top: 1rem solid rgba(0,0,0,0.2);
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+  box-shadow: 0 0 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
   padding: 1rem 0;
 `
 
