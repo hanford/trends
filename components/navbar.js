@@ -59,7 +59,6 @@ const Grid = styled.div`
   @media(max-width: 768px) {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:  'Form Form';
-    grid-template-areas:  'Form Form';
   }
 `
 
