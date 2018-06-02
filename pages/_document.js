@@ -43,16 +43,9 @@ export default class MyDocument extends Document {
 }
 
 const clientSideJS = `
-  function setCookie (key, value) {
-    const s = escape(key) + '=' + escape(value)
-
-    document.cookie = s
-  }
-
   const submit = key => () => {
     const { value } = document.tune[key]
-    setCookie(key, value)
-
+    document.cookie = escape(key) + '=' + escape(value)
     document.tune.submit()
   }
 
