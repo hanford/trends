@@ -4,7 +4,7 @@ const dev = process.env.NODE_ENV !== 'production'
 
 const ssrCache = new LRUCache({
   max: 150,
-  maxAge: 1000 * 60 // 1 hour cache
+  maxAge: 1000 * 60 * 6 // 6 hour cache
 })
 
 module.exports = app => async (req, res, pagePath) => {
