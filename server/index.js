@@ -32,7 +32,6 @@ app.prepare()
     })
   })
 
-
 const ServiceWorker = app => (req, res) => {
   const filePath = join(__dirname, '../', '.next', 'service-worker.js')
 
