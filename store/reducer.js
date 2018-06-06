@@ -2,18 +2,18 @@ import t from './actionTypes'
 
 const languages = {
   'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java'),
-  'Top Javascript': 'javascript',
-  'Top Go': 'go',
-  'Top Rust': 'rust',
-  'Top Swift': 'swift',
-  'Top Web': 'html language:css',
-  'Top PHP': 'php',
-  'Top CSS': 'css',
-  'Top C': 'C',
-  'Top Python': 'python',
-  'Top Ruby': 'ruby',
-  'Top Java': 'java',
-  'Top Scala': 'scala'
+  'Javascript': 'javascript',
+  'Go': 'go',
+  'Rust': 'rust',
+  'Swift': 'swift',
+  'Web': 'html language:css',
+  'PHP': 'php',
+  'CSS': 'css',
+  'C': 'C',
+  'Python': 'python',
+  'Ruby': 'ruby',
+  'Java': 'java',
+  'Scala': 'scala'
 }
 
 const time = {
