@@ -132,6 +132,9 @@ const LoveMe = styled.a`
   display: flex;
   text-decoration: none;
 
+  justify-content: flex-end;
+  padding-right: 2rem;
+
   @media(max-width: 767px) {
     display: none;
   }
