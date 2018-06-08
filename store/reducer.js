@@ -1,7 +1,7 @@
 import t from './actionTypes'
 
 const languages = {
-  'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java'),
+  'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java language:scala language:swift language:php language:rust'),
   'Javascript': 'javascript',
   'Go': 'go',
   'Rust': 'rust',
