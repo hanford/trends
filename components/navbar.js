@@ -26,7 +26,7 @@ export default ({ language, time, timeOptions, languageOptions, theme }) => (
         </SelectContainer>
       </Form>
 
-      <LoveMe href='https://github.com/hanford/trends' target='_blank' rel='noopener'>View on GitHub</LoveMe>
+      <LoveMe href='https://github.com/hanford/trends' target='_blank' rel='noopener'>GitHub</LoveMe>
     </Grid>
   </Navbar>
 )
