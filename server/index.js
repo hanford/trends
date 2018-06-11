@@ -2,6 +2,7 @@ const express = require('express')
 const next = require('next')
 const { join } = require('path')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const Trending = require('./routes/trending')
 const render = require('./render')
@@ -17,6 +18,7 @@ app.prepare()
     const server = express()
 
     server.use(cors())
+    server.use(cookieParser())
 
     server.get('/trending', Trending)
     server.get('/service-worker.js', ServiceWorker(app))

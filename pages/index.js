@@ -5,6 +5,7 @@ import { getTrending, setLanguage, setTime } from '../store/actions'
 import Index from '../components/index'
 import { nextConnect } from '../store'
 import { getTheme } from '../store/selectors'
+import queryOrCookie from '../helpers/query-or-cookie'
 
 const mapStateToProps = (state, props) => ({
   repos: state.repos,
@@ -21,26 +22,8 @@ const mapDispatchToProps = dispatch => ({
 
 class IndexPage extends PureComponent {
   static async getInitialProps (ctx) {
-    const { language: languageCookie, time: timeCookie } = cookies(ctx)
-    const { store, req } = ctx
-
-    let languageReq = undefined
-    let timeReq = undefined
-
-    if (req && req.query) {
-      const { time = false, language = false } = req.query
-
-      if (time) {
-        timeReq = time
-      }
-
-      if (language) {
-        languageReq = language
-      }
-    }
-
-    const time = timeReq ? timeReq : timeCookie ? timeCookie : false
-    const language = languageReq ? languageReq : languageCookie ? languageCookie : false
+    const { store, query, req } = ctx
+    const { language, time } = queryOrCookie(req.query, cookies(ctx))
 
     if (language) {
       await store.dispatch(setLanguage(language))

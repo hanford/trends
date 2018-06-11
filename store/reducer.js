@@ -1,33 +1,11 @@
 import t from './actionTypes'
-
-const languages = {
-  'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java language:scala language:swift language:php language:rust'),
-  'Javascript': 'javascript',
-  'Go': 'go',
-  'Rust': 'rust',
-  'Swift': 'swift',
-  'Web': 'html language:css',
-  'PHP': 'php',
-  'CSS': 'css',
-  'C': 'C',
-  'Python': 'python',
-  'Ruby': 'ruby',
-  'Java': 'java',
-  'Scala': 'scala'
-}
-
-const time = {
-  'Past Day': 2,
-  'Past Week': 8,
-  'Past Month': 32,
-  'Past Year': 365
-}
+import { languages, times } from '../helpers/constants'
 
 const initialState = {
   repos: [],
   language: languages['Top Overall'],
-  time: time['Past Week'],
-  timeOptions: time,
+  time: times['Past Week'],
+  timeOptions: times,
   languageOptions: languages
 }
 

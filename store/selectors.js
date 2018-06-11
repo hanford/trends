@@ -1,20 +1,5 @@
 import { createSelector } from 'reselect'
-
-const themes = {
-  'Top Overall': '#673ab7',
-  'Javascript': '#ff9800',
-  'Go': '#00BCD4',
-  'Rust': '#5d4037',
-  'Swift': '#fd3024',
-  'Web': '#009688',
-  'PHP': '#6c70aa',
-  'CSS': '#f44336',
-  'C': '#3f51b5',
-  'Python': '#607d8b',
-  'Ruby': '#e91e63',
-  'Java': '#795548',
-  'Scala': '#ef1107'
-}
+import { themes } from '../helpers/constants'
 
 const getLanguages = state => state.languageOptions
 const getLanguage = state => state.language
