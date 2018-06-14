@@ -16,7 +16,7 @@
 [View Website](https://trends.now.sh)
 
 
-Trends is an ultra high performance progressive web application built with React + Next.js and Redux. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker, and set cookies for persistent data totaling around [20 lines of code](https://github.com/hanford/trends/blob/master/pages/_document.js#L45)
+Trends is an ultra high performance progressive web application built with React + Next.js and GraphQL. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker, and set cookies for persistent data totaling around [20 lines of code](https://github.com/hanford/trends/blob/master/pages/_document.js#L45)
 
 ## Setting the project up locally
 ```sh

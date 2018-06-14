@@ -1,35 +1,42 @@
 import styled, { css } from 'react-emotion'
 import { gridGap, maxWidth } from './style-constants'
+import constants from '../helpers/constants'
 
-export default ({ language, time, timeOptions, languageOptions, theme }) => (
-  <Navbar theme={theme}>
-    <Grid>
-      <Form label='search' name='tune' method='GET'>
-        <SelectContainer htmlFor='language'>
-          <Label>Language</Label>
+const { times: timeOptions, languages: languageOptions, themes: themeOptions } = constants
 
-          <select aria-label='select language' name='language' id='language'>
-            {Object.entries(languageOptions).map(([key, value]) => (
-              <option selected={value === language} key={key} value={value}>{key}</option>
-            ))}
-          </select>
-        </SelectContainer>
+export default ({ language, time }) => {
+  const theme = Object.entries(languageOptions).find(([_, value]) => value === language)[0]
 
-        <SelectContainer htmlFor='time'>
-          <Label>Time</Label>
+  return (
+    <Navbar theme={themeOptions[theme]}>
+      <Grid>
+        <Form label='search' name='tune' method='GET'>
+          <SelectContainer htmlFor='language'>
+            <Label>Language</Label>
 
-          <select aria-label='select time' name='time' id='time'>
-            {Object.entries(timeOptions).map(([key, value]) => (
-              <option selected={value === Number(time)} key={key} value={value}>{key}</option>
-            ))}
-          </select>
-        </SelectContainer>
-      </Form>
+            <select aria-label='select language' name='language' id='language'>
+              {Object.entries(languageOptions).map(([key, value]) => (
+                <option selected={value === language} key={key} value={value}>{key}</option>
+              ))}
+            </select>
+          </SelectContainer>
 
-      <LoveMe href='https://github.com/hanford/trends' target='_blank' rel='noopener'>GitHub</LoveMe>
-    </Grid>
-  </Navbar>
-)
+          <SelectContainer htmlFor='time'>
+            <Label>Time</Label>
+
+            <select aria-label='select time' name='time' id='time'>
+              {Object.entries(timeOptions).map(([key, value]) => (
+                <option selected={value === Number(time)} key={key} value={value}>{key}</option>
+              ))}
+            </select>
+          </SelectContainer>
+        </Form>
+
+        <LoveMe href='https://github.com/hanford/trends' target='_blank' rel='noopener'>GitHub</LoveMe>
+      </Grid>
+    </Navbar>
+  )
+}
 
 const Navbar = styled.nav`
   position: sticky;

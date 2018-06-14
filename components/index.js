@@ -1,5 +1,4 @@
 import { PureComponent } from 'react'
-import withFullHeight from 'full-height-hoc'
 import styled, { css } from 'react-emotion'
 
 import { gridGap, maxWidth } from './style-constants'
@@ -11,26 +10,20 @@ class Index extends PureComponent {
   render () {
     const {
       time,
-      theme,
       language,
       repos = [],
-      timeOptions = {},
-      languageOptions = {}
     } = this.props
 
     return (
       <Hero>
         <Navbar
           time={time}
-          theme={theme}
           language={language}
-          timeOptions={timeOptions}
-          languageOptions={languageOptions}
         />
 
         <Row>
           {
-            repos.map((repo, index) => <Card key={index} repo={repo} />)
+            repos.length ? repos.map((repo, index) => <Card key={index} repo={repo} />) : 'Rate limit exceeded, try again in a moment'
           }
         </Row>
 
@@ -40,7 +33,7 @@ class Index extends PureComponent {
   }
 }
 
-export default withFullHeight(Index)
+export default Index
 
 const Hero = styled.div`
   width: 100%;

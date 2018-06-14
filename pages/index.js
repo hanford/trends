@@ -1,48 +1,47 @@
 import { PureComponent } from 'react'
 import cookies from 'next-cookies'
+import gql from 'graphql-tag'
+import { graphql, Query } from 'react-apollo'
 
-import { getTrending, setLanguage, setTime } from '../store/actions'
 import Index from '../components/index'
-import { nextConnect } from '../store'
-import { getTheme } from '../store/selectors'
 import queryOrCookie from '../helpers/query-or-cookie'
-
-const mapStateToProps = (state, props) => ({
-  repos: state.repos,
-  language: state.language,
-  time: state.time,
-  languageOptions: state.languageOptions,
-  timeOptions: state.timeOptions,
-  theme: getTheme(state)
-})
-
-const mapDispatchToProps = dispatch => ({
-  // getTrending: () => dispatch(getTrending())
-})
 
 class IndexPage extends PureComponent {
   static async getInitialProps (ctx) {
-    const { store, query, req } = ctx
+    const { query, req } = ctx
     const { language, time } = queryOrCookie(req.query, cookies(ctx))
 
-    if (language) {
-      await store.dispatch(setLanguage(language))
+    return {
+      time,
+      language
     }
-
-    if (time) {
-      await store.dispatch(setTime(time))
-    }
-
-    await store.dispatch(getTrending())
-
-    return {}
   }
 
   render () {
+    const { language, time } = this.props
+
     return (
-      <Index {...this.props} />
+      <Query query={GET_REPOS} variables={{ language, time }}>
+        {({ data: { repos } }) => {
+          return (
+            <Index repos={repos} {...this.props} />
+          )
+        }}
+      </Query>
     )
   }
 }
 
-export default nextConnect(mapStateToProps, mapDispatchToProps)(IndexPage)
+const GET_REPOS = gql`
+  query trendingRepos ($language: String! $time: Int!) {
+    repos(language: $language time: $time) {
+      name
+      forks
+      language
+      full_name
+      description
+      stargazers_count
+    }
+  }
+`
+export default IndexPage
