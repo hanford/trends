@@ -21,6 +21,7 @@ const defaultQuery = gql`
 query WeeklyTopJS {
   repos(language: "javascript" time: 8) {
     name
+    full_name
     stargazers_count
   }
 }
