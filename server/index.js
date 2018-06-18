@@ -7,7 +7,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const bodyParser = require('body-parser')
 
 const render = require('./render')
-const { typeDefs, resolvers, schema } = require('./graphql')
+const schema = require('./graphql')
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'

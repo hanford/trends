@@ -1,5 +1,6 @@
+// language:scala
 const languages = {
-  'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java language:scala language:swift language:php language:rust'),
+  'Top Overall': encodeURIComponent('javascript language:python language:ruby language:go language:html language:css language:java language:swift language:php language:rust'),
   'Javascript': 'javascript',
   'Go': 'go',
   'Rust': 'rust',
@@ -11,7 +12,7 @@ const languages = {
   'Python': 'python',
   'Ruby': 'ruby',
   'Java': 'java',
-  'Scala': 'scala'
+  // 'Scala': 'scala'
 }
 
 const times = {
@@ -34,7 +35,7 @@ const themes = {
   'Python': '#607d8b',
   'Ruby': '#e91e63',
   'Java': '#795548',
-  'Scala': '#ef1107'
+  // 'Scala': '#ef1107'
 }
 
 module.exports = {

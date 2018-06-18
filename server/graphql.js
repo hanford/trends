@@ -38,7 +38,8 @@ const resolvers = {
         sort: 'stars',
         order: 'desc',
         q: 'created:>' + startDateString + language,
-        per_page: '100'
+        per_page: '100',
+        access_token: process.env.GITHUB_ACCESS_TOKEN
       }))
 
       const res = await fetch(`https://api.github.com/search/repositories?${searchParams}`, {headers: { Accept: 'application/vnd.github.preview' }})
@@ -55,8 +56,4 @@ const schema = makeExecutableSchema({
   resolvers
 })
 
-module.exports = {
-  typeDefs,
-  resolvers,
-  schema
-}
+module.exports = schema

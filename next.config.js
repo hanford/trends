@@ -1,4 +1,6 @@
+const path = require('path')
 const withOffline = require('next-offline')
+
 const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = withOffline({

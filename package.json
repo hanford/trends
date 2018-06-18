@@ -35,6 +35,9 @@
   "now": {
     "alias": [
       "trends.now.sh"
-    ]
+    ],
+    "env": {
+      "GITHUB_ACCESS_TOKEN": "@github-access-token"
+    }
   }
 }
