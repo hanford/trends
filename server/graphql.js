@@ -6,7 +6,7 @@ const gql = String.raw
 
 const typeDefs = gql`
   type Query @cacheControl (maxAge: 36000) {
-    repos(language: String! time: Int): [Repo]
+    repos(language: String! time: Int): [Repo]!
   }
 
   type Repo @cacheControl (maxAge: 36000) {
