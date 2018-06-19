@@ -20,7 +20,7 @@ module.exports = app => async (req, res, pagePath) => {
   const key = keyGen(language, time)
 
   // If we have a page in the cache, let's serve it
-  if (cache.has(key)) {
+  if (!dev && cache.has(key)) {
     console.log(`RENDER CACHE HIT: ${key}`)
 
     return res.send(cache.get(key))

@@ -1,7 +1,20 @@
-import { PureComponent } from 'react'
+// @flow
+
+import * as React from 'react'
 import styled from 'react-emotion'
 
-export default class extends PureComponent {
+type Props = {
+  repo: {
+    name: string,
+    forks: number,
+    language: string,
+    full_name: string,
+    description?: string,
+    stargazers_count: string
+  }
+}
+
+export default class extends React.PureComponent<Props> {
   render () {
     const {
       repo: {

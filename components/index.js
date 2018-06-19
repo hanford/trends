@@ -1,4 +1,6 @@
-import { PureComponent } from 'react'
+// @flow
+
+import * as React from 'react'
 import styled, { css } from 'react-emotion'
 
 import { gridGap, maxWidth } from './style-constants'
@@ -6,7 +8,13 @@ import Card from './card'
 import Navbar from './navbar'
 import Footer from './footer'
 
-class Index extends PureComponent {
+type Props = {
+  time: number,
+  language: string,
+  repos: Array<any>
+}
+
+export default class Index extends React.PureComponent<Props> {
   render () {
     const {
       time,
@@ -32,8 +40,6 @@ class Index extends PureComponent {
     )
   }
 }
-
-export default Index
 
 const Hero = styled.div`
   width: 100%;

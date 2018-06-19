@@ -3,6 +3,7 @@
       "next/babel"
     ],
     "plugins": [
-      ["emotion", { "inline": true }]
+      ["emotion", { "inline": true }],
+      "transform-flow-strip-types"
   ]
 }

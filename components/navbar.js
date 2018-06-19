@@ -1,14 +1,23 @@
+// @flow
+
+import * as React from 'react'
 import styled, { css } from 'react-emotion'
 import { gridGap, maxWidth } from './style-constants'
 import constants from '../helpers/constants'
 
 const { times: timeOptions, languages: languageOptions, themes: themeOptions } = constants
 
-export default ({ language, time }) => {
-  const theme = Object.entries(languageOptions).find(([_, value]) => value === language)[0]
+type Props = {
+  language: string,
+  time: number
+}
+
+export default ({ language, time }: Props) => {
+  const hasTheme = Object.entries(languageOptions).find(([_, value]) => value === language)
+  const theme = hasTheme ? hasTheme[0] : false
 
   return (
-    <Navbar theme={themeOptions[theme]}>
+    <Navbar theme={themeOptions[theme || 0]}>
       <Grid>
         <Form label='search' name='tune' method='GET'>
           <SelectContainer htmlFor='language'>

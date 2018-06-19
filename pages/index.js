@@ -1,13 +1,21 @@
-import { PureComponent } from 'react'
+// @flow
+
+import * as React from 'react'
 import cookies from 'next-cookies'
 import gql from 'graphql-tag'
-import { graphql, Query } from 'react-apollo'
+import { Query } from 'react-apollo'
 
 import Index from '../components/index'
 import queryOrCookie from '../helpers/query-or-cookie'
 
-class IndexPage extends PureComponent {
-  static async getInitialProps (ctx) {
+type Props = {
+  children: React.Element<any>,
+  language: string,
+  time: number
+}
+
+class IndexPage extends React.PureComponent<Props> {
+  static async getInitialProps (ctx: Object): Object {
     const { query, req } = ctx
     const { language, time } = queryOrCookie(req.query, cookies(ctx))
 
