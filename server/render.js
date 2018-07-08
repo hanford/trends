@@ -1,7 +1,7 @@
 const LRUCache = require('lru-cache')
 const wrap = require('await-wrap')
 const dev = process.env.NODE_ENV !== 'production'
-const queryOrCookie = require('../helpers/query-or-cookie')
+const queryData = require('../helpers/query-data')
 
 const cache = new LRUCache({
   max: 150,
@@ -11,7 +11,7 @@ const cache = new LRUCache({
 const keyGen = (language, time) => `language=${language}&time=${time}`
 
 module.exports = app => async (req, res, pagePath) => {
-  const { language, time } = queryOrCookie(req.query, req.cookies)
+  const { language, time } = queryData(req.query)
 
   if (req.query.bust) {
     cache.reset()

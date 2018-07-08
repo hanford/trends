@@ -1,12 +1,11 @@
 // @flow
 
 import * as React from 'react'
-import cookies from 'next-cookies'
 import gql from 'graphql-tag'
 import { Query } from 'react-apollo'
 
 import Index from '../components/index'
-import queryOrCookie from '../helpers/query-or-cookie'
+import getQueryData from '../helpers/query-data'
 
 type Props = {
   children: React.Element<any>,
@@ -14,10 +13,10 @@ type Props = {
   time: number
 }
 
-class IndexPage extends React.PureComponent<Props> {
+export default class IndexPage extends React.PureComponent<Props> {
   static async getInitialProps (ctx: Object): Object {
     const { query, req } = ctx
-    const { language, time } = queryOrCookie(req.query, cookies(ctx))
+    const { language, time } = getQueryData(req.query)
 
     return {
       time,
@@ -52,4 +51,3 @@ const GET_REPOS = gql`
     }
   }
 `
-export default IndexPage

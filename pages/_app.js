@@ -6,7 +6,7 @@ import withApolloClient from '../helpers/with-apollo'
 
 class MyApp extends App {
   render () {
-    const {Component, pageProps, apolloClient} = this.props
+    const { Component, pageProps, apolloClient } = this.props
 
     return (
       <Container>

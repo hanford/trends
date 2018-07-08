@@ -43,15 +43,9 @@ export default class MyDocument extends Document {
 }
 
 const clientSideJS = `
-  const submit = key => () => {
-    const { value } = document.tune[key]
-    document.cookie = escape(key) + '=' + escape(value)
-    document.tune.submit()
-  }
-
-  document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelector('select[name=language]').addEventListener('change', submit('language'))
-    document.querySelector('select[name=time]').addEventListener('change', submit('time'))
+  document.addEventListener('DOMContentLoaded', event => {
+    document.querySelector('select[name=language]').addEventListener('change', () => document.tune.submit())
+    document.querySelector('select[name=time]').addEventListener('change', () => document.tune.submit())
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
