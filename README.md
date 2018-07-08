@@ -22,8 +22,8 @@ Trends is an ultra high performance progressive web application built with React
 ```sh
 $ git clone https://github.com/hanford/trends.git
 $ cd trends
-$ npm install
-$ npm dev
+$ yarn install
+$ yarn dev
 ```
 
 ![preview](https://github.com/hanford/trends/blob/master/audit.png)
