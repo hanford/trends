@@ -29,11 +29,9 @@ export default class IndexPage extends React.PureComponent<Props> {
 
     return (
       <Query query={GET_REPOS} variables={{ language, time }}>
-        {({ data: { repos } }) => {
-          return (
-            <Index repos={repos} {...this.props} />
-          )
-        }}
+        {({ data: { repos } }) => (
+          <Index repos={repos} {...this.props} />
+        )}
       </Query>
     )
   }
