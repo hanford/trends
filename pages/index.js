@@ -13,7 +13,7 @@ type Props = {
   time: number
 }
 
-export default class IndexPage extends React.PureComponent<Props> {
+export default class IndexPage extends React.Component<Props> {
   static async getInitialProps (ctx: Object): Object {
     const { query, req } = ctx
     const { language, time } = getQueryData(req.query)

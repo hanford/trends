@@ -14,7 +14,7 @@ type Props = {
   repos: Array<any>
 }
 
-export default class Index extends React.PureComponent<Props> {
+export default class Index extends React.Component<Props> {
   render () {
     const {
       time,

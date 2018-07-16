@@ -14,7 +14,7 @@ type Props = {
   }
 }
 
-export default class extends React.PureComponent<Props> {
+export default class extends React.Component<Props> {
   render () {
     const {
       repo: {
