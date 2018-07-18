@@ -34,6 +34,13 @@ app.prepare()
     server.use(cors())
     server.use(cookieParser())
 
+    if (!dev) {
+      server.get('*', (_, res, next) => {
+        res.setHeader("Cache-Control", "max-age=43200, immutable");
+        next()
+      })
+    }
+
     server.use(
       '/graphql',
       bodyParser.json(),
