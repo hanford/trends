@@ -41,7 +41,10 @@ export default ({ language, time }: Props) => {
           </SelectContainer>
         </Form>
 
-        <LoveMe href='https://github.com/hanford/trends' target='_blank' rel='noopener'>GitHub</LoveMe>
+        <Container>
+          <Link href='/graphiql' target='_blank' rel='noopener'>GraphQL API</Link>
+          <Link href='https://github.com/hanford/trends' target='_blank' rel='noopener'>GitHub</Link>
+        </Container>
       </Grid>
     </Navbar>
   )
@@ -139,19 +142,26 @@ const Form = styled.form`
   }
 `
 
-const LoveMe = styled.a`
+const Container = styled.div`
   grid-area: GithubHeader;
-  color: rgba(255,255,255,0.9) !important;
-  cursor: pointer;
+  padding-right: 2rem;
   justify-content: center;
   align-items: center;
   display: flex;
-  text-decoration: none;
-
   justify-content: flex-end;
-  padding-right: 2rem;
 
   @media(max-width: 767px) {
     display: none;
   }
+
+  & > a:first-of-type {
+    padding-right: 1.6rem;
+  }
+`
+
+const Link = styled.a`
+  color: rgba(255,255,255,0.9) !important;
+  cursor: pointer;
+  text-decoration: none;
+
 `

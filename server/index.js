@@ -1,8 +1,8 @@
+// @flow 
 const express = require('express')
 const next = require('next')
 const { join } = require('path')
 const cors = require('cors')
-const cookieParser = require('cookie-parser')
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express')
 const bodyParser = require('body-parser')
 
@@ -15,28 +15,25 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 const RenderCache = render(app)
 
-const gql = String.raw
+const graphql = (query: Array<string>) => query.join('')
 
-const defaultQuery = gql`
-query WeeklyTopJS {
-  repos(language: "javascript" time: 8) {
+const defaultQuery = graphql`query WeeklyTopJS {
+  repos(language: "javascript", time: 8) {
     name
     full_name
     stargazers_count
   }
-}
-`
+}`
 
 app.prepare()
   .then(() => {
     const server = express()
 
     server.use(cors())
-    server.use(cookieParser())
 
     if (!dev) {
       server.get('*', (_, res, next) => {
-        res.setHeader('Cache-Control', 'max-age=43200, immutable')
+        res.setHeader('Cache-Control', 'max-age=86400, immutable')
         next()
       })
     }

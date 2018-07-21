@@ -1,10 +1,11 @@
+// @flow
 const { makeExecutableSchema } = require('graphql-tools')
 const fetch = require('isomorphic-unfetch')
 const { stringify } = require('querystring')
 
-const gql = String.raw
+const graphql = (query: Array<string>) => query.join('')
 
-const typeDefs = gql`
+const typeDefs = graphql`
   type Query @cacheControl (maxAge: 36000) {
     repos(language: String! time: Int): [Repo]!
   }

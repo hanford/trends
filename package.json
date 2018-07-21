@@ -12,7 +12,6 @@
     "apollo-server-express": "~1.3.6",
     "await-wrap": "~0.1.0",
     "body-parser": "~1.18.3",
-    "cookie-parser": "~1.4.3",
     "cors": "~2.8.4",
     "emotion": "~9.0.2",
     "emotion-server": "~9.0.2",
