@@ -16,7 +16,8 @@ const RenderCache = render(app)
 
 const graphql = query => query.join('')
 
-const defaultQuery = graphql`query WeeklyTopJS {
+const defaultQuery = graphql`
+query WeeklyTopJS {
   repos(language: "javascript", time: 8) {
     name
     full_name
