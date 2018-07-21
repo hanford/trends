@@ -36,7 +36,7 @@ app.prepare()
 
     if (!dev) {
       server.get('*', (_, res, next) => {
-        res.setHeader("Cache-Control", "max-age=43200, immutable");
+        res.setHeader('Cache-Control', 'max-age=43200, immutable')
         next()
       })
     }
