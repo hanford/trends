@@ -5,7 +5,7 @@ const queryData = require('../helpers/query-data')
 
 const cache = new LRUCache({
   max: 150,
-  maxAge: 1000 * 60 * 6 // 6 hour cache
+  maxAge: 1000 * 60 * 60 *6 // 6 hour cache
 })
 
 const keyGen = (language, time) => `language=${language}&time=${time}`

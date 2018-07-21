@@ -1,4 +1,3 @@
-// @flow 
 const express = require('express')
 const next = require('next')
 const { join } = require('path')
@@ -15,7 +14,7 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 const RenderCache = render(app)
 
-const graphql = (query: Array<string>) => query.join('')
+const graphql = query => query.join('')
 
 const defaultQuery = graphql`query WeeklyTopJS {
   repos(language: "javascript", time: 8) {

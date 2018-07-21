@@ -1,9 +1,8 @@
-// @flow
 const { makeExecutableSchema } = require('graphql-tools')
 const fetch = require('isomorphic-unfetch')
 const { stringify } = require('querystring')
 
-const graphql = (query: Array<string>) => query.join('')
+const graphql = query => query.join('')
 
 const typeDefs = graphql`
   type Query @cacheControl (maxAge: 36000) {
