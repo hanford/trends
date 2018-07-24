@@ -1,5 +1,7 @@
 import Document, { Main } from 'next/document';
 import { extractCritical } from 'emotion-server';
+import getConfig from "next/config";
+const { publicRuntimeConfig } = getConfig();
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -32,6 +34,7 @@ export default class MyDocument extends Document {
               __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`,
             }}
           />
+
           <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
 
           <link
@@ -60,6 +63,20 @@ export default class MyDocument extends Document {
             type="text/javascript"
             dangerouslySetInnerHTML={{ __html: clientSideJS }}
           />
+
+          {!publicRuntimeConfig.isDev && (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${publicRuntimeConfig.googleAnalytics}`}
+              />
+
+              <script
+                type="text/javascript"
+                dangerouslySetInnerHTML={{ __html: GA }}
+              />
+            </>
+          )}
         </body>
       </html>
     );
@@ -82,3 +99,14 @@ const clientSideJS = `
     }
   })
 `;
+
+const GA = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag () {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+
+  gtag('config', 'UA-45226320-5');
+`
