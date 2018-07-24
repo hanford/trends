@@ -8,14 +8,25 @@
 
 > browse trending github repos written in your favorite language with this high performance progressive web application
 
-![preview gif](https://github.com/hanford/trends/blob/master/trends.gif)
+<img src='https://github.com/hanford/trends/blob/master/trends.gif' alt='preview gif' width='600px' />
 
 [View the application](https://trends.now.sh)
 
-Trends is an ultra high performance progressive web application built with React + Next.js and GraphQL. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/master/pages/_document.js#L45)
+Trends is an ultra high performance progressive web application built with React + Next.js and GraphQL. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/master/pages/_document.js#L69)
 
 Checkout the perfect performance audit 💯
-![performance audit](https://github.com/hanford/trends/blob/master/audit.jpg)
+<img src='https://github.com/hanford/trends/blob/master/audit.jpg' alt='perf audit' width='600px' />
+
+## Features
+
+- Filter by time since repo created or by language
+- Progressive web app
+  - offline
+  - install prompts on supported platforms
+- [15 lines of client side code](https://github.com/hanford/trends/blob/master/pages/_document.js#L69)
+- Server side rendering
+- GraphQL
+- Next.js
 
 ## Setting the project up locally
 ```sh
@@ -24,7 +35,6 @@ $ cd trends
 $ yarn install
 $ yarn dev
 ```
-
 
 Questions? Feedback? [Please let me know](https://github.com/hanford/trends/issues/new)
 
