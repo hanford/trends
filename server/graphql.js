@@ -1,6 +1,13 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const fetch = require('isomorphic-unfetch');
 const { stringify } = require('querystring');
+const LRUCache = require('lru-cache');
+const dev = process.env.NODE_ENV !== 'production';
+
+const cache = new LRUCache({
+  max: 150,
+  maxAge: 1000 * 60 * 60 * 6, // 6 hour cache
+});
 
 const graphql = query => query.join('');
 
@@ -36,11 +43,20 @@ const resolvers = {
       )}-${('0' + startDate.getDate()).slice(-2)}
       `.trim();
 
+      const key = startDateString + language
+
+      // If we have a response in memory, let's return early
+      if (dev && cache.has(key)) {
+        console.log(`GITHUB CACHE HIT: ${key}`);
+
+        return cache.get(key);
+      }
+
       const searchParams = unescape(
         stringify({
           sort: 'stars',
           order: 'desc',
-          q: 'created:>' + startDateString + language,
+          q: 'created:>' + key,
           per_page: '100',
           access_token: process.env.GITHUB_ACCESS_TOKEN,
         })
@@ -52,6 +68,8 @@ const resolvers = {
       );
       const data = await res.json();
       const items = await data.items;
+
+      cache.set(key, items);
 
       return items;
     },
