@@ -31,9 +31,9 @@ export default ({ language, time }: Props) => {
 
             <select aria-label="select language" name="language" id="language">
               {Object.entries(languageOptions).map(([key, value]) => (
-                <option selected={value === language} key={key} value={value}>
+                <Option selected={value === language} key={key} value={value}>
                   {key}
-                </option>
+                </Option>
               ))}
             </select>
           </SelectContainer>
@@ -43,13 +43,13 @@ export default ({ language, time }: Props) => {
 
             <select aria-label="select time" name="time" id="time">
               {Object.entries(timeOptions).map(([key, value]) => (
-                <option
+                <Option
                   selected={value === Number(time)}
                   key={key}
                   value={value}
                 >
                   {key}
-                </option>
+                </Option>
               ))}
             </select>
           </SelectContainer>
@@ -71,6 +71,10 @@ export default ({ language, time }: Props) => {
     </Navbar>
   );
 };
+
+const Option = styled.option`
+  color: black;
+`
 
 const Navbar = styled.nav`
   position: sticky;
