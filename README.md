@@ -1,6 +1,8 @@
 ## trends
 
-> browse trending github repos written in your favorite language with this progressive web application
+> browse trending github repos written in your favorite language with this high performance progressive web application
+
+![preview gif](https://github.com/hanford/trends/blob/master/trends.gif)
 
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=Performance)](https://github.com/ebidel/lighthouse-badge)
 
@@ -18,6 +20,9 @@
 
 Trends is an ultra high performance progressive web application built with React + Next.js and GraphQL. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/master/pages/_document.js#L45)
 
+Checkout the perfect performance audit 💯
+![performance audit](https://github.com/hanford/trends/blob/master/audit.png)
+
 ## Setting the project up locally
 ```sh
 $ git clone https://github.com/hanford/trends.git
@@ -26,7 +31,6 @@ $ yarn install
 $ yarn dev
 ```
 
-![preview](https://github.com/hanford/trends/blob/master/audit.png)
 
 Questions? Feedback? [Please let me know](https://github.com/hanford/trends/issues/new)
 
