@@ -1,6 +1,6 @@
 const languages = {
   "Top Overall": encodeURIComponent(
-    "javascript typescript language:python language:ruby language:go language:html language:css language:java language:swift language:php language:rust"
+    "javascript language:typescript language:python language:ruby language:go language:html language:css language:java language:swift language:php language:rust"
   ),
   Javascript: "javascript",
   TypeScript: "typescript",
