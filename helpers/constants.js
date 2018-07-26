@@ -2,7 +2,7 @@ const languages = {
   "Top Overall": encodeURIComponent(
     "javascript language:typescript language:python language:ruby language:go language:html language:css language:java language:swift language:php language:rust"
   ),
-  Javascript: "javascript",
+  JavaScript: "javascript",
   TypeScript: "typescript",
   Go: "go",
   Rust: "rust",
@@ -25,7 +25,7 @@ const times = {
 
 const themes = {
   "Top Overall": "#673ab7",
-  Javascript: "#ff9800",
+  JavaScript: "#ff9800",
   TypeScript: "#294E80",
   Go: "#00BCD4",
   Rust: "#5d4037",
