@@ -12,6 +12,7 @@ const languages = {
   CSS: "css",
   C: "C",
   'C#': "csharp",
+  'C++': "cpp",
   Python: "python",
   Ruby: "ruby",
   Java: "java"
@@ -36,6 +37,7 @@ const themes = {
   CSS: "#f44336",
   C: "#3f51b5",
   'C#': '#5E2877',
+  'C++': '#16427F',
   Python: "#607d8b",
   Ruby: "#e91e63",
   Java: "#795548"
