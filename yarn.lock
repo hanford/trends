@@ -2446,6 +2446,17 @@ glob@7.1.2, glob@^7.0.3, glob@^7.0.5, glob@^7.1.2:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+glob@~7.0.0:
+  version "7.0.6"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.0.6.tgz#211bafaf49e525b8cd93260d14ab136152b3f57a"
+  dependencies:
+    fs.realpath "^1.0.0"
+    inflight "^1.0.4"
+    inherits "2"
+    minimatch "^3.0.2"
+    once "^1.3.0"
+    path-is-absolute "^1.0.0"
+
 global@~4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/global/-/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
@@ -3441,11 +3452,12 @@ neo-async@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.1.tgz#acb909e327b1e87ec9ef15f41b8a269512ad41ee"
 
-next-offline@~2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/next-offline/-/next-offline-2.8.0.tgz#76df4aef2011e77da05540272ca36ab3f538fa4c"
+next-offline@~2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/next-offline/-/next-offline-2.9.0.tgz#53c3af19dc4b502a02f7b534f951cc8e98c2ae97"
   dependencies:
     fs-extra "~5.0.0"
+    glob "~7.0.0"
     minimist "1.2.0"
     webpack "~3.11.0"
     workbox-build "~3.2.0"
