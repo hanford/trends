@@ -19,6 +19,7 @@ export default class extends React.Component<Props> {
     const {
       repo: { name, forks, language, full_name, description, stargazers_count },
     } = this.props;
+
     return (
       <Card
         href={`https://github.com/${full_name}`}
