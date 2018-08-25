@@ -19,7 +19,6 @@ export default class extends React.Component<Props> {
     const {
       repo: { name, forks, language, full_name, description, stargazers_count },
     } = this.props;
-
     return (
       <Card
         href={`https://github.com/${full_name}`}
@@ -37,6 +36,7 @@ export default class extends React.Component<Props> {
           <Bottom>
             <Fork>Forks {forks}</Fork>
             <Stars>Stars {stargazers_count}</Stars>
+            <Language>Language {language}</Language>
           </Bottom>
         </About>
       </Card>
@@ -71,6 +71,14 @@ const Fork = styled.div`
   color: rgba(0, 0, 0, 0.9);
   font-size: 1.4rem;
   border-top-left-radius: 0.4rem;
+`;
+
+
+const Language = styled.div`
+  padding: 0.4rem 0.8rem;
+  background: rgba(191,162,88);
+  color: rgba(0, 0, 0, 0.9);
+  font-size: 1.4rem;
 `;
 
 const Stars = styled.div`
