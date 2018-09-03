@@ -3483,9 +3483,9 @@ neo-async@^2.5.0:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.1.tgz#acb909e327b1e87ec9ef15f41b8a269512ad41ee"
 
-next-offline@^2.11.0:
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/next-offline/-/next-offline-2.11.0.tgz#9c24eee1d0e0f031174d4cad2ae577fab9c5aee8"
+next-offline@^2.12.0:
+  version "2.12.0"
+  resolved "https://registry.yarnpkg.com/next-offline/-/next-offline-2.12.0.tgz#6b932acc691e17f15206e5665b781c1073a19ebc"
   dependencies:
     copy-webpack-plugin "~4.5.2"
     fs-extra "~5.0.0"
