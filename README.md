@@ -12,7 +12,7 @@
 
 [View the application](https://trends.now.sh)
 
-Trends is an ultra high performance progressive web application built with React + Next.js and GraphQL. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/master/pages/_document.js#L69)
+Trends is an ultra high performance progressive web application built with React + Next.js and GraphQL. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/0c25fbd7f3127ad9007ea9f12e7449054129c2aa/pages/_document.js#L86)
 
 Checkout the perfect performance audit 💯
 <img src='https://github.com/hanford/trends/blob/master/audit.jpg' alt='perf audit' width='600px' />
@@ -23,7 +23,7 @@ Checkout the perfect performance audit 💯
 - Progressive web app
   - offline
   - install prompts on supported platforms
-- [15 lines of client side code](https://github.com/hanford/trends/blob/master/pages/_document.js#L69)
+- [15 lines of client side code](https://github.com/hanford/trends/blob/0c25fbd7f3127ad9007ea9f12e7449054129c2aa/pages/_document.js#L86)
 - Server side rendering
 - GraphQL
 - Next.js
