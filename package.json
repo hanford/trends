@@ -25,9 +25,9 @@
     "next": "^7.0.2",
     "next-offline": "^3.0.3",
     "querystring": "~0.2.0",
-    "react": "^16.5.2",
+    "react": "^16.6.0",
     "react-apollo": "~2.1.5",
-    "react-dom": "^16.5.2",
+    "react-dom": "^16.6.0",
     "react-emotion": "~9.0.2"
   },
   "devDependencies": {
