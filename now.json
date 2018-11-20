@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "alias": [
+    "trends.now.sh"
+  ],
+  "env": {
+    "GITHUB_ACCESS_TOKEN": "@github-access-token"
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/www/$1" }
+  ],
+  "builds": [
+    {
+      "src": "www/next.config.js",
+      "use": "@now/next",
+      "config": { "maxLambdaSize": "20mb" }
+    },
+    {
+      "src": "api/index.js",
+      "use": "@now/node-server",
+      "config": { "maxLambdaSize": "10mb" }
+    },
+    {
+      "src": "www/static/*",
+      "use": "@now/static"
+    }
+  ]
+}

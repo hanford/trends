@@ -10,12 +10,19 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
+const isDev = process.env.NODE_ENV !== 'production'
+
+
+const url = isDev ? 'http://localhost:3000' : process.browser ? '' : process.env.NOW_URL
+
+console.log(url)
+
 function create(initialState) {
   return new ApolloClient({
     connectToDevTools: process.browser,
     ssrMode: !process.browser,
     link: new HttpLink({
-      uri: `${publicRuntimeConfig.api}/graphql`,
+      uri: `${url}/graphql`,
       credentials: "same-origin"
     }),
     cache: new InMemoryCache().restore(initialState || {})
