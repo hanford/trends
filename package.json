@@ -1,10 +1,5 @@
 {
   "name": "trends",
-  "scripts": {
-    "dev": "node ./server/index.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node ./server/index.js"
-  },
   "devDependencies": {
     "flow-bin": "~0.74.0",
     "husky": "~0.14.3",
