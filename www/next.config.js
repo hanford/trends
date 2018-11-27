@@ -6,7 +6,7 @@ console.log(process.env.NOW_URL)
 
 module.exports = withOffline({
   publicRuntimeConfig: {
-    api: isDev ? 'http://localhost:3000' : typeof window !== 'undefined' ? '' : process.env.NOW_URL,
+    api: isDev ? 'http://localhost:2999' : typeof window !== 'undefined' ? '' : process.env.NOW_URL,
     googleAnalytics: isDev ? '' : 'UA-45226320-5',
     isDev,
   },

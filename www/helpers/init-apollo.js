@@ -13,7 +13,7 @@ if (!process.browser) {
 const isDev = process.env.NODE_ENV !== 'production'
 
 
-const url = isDev ? 'http://localhost:3000' : process.browser ? '' : process.env.NOW_URL
+const url = isDev ? 'http://localhost:2999' : window.location ? window.location.origin : process.env.NOW_URL
 
 console.log(url)
 
@@ -22,7 +22,7 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser,
     link: new HttpLink({
-      uri: `${url}/graphql`,
+      uri: `${initialState.url ? initialState.url : url}/graphql`,
       credentials: "same-origin"
     }),
     cache: new InMemoryCache().restore(initialState || {})

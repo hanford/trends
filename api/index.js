@@ -6,7 +6,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 
 const schema = require('./graphql');
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 2999;
 const dev = process.env.NODE_ENV !== 'production';
 
 const graphql = query => query.join('');
