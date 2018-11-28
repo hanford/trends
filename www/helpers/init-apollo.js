@@ -16,8 +16,6 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 const url = isDev ? 'http://localhost:2999' : window.location ? window.location.origin : process.env.NOW_URL
 
-console.log(url)
-
 function create(initialState) {
   console.log(initialState.url ? initialState.url : url)
   return new ApolloClient({
