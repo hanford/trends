@@ -19,6 +19,7 @@ const url = isDev ? 'http://localhost:2999' : window.location ? window.location.
 console.log(url)
 
 function create(initialState) {
+  console.log(initialState.url ? initialState.url : url)
   return new ApolloClient({
     connectToDevTools: process.browser,
     ssrMode: !process.browser,
