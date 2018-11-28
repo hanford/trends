@@ -1,7 +1,7 @@
 import Document, { Main } from 'next/document';
 import { extractCritical } from 'emotion-server';
-import getConfig from "next/config";
-const { publicRuntimeConfig } = getConfig();
+// import getConfig from "next/config";
+// const { publicRuntimeConfig } = getConfig();
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -64,7 +64,7 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{ __html: clientSideJS }}
           />
 
-          {!publicRuntimeConfig.isDev && (
+          {/* {!publicRuntimeConfig.isDev && (
             <>
               <script
                 async
@@ -76,7 +76,7 @@ export default class MyDocument extends Document {
                 dangerouslySetInnerHTML={{ __html: GA }}
               />
             </>
-          )}
+          )} */}
         </body>
       </html>
     );

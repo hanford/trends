@@ -12,8 +12,8 @@
   ],
   "builds": [
     {
-      "src": "www/next.config.js",
-      "use": "@now/next@canary",
+      "src": "www/package.json",
+      "use": "@now/next",
       "config": { "maxLambdaSize": "20mb" }
     },
     {

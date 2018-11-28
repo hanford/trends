@@ -1,5 +1,5 @@
 const { makeExecutableSchema } = require('graphql-tools');
-const fetch = require('isomorphic-unfetch');
+const fetch = require('isomorphic-fetch');
 const { stringify } = require('querystring');
 const LRUCache = require('lru-cache');
 const dev = process.env.NODE_ENV !== 'production';

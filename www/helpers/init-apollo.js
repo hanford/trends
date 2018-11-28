@@ -1,7 +1,8 @@
 import { HttpLink, InMemoryCache, ApolloClient } from "apollo-boost";
-import fetch from "isomorphic-unfetch";
-import getConfig from "next/config";
-const { publicRuntimeConfig } = getConfig();
+import fetch from "isomorphic-fetch";
+import window from 'global/window'
+// import getConfig from "next/config";
+// const { publicRuntimeConfig } = getConfig();
 
 let apolloClient = null;
 
