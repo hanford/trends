@@ -9,6 +9,7 @@ const nextConfig = {
     googleAnalytics: isDev ? '' : 'UA-45226320-5',
     isDev
   },
+  dontAutoRegisterSW: true,
   workboxOpts: {
     swDest: 'static/sw.js',
     runtimeCaching: [

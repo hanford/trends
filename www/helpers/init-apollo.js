@@ -1,6 +1,7 @@
 import { HttpLink, InMemoryCache, ApolloClient } from "apollo-boost";
 import fetch from "isomorphic-fetch";
-import window from 'global/window'
+import getConfig from "next/config"
+const { publicRuntimeConfig } = getConfig();
 
 let apolloClient = null;
 
@@ -9,11 +10,11 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-const isDev = process.env.NODE_ENV !== 'production'
-
 function create(initialState) {
   const { ctx: { req } } = initialState
-  const url = isDev ? 'http://localhost:2999' : `https://${req.headers.host}` 
+  const url = publicRuntimeConfig.isDev
+    ? 'http://localhost:2999'
+    : `https://${req.headers.host}` 
 
   return new ApolloClient({
     connectToDevTools: process.browser,

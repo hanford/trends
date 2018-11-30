@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "alias": ["trends.now.sh"],
   "env": {
     "GITHUB_ACCESS_TOKEN": "@github-access-token"
   },
@@ -23,13 +24,11 @@
   "builds": [
     {
       "src": "www/next.config.js",
-      "use": "@now/next@canary",
-      "config": { "maxLambdaSize": "20mb" }
+      "use": "@now/next"
     },
     {
       "src": "api/index.js",
-      "use": "@now/node-server",
-      "config": { "maxLambdaSize": "10mb" }
+      "use": "@now/node-server"
     },
     {
       "src": "www/static/*",

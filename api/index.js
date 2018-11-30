@@ -21,14 +21,6 @@ const defaultQuery = graphql`
   }
 `;
 
-
-const ServiceWorker = (req, res) => {
-  const filePath = join(__dirname, '../', 'www', '.next', 'service-worker.js');
-  console.log(filePath)
-  res.sendFile(filePath);
-};
-
-
 const server = express();
 
 server.use(cors());
@@ -59,8 +51,6 @@ server.use(
     query: defaultQuery,
   })
 );
-
-server.get('/api/service-worker.js', ServiceWorker);
 
 server.listen(port, err => {
   if (err) throw err;

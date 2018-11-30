@@ -6,7 +6,7 @@ import styled from 'react-emotion';
 export default () => (
   <Footer>
     <a href="https://jackhanford.com" rel="noopener" target="_blank">
-      made by Jack Hanford 👨‍💻
+      Made by Jack Hanford 👨‍💻
     </a>
   </Footer>
 );
