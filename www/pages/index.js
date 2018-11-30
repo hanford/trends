@@ -15,8 +15,8 @@ type Props = {
 
 export default class IndexPage extends React.Component<Props> {
   static async getInitialProps(ctx: Object): Object {
-    const { query, req } = ctx;
-    const { language, time } = getQueryData(req.query);
+    const { query } = ctx;
+    const { language, time } = getQueryData(query);
 
     return {
       time,

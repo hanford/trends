@@ -56,7 +56,7 @@ export default ({ language, time }: Props) => {
         </Form>
 
         <Container>
-          <Link href="/graphiql" target="_blank" rel="noopener">
+          <Link href="/api/graphiql" target="_blank" rel="noopener">
             GraphQL API
           </Link>
           <Link

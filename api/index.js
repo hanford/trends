@@ -21,16 +21,29 @@ const defaultQuery = graphql`
   }
 `;
 
+
+const ServiceWorker = (req, res) => {
+  const filePath = join(__dirname, '../', 'www', '.next', 'service-worker.js');
+  console.log(filePath)
+  res.sendFile(filePath);
+};
+
+
 const server = express();
 
 server.use(cors());
 
-server.get('/', (req, res) => {
-  res.redirect('/graphql');
-})
+if (!dev) {
+  server.get('*', (_, res, next) => {
+    res.setHeader('Cache-Control', 'max-age=43200, immutable');
+    next();
+  });
+}
+
+server.get('/', (req, res) => res.redirect('/api/graphql'))
 
 server.use(
-  '/graphql',
+  '/api/graphql',
   bodyParser.json(),
   graphqlExpress({
     schema,
@@ -40,22 +53,16 @@ server.use(
 );
 
 server.use(
-  '/graphiql',
+  '/api/graphiql',
   graphiqlExpress({
-    endpointURL: '/graphql',
+    endpointURL: '/api/graphql',
     query: defaultQuery,
   })
 );
 
-// server.get('/service-worker.js', ServiceWorker(app));
+server.get('/api/service-worker.js', ServiceWorker);
 
 server.listen(port, err => {
   if (err) throw err;
   console.log(`> Ready on http://localhost:${port}`);
 });
-
-const ServiceWorker = app => (req, res) => {
-  const filePath = join(__dirname, '../', '.next', 'service-worker.js');
-
-  app.serveStatic(req, res, filePath);
-};

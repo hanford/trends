@@ -1,19 +1,28 @@
 {
   "version": 2,
-  "alias": [
-    "trends.now.sh"
-  ],
   "env": {
     "GITHUB_ACCESS_TOKEN": "@github-access-token"
   },
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/www/$1" }
+    {
+      "src": "/api/(.*)",
+      "dest": "api/index.js",
+      "headers": {
+        "cache-control": "public, max-age=43200, immutable"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/www/$1",
+      "headers": {
+        "cache-control": "public, max-age=43200, immutable"
+      }
+    }
   ],
   "builds": [
     {
       "src": "www/package.json",
-      "use": "@now/next",
+      "use": "@now/next@canary",
       "config": { "maxLambdaSize": "20mb" }
     },
     {

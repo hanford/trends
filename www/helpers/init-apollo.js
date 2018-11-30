@@ -1,8 +1,6 @@
 import { HttpLink, InMemoryCache, ApolloClient } from "apollo-boost";
 import fetch from "isomorphic-fetch";
 import window from 'global/window'
-// import getConfig from "next/config";
-// const { publicRuntimeConfig } = getConfig();
 
 let apolloClient = null;
 
@@ -13,16 +11,15 @@ if (!process.browser) {
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-
-const url = isDev ? 'http://localhost:2999' : window.location ? window.location.origin : process.env.NOW_URL
-
 function create(initialState) {
-  console.log(initialState.url ? initialState.url : url)
+  const { ctx: { req } } = initialState
+  const url = isDev ? 'http://localhost:2999' : `https://${req.headers.host}` 
+
   return new ApolloClient({
     connectToDevTools: process.browser,
     ssrMode: !process.browser,
     link: new HttpLink({
-      uri: `${initialState.url ? initialState.url : url}/graphql`,
+      uri: `${url}/api/graphql`,
       credentials: "same-origin"
     }),
     cache: new InMemoryCache().restore(initialState || {})

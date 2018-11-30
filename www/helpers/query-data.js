@@ -1,8 +1,6 @@
 const { times, languages } = require('./constants')
 
-module.exports = getQueryData
-
-function getQueryData (query = {}) {
+export default function getQueryData (query = {}) {
   const { language: langQuery, time: timeQuery } = query
 
   const language = langQuery ? langQuery : languages['Top Overall']
