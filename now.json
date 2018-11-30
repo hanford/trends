@@ -6,7 +6,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "api/index.js",
+      "dest": "/api/index.js",
       "headers": {
         "cache-control": "public, max-age=43200, immutable"
       }
@@ -15,13 +15,14 @@
       "src": "/(.*)",
       "dest": "/www/$1",
       "headers": {
-        "cache-control": "public, max-age=43200, immutable"
+        "cache-control": "public, max-age=43200, immutable",
+        "Service-Worker-Allowed": "/"
       }
     }
   ],
   "builds": [
     {
-      "src": "www/package.json",
+      "src": "www/next.config.js",
       "use": "@now/next@canary",
       "config": { "maxLambdaSize": "20mb" }
     },

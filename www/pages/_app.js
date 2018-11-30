@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 
 import withApolloClient from '../helpers/with-apollo';
 
-class MyApp extends App {
+class TrendsApp extends App {
   render() {
     const { Component, pageProps, apolloClient } = this.props;
 
@@ -18,4 +18,4 @@ class MyApp extends App {
   }
 }
 
-export default withApolloClient(MyApp);
+export default withApolloClient(TrendsApp);

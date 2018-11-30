@@ -1,7 +1,7 @@
 import Document, { Main } from 'next/document';
 import { extractCritical } from 'emotion-server';
-// import getConfig from "next/config";
-// const { publicRuntimeConfig } = getConfig();
+import getConfig from "next/config";
+const { publicRuntimeConfig } = getConfig();
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -64,7 +64,7 @@ export default class MyDocument extends Document {
             dangerouslySetInnerHTML={{ __html: clientSideJS }}
           />
 
-          {/* {!publicRuntimeConfig.isDev && (
+          {!publicRuntimeConfig.isDev && (
             <>
               <script
                 async
@@ -76,7 +76,7 @@ export default class MyDocument extends Document {
                 dangerouslySetInnerHTML={{ __html: GA }}
               />
             </>
-          )} */}
+          )}
         </body>
       </html>
     );
@@ -90,7 +90,7 @@ const clientSideJS = `
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/api/service-worker.js').then(registration => {
+        navigator.serviceWorker.register('/_next/static/sw.js', { scope: "/" }).then(registration => {
           console.log('SW registered: ', registration)
         }).catch(registrationError => {
           console.log('SW registration failed: ', registrationError)
@@ -107,6 +107,5 @@ const GA = `
   }
 
   gtag('js', new Date());
-
   gtag('config', 'UA-45226320-5');
 `
