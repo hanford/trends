@@ -1,15 +1,17 @@
-const path = require('path')
-const withOffline = require('next-offline')
+const withOffline = moduleExists('next-offline')
+  ? require('next-offline')
+  : {};
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-module.exports = withOffline({
+const nextConfig = {
   publicRuntimeConfig: {
-    api: isDev ? 'http://localhost:3000' : typeof window !== 'undefined' ? '' : process.env.NOW_URL,
     googleAnalytics: isDev ? '' : 'UA-45226320-5',
-    isDev,
+    isDev
   },
+  dontAutoRegisterSW: true,
   workboxOpts: {
+    swDest: 'static/sw.js',
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
@@ -28,4 +30,16 @@ module.exports = withOffline({
       }
     ]
   }
-})
+};
+
+module.exports = moduleExists('next-offline')
+  ? withOffline(nextConfig)
+  : nextConfig
+
+function moduleExists(name) {
+  try {
+    return require.resolve(name);
+  } catch (error) {
+    return false;
+  }
+}

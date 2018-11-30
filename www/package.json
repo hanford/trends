@@ -1,0 +1,31 @@
+{
+  "name": "trends",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "NODE_ENV=production next start",
+    "flow": "flow",
+    "test": "npm run flow"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.22",
+    "apollo-client": "^2.4.7",
+    "emotion": "^9.0.2",
+    "emotion-server": "^9.0.2",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.9.2",
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^7.0.2-canary.29",
+    "next-offline": "^3.2.2",
+    "next-server": "^7.0.2-canary.29",
+    "react": "^16.6.3",
+    "react-apollo": "^2.3.1",
+    "react-dom": "^16.6.3",
+    "react-emotion": "^9.0.2"
+  },
+  "devDependencies": {
+    "babel-plugin-emotion": "~9.0.1",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
+    "flow-bin": "~0.74.0"
+  }
+}

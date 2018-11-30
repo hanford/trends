@@ -90,7 +90,7 @@ const clientSideJS = `
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js').then(registration => {
+        navigator.serviceWorker.register('/_next/static/sw.js', { scope: "/" }).then(registration => {
           console.log('SW registered: ', registration)
         }).catch(registrationError => {
           console.log('SW registration failed: ', registrationError)
@@ -107,6 +107,5 @@ const GA = `
   }
 
   gtag('js', new Date());
-
   gtag('config', 'UA-45226320-5');
 `
