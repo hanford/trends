@@ -1,23 +1,21 @@
-const withOffline = moduleExists('next-offline')
-  ? require('next-offline')
-  : {};
+const withOffline = moduleExists("next-offline") ? require("next-offline") : {};
 
-const isDev = process.env.NODE_ENV !== 'production'
+const isDev = process.env.NODE_ENV !== "production";
 
 const nextConfig = {
   publicRuntimeConfig: {
-    googleAnalytics: isDev ? '' : 'UA-45226320-5',
+    googleAnalytics: isDev ? "" : "UA-45226320-5",
     isDev
   },
   dontAutoRegisterSW: true,
   workboxOpts: {
-    swDest: 'static/sw.js',
+    swDest: "static/sw.js",
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
-        handler: 'networkFirst',
+        handler: "networkFirst",
         options: {
-          cacheName: 'https-calls',
+          cacheName: "https-calls",
           networkTimeoutSeconds: 15,
           expiration: {
             maxEntries: 150,
@@ -29,12 +27,17 @@ const nextConfig = {
         }
       }
     ]
+  },
+  webpack: config => {
+    // .mjs before .js for apollo and graphql (fixing failing now.sh deploy)
+    config.resolve.extensions = [".wasm", ".mjs", ".js", ".jsx", ".json"];
+    return config;
   }
 };
 
-module.exports = moduleExists('next-offline')
+module.exports = moduleExists("next-offline")
   ? withOffline(nextConfig)
-  : nextConfig
+  : nextConfig;
 
 function moduleExists(name) {
   try {
