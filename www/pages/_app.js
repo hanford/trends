@@ -1,8 +1,8 @@
-import App, { Container } from 'next/app';
-import React from 'react';
-import { ApolloProvider } from 'react-apollo';
+import App, { Container } from "next/app";
+import React from "react";
+import { ApolloProvider } from "react-apollo";
 
-import withApolloClient from '../helpers/with-apollo';
+import withApolloClient from "../helpers/with-apollo";
 
 class TrendsApp extends App {
   render() {

@@ -1,5 +1,5 @@
-import Document, { Main } from 'next/document';
-import { extractCritical } from 'emotion-server';
+import Document, { Main } from "next/document";
+import { extractCritical } from "emotion-server";
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
 
@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
 
     return {
       ...page,
-      ...styles,
+      ...styles
     };
   }
 
@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
 
           <style
             dangerouslySetInnerHTML={{
-              __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`,
+              __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`
             }}
           />
 
@@ -68,7 +68,9 @@ export default class MyDocument extends Document {
             <>
               <script
                 async
-                src={`https://www.googletagmanager.com/gtag/js?id=${publicRuntimeConfig.googleAnalytics}`}
+                src={`https://www.googletagmanager.com/gtag/js?id=${
+                  publicRuntimeConfig.googleAnalytics
+                }`}
               />
 
               <script
@@ -108,4 +110,4 @@ const GA = `
 
   gtag('js', new Date());
   gtag('config', 'UA-45226320-5');
-`
+`;

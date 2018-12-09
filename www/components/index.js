@@ -1,17 +1,17 @@
 // @flow
 
-import * as React from 'react';
-import styled, { css } from 'react-emotion';
+import * as React from "react";
+import styled, { css } from "react-emotion";
 
-import { gridGap, maxWidth } from './style-constants';
-import Card from './card';
-import Navbar from './navbar';
-import Footer from './footer';
+import { gridGap, maxWidth } from "./style-constants";
+import Card from "./card";
+import Navbar from "./navbar";
+import Footer from "./footer";
 
 type Props = {
   time: number,
   language: string,
-  repos: Array<any>,
+  repos: Array<any>
 };
 
 export default class Index extends React.Component<Props> {
@@ -25,7 +25,7 @@ export default class Index extends React.Component<Props> {
         <Row>
           {repos.length
             ? repos.map((repo, index) => <Card key={index} repo={repo} />)
-            : 'Rate limit exceeded, try again in a moment'}
+            : "Rate limit exceeded, try again in a moment"}
         </Row>
 
         <Footer />

@@ -1,19 +1,19 @@
 // @flow
 
-import * as React from 'react';
-import styled, { css } from 'react-emotion';
-import { gridGap, maxWidth } from './style-constants';
-import constants from '../helpers/constants';
+import * as React from "react";
+import styled, { css } from "react-emotion";
+import { gridGap, maxWidth } from "./style-constants";
+import constants from "../helpers/constants";
 
 const {
   times: timeOptions,
   languages: languageOptions,
-  themes: themeOptions,
+  themes: themeOptions
 } = constants;
 
 type Props = {
   language: string,
-  time: number,
+  time: number
 };
 
 export default ({ language, time }: Props) => {
@@ -74,7 +74,7 @@ export default ({ language, time }: Props) => {
 
 const Option = styled.option`
   color: black;
-`
+`;
 
 const Navbar = styled.nav`
   position: sticky;
@@ -95,16 +95,16 @@ const Grid = styled.div`
   display: grid;
   grid-gap: ${gridGap};
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: 'Form Form . GithubHeader';
+  grid-template-areas: "Form Form . GithubHeader";
 
   @media (max-width: 1200px) {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 'Form Form GithubHeader';
+    grid-template-areas: "Form Form GithubHeader";
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'Form Form';
+    grid-template-areas: "Form Form";
   }
 `;
 

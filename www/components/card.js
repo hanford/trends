@@ -1,7 +1,7 @@
 // @flow
 
-import * as React from 'react';
-import styled from 'react-emotion';
+import * as React from "react";
+import styled from "react-emotion";
 
 type Props = {
   repo: {
@@ -10,14 +10,14 @@ type Props = {
     language: string,
     full_name: string,
     description?: string,
-    stargazers_count: string,
-  },
+    stargazers_count: string
+  }
 };
 
 export default class extends React.Component<Props> {
   render() {
     const {
-      repo: { name, forks, language, full_name, description, stargazers_count },
+      repo: { name, forks, language, full_name, description, stargazers_count }
     } = this.props;
 
     return (

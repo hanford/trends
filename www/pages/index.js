@@ -1,16 +1,16 @@
 // @flow
 
-import * as React from 'react';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import * as React from "react";
+import gql from "graphql-tag";
+import { Query } from "react-apollo";
 
-import Index from '../components/index';
-import getQueryData from '../helpers/query-data';
+import Index from "../components/index";
+import getQueryData from "../helpers/query-data";
 
 type Props = {
   children: React.Element<any>,
   language: string,
-  time: number,
+  time: number
 };
 
 export default class IndexPage extends React.Component<Props> {
@@ -20,7 +20,7 @@ export default class IndexPage extends React.Component<Props> {
 
     return {
       time,
-      language,
+      language
     };
   }
 
