@@ -1,58 +1,29 @@
-const cors = require("cors");
-const { join } = require("path");
 const express = require("express");
-const bodyParser = require("body-parser");
-const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
+const { ApolloServer } = require("apollo-server-express");
 
 const schema = require("./graphql");
 
-const port = parseInt(process.env.PORT, 10) || 2999;
+const port = parseInt(process.env.PORT || "2999", 10) || 2999;
 const dev = process.env.NODE_ENV !== "production";
 
-const graphql = query => query.join("");
+const server = new ApolloServer({ schema, introspection: true });
 
-const defaultQuery = graphql`
-  query WeeklyTopJS {
-    repos(language: "javascript", time: 8) {
-      name
-      full_name
-      stargazers_count
-    }
-  }
-`;
-
-const server = express();
-
-server.use(cors());
+const app = express();
+server.applyMiddleware({ app, path: "/api/graphql", cors: true });
 
 if (!dev) {
-  server.get("*", (_, res, next) => {
+  app.get("*", (_, res, next) => {
     res.setHeader("Cache-Control", "max-age=43200, immutable");
     next();
   });
 }
 
-server.get("/", (req, res) => res.redirect("/api/graphql"));
+app.get("/", (req, res) => res.redirect("/api/graphql"));
 
-server.use(
-  "/api/graphql",
-  bodyParser.json(),
-  graphqlExpress({
-    schema,
-    tracing: true,
-    cacheControl: true
-  })
-);
-
-server.use(
-  "/api/graphiql",
-  graphiqlExpress({
-    endpointURL: "/api/graphql",
-    query: defaultQuery
-  })
-);
-
-server.listen(port, err => {
-  if (err) throw err;
-  console.log(`> Ready on http://localhost:${port}`);
+app.listen(port, err => {
+  if (err) {
+    throw err;
+  }
+  // tslint:disable: no-console
+  console.log(`Listening at http://localhost:${port}/`);
 });
