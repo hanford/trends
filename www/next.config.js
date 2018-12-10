@@ -11,7 +11,7 @@ const nextConfig = {
   },
   dontAutoRegisterSW: true,
   workboxOpts: {
-    swDest: 'static/sw.js',
+    swDest: 'static/service-worker.js',
     runtimeCaching: [
       {
         urlPattern: /^https?.*/,
