@@ -1,7 +1,8 @@
-const { makeExecutableSchema } = require("graphql-tools");
-const fetch = require("isomorphic-fetch");
-const { stringify } = require("querystring");
-const LRUCache = require("lru-cache");
+import { gql } from "apollo-server-core";
+import { makeExecutableSchema } from "graphql-tools";
+import fetch from "isomorphic-fetch";
+import LRUCache from "lru-cache";
+import { stringify } from "querystring";
 const dev = process.env.NODE_ENV !== "production";
 
 const cache = new LRUCache({
@@ -9,9 +10,7 @@ const cache = new LRUCache({
   maxAge: 1000 * 60 * 60 * 6 // 6 hour cache
 });
 
-const graphql = query => query.join("");
-
-const typeDefs = graphql`
+const typeDefs = gql`
   type Query @cacheControl(maxAge: 36000) {
     repos(language: String!, time: Int): [Repo]!
   }
@@ -28,7 +27,7 @@ const typeDefs = graphql`
 
 const resolvers = {
   Query: {
-    async repos(root, args, context) {
+    async repos(_root, args, _context) {
       const { time = 7, language: lang } = args;
 
       const language = lang ? ` language:${lang}` : "";
@@ -47,6 +46,7 @@ const resolvers = {
 
       // If we have a response in memory, let's return early
       if (dev && cache.has(key)) {
+        // tslint:disable: no-console
         console.log(`GITHUB CACHE HIT: ${key}`);
 
         return cache.get(key);
@@ -81,4 +81,4 @@ const schema = makeExecutableSchema({
   resolvers
 });
 
-module.exports = schema;
+export default schema;

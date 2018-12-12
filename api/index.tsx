@@ -1,7 +1,7 @@
-const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
+import { ApolloServer } from "apollo-server-express";
+import express from "express";
 
-const schema = require("./graphql");
+import schema from "./graphql";
 
 const port = parseInt(process.env.PORT || "2999", 10) || 2999;
 const dev = process.env.NODE_ENV !== "production";
@@ -18,9 +18,9 @@ if (!dev) {
   });
 }
 
-app.get("/", (req, res) => res.redirect("/api/graphql"));
+app.get("/", (_req, res) => res.redirect("/api/graphql"));
 
-app.listen(port, err => {
+app.listen(port, (err: Error) => {
   if (err) {
     throw err;
   }
