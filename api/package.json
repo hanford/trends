@@ -22,7 +22,7 @@
     "@types/graphql": "^14.0.3",
     "@types/isomorphic-fetch": "0.0.34",
     "@types/lru-cache": "^4.1.1",
-    "@types/node": "^10.12.12",
+    "@types/node": "^10.12.14",
     "@zeit/ncc": "^0.5.3",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
