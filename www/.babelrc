@@ -1,9 +1,4 @@
 {
-  "presets": [
-      "next/babel"
-    ],
-    "plugins": [
-      ["emotion", { "inline": true }],
-      "transform-flow-strip-types"
-  ]
+  "presets": ["next/babel", "@zeit/next-typescript/babel"],
+  "plugins": [["emotion", { "inline": true }]]
 }

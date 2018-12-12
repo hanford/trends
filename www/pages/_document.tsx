@@ -1,9 +1,13 @@
-import Document, { Main } from "next/document";
 import { extractCritical } from "emotion-server";
 import getConfig from "next/config";
+import Document, { Main } from "next/document";
 const { publicRuntimeConfig } = getConfig();
 
-export default class MyDocument extends Document {
+interface Props {
+  css: any;
+}
+
+export default class MyDocument extends Document<Props> {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
     const styles = extractCritical(page.html);
@@ -67,7 +71,12 @@ export default class MyDocument extends Document {
           {!publicRuntimeConfig.isDev && (
             <>
               <script
-                async
+                type="text/javascript"
+                dangerouslySetInnerHTML={{ __html: serviceWorkerRegistration }}
+              />
+
+              <script
+                async={true}
                 src={`https://www.googletagmanager.com/gtag/js?id=${
                   publicRuntimeConfig.googleAnalytics
                 }`}
@@ -89,7 +98,11 @@ const clientSideJS = `
   document.addEventListener('DOMContentLoaded', event => {
     document.querySelector('select[name=language]').addEventListener('change', () => document.tune.submit())
     document.querySelector('select[name=time]').addEventListener('change', () => document.tune.submit())
+  })
+`;
 
+const serviceWorkerRegistration = `
+  document.addEventListener('DOMContentLoaded', event => {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/_next/static/service-worker.js', { scope: "/" }).then(registration => {

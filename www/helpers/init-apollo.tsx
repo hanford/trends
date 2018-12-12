@@ -1,12 +1,12 @@
-import { HttpLink, InMemoryCache, ApolloClient } from "apollo-boost";
+import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
 import fetch from "isomorphic-fetch";
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
 
-let apolloClient = null;
+let apolloClient: ApolloClient<{}> | null = null;
 
+// Polyfill fetch() on the server (used by apollo-client)
 if (!process.browser) {
-  // Polyfill fetch() on the server (used by apollo-client)
   global.fetch = fetch;
 }
 
@@ -20,7 +20,7 @@ function create(initialState) {
 
   return new ApolloClient({
     connectToDevTools: process.browser,
-    ssrMode: !process.browser,
+    ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
       uri: `${url}/api/graphql`,
       credentials: "same-origin"
@@ -31,7 +31,7 @@ function create(initialState) {
 
 export default function initApollo(initialState) {
   // Make sure to create a new client for every server-side request so that data
-  // isn't shared between connections
+  // isn't shared between connections (which would be bad)
   if (!process.browser) {
     return create(initialState);
   }

@@ -1,6 +1,11 @@
-const { times, languages } = require("./constants");
+import { languages, times } from "./constants";
 
-export default function getQueryData(query = {}) {
+interface Query {
+  language?: string;
+  time?: string;
+}
+
+export default function getQueryData(query: Query = {}) {
   const { language: langQuery, time: timeQuery } = query;
 
   const language = langQuery ? langQuery : languages["Top Overall"];

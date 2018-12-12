@@ -1,18 +1,16 @@
-// @flow
+import React from "react";
+import styled from "react-emotion";
 
-import * as React from "react";
-import styled, { css } from "react-emotion";
-
-import { gridGap, maxWidth } from "./style-constants";
 import Card from "./card";
-import Navbar from "./navbar";
 import Footer from "./footer";
+import Navbar from "./navbar";
+import { gridGap, maxWidth } from "./style-constants";
 
-type Props = {
-  time: number,
-  language: string,
-  repos: Array<any>
-};
+interface Props {
+  time: number;
+  language: string;
+  repos: any[];
+}
 
 export default class Index extends React.Component<Props> {
   render() {
