@@ -1,6 +1,6 @@
 import { extractCritical } from "emotion-server";
 import getConfig from "next/config";
-import Document, { Main } from "next/document";
+import Document, { Main, NextScript } from "next/document";
 const { publicRuntimeConfig } = getConfig();
 
 interface Props {
@@ -62,6 +62,7 @@ export default class MyDocument extends Document<Props> {
         </head>
         <body>
           <Main />
+          <NextScript />
 
           <script
             type="text/javascript"
