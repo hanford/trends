@@ -16,6 +16,7 @@ const typeDefs = gql`
   }
 
   type Repo @cacheControl(maxAge: 36000) {
+    id: ID
     forks: Int!
     name: String!
     language: String!

@@ -48,6 +48,7 @@ export default class IndexPage extends React.Component<Props> {
 const GET_REPOS = gql`
   query trendingRepos($language: String!, $time: Int!) {
     repos(language: $language, time: $time) {
+      id
       name
       forks
       language
