@@ -25,9 +25,14 @@ export default ({ language, time }: Props) => {
           <SelectContainer htmlFor="language">
             <Label>Language</Label>
 
-            <select aria-label="select language" name="language" id="language">
+            <select
+              aria-label="select language"
+              name="language"
+              id="language"
+              defaultValue={language}
+            >
               {Object.entries(languageOptions).map(([key, value]) => (
-                <Option selected={value === language} key={key} value={value}>
+                <Option key={key} value={value}>
                   {key}
                 </Option>
               ))}
@@ -37,13 +42,14 @@ export default ({ language, time }: Props) => {
           <SelectContainer htmlFor="time">
             <Label>Time</Label>
 
-            <select aria-label="select time" name="time" id="time">
+            <select
+              aria-label="select time"
+              name="time"
+              id="time"
+              defaultValue={String(time)}
+            >
               {Object.entries(timeOptions).map(([key, value]) => (
-                <Option
-                  selected={value === Number(time)}
-                  key={key}
-                  value={value}
-                >
+                <Option key={key} value={value}>
                   {key}
                 </Option>
               ))}
