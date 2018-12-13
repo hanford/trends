@@ -1,15 +1,9 @@
 import React from "react";
 import styled from "react-emotion";
+import { Repo } from "../@types/graphql";
 
 interface Props {
-  repo: {
-    name: string;
-    forks: number;
-    language: string;
-    full_name: string;
-    description?: string;
-    stargazers_count: string;
-  };
+  repo: Repo;
 }
 
 export default class extends React.Component<Props> {

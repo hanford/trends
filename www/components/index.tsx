@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "react-emotion";
-
+import { Repo } from "../@types/graphql";
 import Card from "./card";
 import Footer from "./footer";
 import Navbar from "./navbar";
@@ -9,7 +9,7 @@ import { gridGap, maxWidth } from "./style-constants";
 interface Props {
   time: number;
   language: string;
-  repos: any[];
+  repos: Repo[];
 }
 
 export default class Index extends React.Component<Props> {

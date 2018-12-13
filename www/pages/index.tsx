@@ -2,8 +2,18 @@ import gql from "graphql-tag";
 import { NextContext } from "next";
 import React from "react";
 import { Query } from "react-apollo";
+import { Repo } from "../@types/graphql";
 import Index from "../components/index";
 import getQueryData from "../helpers/query-data";
+
+interface Data {
+  repos: Repo[];
+}
+
+interface Variables {
+  language: string;
+  time: number;
+}
 
 interface Props {
   children: React.ReactNode;
@@ -26,8 +36,10 @@ export default class IndexPage extends React.Component<Props> {
     const { language, time } = this.props;
 
     return (
-      <Query query={GET_REPOS} variables={{ language, time }}>
-        {({ data: { repos } }) => <Index repos={repos} {...this.props} />}
+      <Query<Data, Variables> query={GET_REPOS} variables={{ language, time }}>
+        {({ data }) => (
+          <Index repos={(data && data.repos) || []} {...this.props} />
+        )}
       </Query>
     );
   }
