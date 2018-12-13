@@ -1,23 +1,15 @@
-// @flow
+import React from "react";
+import styled from "react-emotion";
+import { Repo } from "../@types/graphql";
 
-import * as React from 'react';
-import styled from 'react-emotion';
-
-type Props = {
-  repo: {
-    name: string,
-    forks: number,
-    language: string,
-    full_name: string,
-    description?: string,
-    stargazers_count: string,
-  },
-};
+interface Props {
+  repo: Repo;
+}
 
 export default class extends React.Component<Props> {
   render() {
     const {
-      repo: { name, forks, language, full_name, description, stargazers_count },
+      repo: { name, forks, full_name, description, stargazers_count }
     } = this.props;
 
     return (

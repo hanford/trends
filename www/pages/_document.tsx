@@ -1,16 +1,20 @@
-import Document, { Main } from 'next/document';
-import { extractCritical } from 'emotion-server';
+import { extractCritical } from "emotion-server";
 import getConfig from "next/config";
+import Document, { Main } from "next/document";
 const { publicRuntimeConfig } = getConfig();
 
-export default class MyDocument extends Document {
+interface Props {
+  css: any;
+}
+
+export default class MyDocument extends Document<Props> {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
     const styles = extractCritical(page.html);
 
     return {
       ...page,
-      ...styles,
+      ...styles
     };
   }
 
@@ -31,7 +35,7 @@ export default class MyDocument extends Document {
 
           <style
             dangerouslySetInnerHTML={{
-              __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`,
+              __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`
             }}
           />
 
@@ -67,8 +71,15 @@ export default class MyDocument extends Document {
           {!publicRuntimeConfig.isDev && (
             <>
               <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${publicRuntimeConfig.googleAnalytics}`}
+                type="text/javascript"
+                dangerouslySetInnerHTML={{ __html: serviceWorkerRegistration }}
+              />
+
+              <script
+                async={true}
+                src={`https://www.googletagmanager.com/gtag/js?id=${
+                  publicRuntimeConfig.googleAnalytics
+                }`}
               />
 
               <script
@@ -87,7 +98,11 @@ const clientSideJS = `
   document.addEventListener('DOMContentLoaded', event => {
     document.querySelector('select[name=language]').addEventListener('change', () => document.tune.submit())
     document.querySelector('select[name=time]').addEventListener('change', () => document.tune.submit())
+  })
+`;
 
+const serviceWorkerRegistration = `
+  document.addEventListener('DOMContentLoaded', event => {
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/_next/static/service-worker.js', { scope: "/" }).then(registration => {
@@ -108,4 +123,4 @@ const GA = `
 
   gtag('js', new Date());
   gtag('config', 'UA-45226320-5');
-`
+`;

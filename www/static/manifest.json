@@ -6,17 +6,21 @@
   "description": "view github repos that are currently trending",
   "display": "minimal-ui",
   "start_url": "/",
-  "icons": [{
-    "src": "/static/icon144.png",
-    "type": "image/png",
-    "sizes": "144x144"
-  }, {
-    "src": "/static/icon512.png",
-    "type": "image/png",
-    "sizes": "512x512"
-  }, {
-    "src": "/static/icon192.png",
-    "type": "image/png",
-    "sizes": "192x192"
-  }]
+  "icons": [
+    {
+      "src": "/static/icon144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/static/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/static/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
 }

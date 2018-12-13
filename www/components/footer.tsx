@@ -1,7 +1,5 @@
-// @flow
-
-import * as React from 'react';
-import styled from 'react-emotion';
+import React from "react";
+import styled from "react-emotion";
 
 export default () => (
   <Footer>

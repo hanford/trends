@@ -1,20 +1,16 @@
-// @flow
+import React from "react";
+import styled from "react-emotion";
+import {
+  languages as languageOptions,
+  themes as themeOptions,
+  times as timeOptions
+} from "../helpers/constants";
+import { gridGap, maxWidth } from "./style-constants";
 
-import * as React from 'react';
-import styled, { css } from 'react-emotion';
-import { gridGap, maxWidth } from './style-constants';
-import constants from '../helpers/constants';
-
-const {
-  times: timeOptions,
-  languages: languageOptions,
-  themes: themeOptions,
-} = constants;
-
-type Props = {
-  language: string,
-  time: number,
-};
+interface Props {
+  language: string;
+  time: number;
+}
 
 export default ({ language, time }: Props) => {
   const hasTheme = Object.entries(languageOptions).find(
@@ -25,7 +21,7 @@ export default ({ language, time }: Props) => {
   return (
     <Navbar theme={themeOptions[theme || 0]}>
       <Grid>
-        <Form label="search" name="tune" method="GET">
+        <Form aria-label="search" name="tune" method="GET">
           <SelectContainer htmlFor="language">
             <Label>Language</Label>
 
@@ -54,7 +50,6 @@ export default ({ language, time }: Props) => {
             </select>
           </SelectContainer>
         </Form>
-
         <Container>
           <Link href="/api/graphiql" target="_blank" rel="noopener">
             GraphQL API
@@ -74,7 +69,7 @@ export default ({ language, time }: Props) => {
 
 const Option = styled.option`
   color: black;
-`
+`;
 
 const Navbar = styled.nav`
   position: sticky;
@@ -95,16 +90,16 @@ const Grid = styled.div`
   display: grid;
   grid-gap: ${gridGap};
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: 'Form Form . GithubHeader';
+  grid-template-areas: "Form Form . GithubHeader";
 
   @media (max-width: 1200px) {
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 'Form Form GithubHeader';
+    grid-template-areas: "Form Form GithubHeader";
   }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'Form Form';
+    grid-template-areas: "Form Form";
   }
 `;
 

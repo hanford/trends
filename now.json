@@ -7,7 +7,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.js",
+      "dest": "/api/index.tsx",
       "headers": {
         "cache-control": "public, max-age=43200, immutable"
       }
@@ -27,8 +27,8 @@
       "use": "@now/next"
     },
     {
-      "src": "api/index.js",
-      "use": "@now/node-server"
+      "src": "api/index.tsx",
+      "use": "@now/node-server@canary"
     },
     {
       "src": "www/static/*",
