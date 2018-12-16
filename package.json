@@ -1,7 +1,7 @@
 {
   "name": "trends",
   "devDependencies": {
-    "husky": "^1.2.0",
+    "husky": "^1.2.1",
     "prettier": "^1.15.3",
     "pretty-quick": "^1.8.0"
   },
