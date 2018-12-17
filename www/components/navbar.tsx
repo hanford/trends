@@ -57,9 +57,6 @@ export default ({ language, time }: Props) => {
           </SelectContainer>
         </Form>
         <Container>
-          <Link href="/api/graphiql" target="_blank" rel="noopener">
-            GraphQL API
-          </Link>
           <Link
             href="https://github.com/hanford/trends"
             target="_blank"
