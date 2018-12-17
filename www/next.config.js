@@ -10,7 +10,7 @@ const nextConfig = {
     googleAnalytics: isDev ? "" : "UA-45226320-5",
     isDev
   },
-  dontAutoRegisterSW: true,
+  dontAutoRegisterSw: true,
   workboxOpts: {
     swDest: "static/service-worker.js",
     runtimeCaching: [

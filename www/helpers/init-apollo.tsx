@@ -1,4 +1,9 @@
-import { ApolloClient, HttpLink, InMemoryCache } from "apollo-boost";
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject
+} from "apollo-boost";
 import fetch from "isomorphic-fetch";
 import getConfig from "next/config";
 const { publicRuntimeConfig } = getConfig();
@@ -10,13 +15,10 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
-function create(initialState) {
-  const {
-    ctx: { req }
-  } = initialState;
+function create(host: string, initialState: NormalizedCacheObject | null) {
   const url = publicRuntimeConfig.isDev
     ? "http://localhost:2999"
-    : `https://${req.headers.host}`;
+    : `https://${host}`;
 
   return new ApolloClient({
     connectToDevTools: process.browser,
@@ -29,16 +31,19 @@ function create(initialState) {
   });
 }
 
-export default function initApollo(initialState) {
+export default function initApollo(
+  host: string,
+  initialState: NormalizedCacheObject | null
+) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
   if (!process.browser) {
-    return create(initialState);
+    return create(host, initialState);
   }
 
   // Reuse client on the client-side
   if (!apolloClient) {
-    apolloClient = create(initialState);
+    apolloClient = create(host, initialState);
   }
 
   return apolloClient;
