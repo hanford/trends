@@ -4,7 +4,7 @@
   "background_color": "#FFFFFF",
   "theme_color": "#673ab7",
   "description": "view github repos that are currently trending",
-  "display": "minimal-ui",
+  "display": "standalone",
   "start_url": "/",
   "icons": [
     {
