@@ -30,7 +30,10 @@ export default class MyDocument extends Document<Props> {
           />
           <title>Trends</title>
           <meta name="name" content="trends" />
-          <meta name="description" content="trends trending" />
+          <meta
+            name="description"
+            content="Browse github repos that are currently trending"
+          />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#3362c6" />
 
