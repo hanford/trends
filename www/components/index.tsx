@@ -20,17 +20,25 @@ export default class Index extends React.Component<Props> {
       <Hero>
         <Navbar time={time} language={language} />
 
-        <Row>
-          {repos.length
-            ? repos.map((repo, index) => <Card key={index} repo={repo} />)
-            : "Rate limit exceeded, try again in a moment"}
-        </Row>
+        <Container>
+          <Row>
+            {repos.length
+              ? repos.map((repo, index) => <Card key={index} repo={repo} />)
+              : "Rate limit exceeded, try again in a moment"}
+          </Row>
 
-        <Footer />
+          <Footer />
+        </Container>
       </Hero>
     );
   }
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const Hero = styled.div`
   width: 100%;
@@ -42,10 +50,15 @@ const Hero = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: #f4f3f4;
+
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 const Row = styled.div`
   display: grid;
+  margin: 2rem auto;
   grid-template-columns: repeat(
     auto-fit,
     minmax(calc(30rem - ${gridGap}), 1fr)

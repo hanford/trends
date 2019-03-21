@@ -81,9 +81,27 @@ const Navbar = styled.nav`
   background-color: ${({ theme }) => theme};
   width: 100%;
   border-top: 1rem solid rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.14),
-    0px 0px 2px 2px rgba(0, 0, 0, 0.098), 0px 0px 5px 1px rgba(0, 0, 0, 0.084);
+  box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   padding: 1rem 0;
+
+  @media all and (display-mode: standalone) {
+    border-top: 0;
+  }
+
+  @media (max-width: 767px) {
+    box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+    top: auto;
+    bottom: 0;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    border-top: 0;
+
+    @supports (-webkit-overflow-scrolling: touch) {
+      backdrop-filter: blur(10px);
+      background-color: ${({ theme }) => theme}95;
+    }
+  }
 `;
 
 const Grid = styled.div`
@@ -100,8 +118,8 @@ const Grid = styled.div`
     grid-template-areas: "Form Form GithubHeader";
   }
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
     grid-template-areas: "Form Form";
   }
 `;
@@ -164,6 +182,7 @@ const Form = styled.form`
 
   @media (max-width: 767px) {
     padding: 0 ${gridGap};
+    grid-template-columns: 1fr;
   }
 `;
 

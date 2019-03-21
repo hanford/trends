@@ -26,7 +26,7 @@ export default class MyDocument extends Document<Props> {
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
           <meta
             name="viewport"
-            content="initial-scale=1.0, width=device-width"
+            content="initial-scale=1.0, width=device-width, viewport-fit=cover"
           />
           <title>Trends</title>
           <meta name="name" content="trends" />
