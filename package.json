@@ -8,8 +8,8 @@
     "pretty-quick": "^1.8.0"
   },
   "scripts": {
-    "dev": "lerna exec yarn dev",
-    "bootstrap": "yarn && lerna bootstrap",
+    "dev": "npx lerna exec yarn dev",
+    "bootstrap": "yarn && npx lerna bootstrap",
     "format": "prettier --write \"{api,www}/**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\""
   },
   "husky": {
