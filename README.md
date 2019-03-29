@@ -28,13 +28,15 @@ Checkout the perfect performance audit 💯
 - GraphQL
 - Next.js
 - Now 2.0
+- lerna / warn workspace
+- darkmode [(in supported browsers)](https://caniuse.com/#search=prefers-color-scheme)
 
 ## Setting the project up locally
 
 ```sh
 $ git clone https://github.com/hanford/trends.git
 $ cd trends
-$ yarn install
+$ yarn bootstrap
 $ yarn dev
 ```
 

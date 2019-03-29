@@ -1,5 +1,5 @@
 {
-  "name": "trends",
+  "name": "trends-www",
   "scripts": {
     "dev": "next",
     "build": "next build",

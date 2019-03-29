@@ -1,11 +1,15 @@
 {
   "name": "trends",
   "devDependencies": {
+    "concurrently": "^4.1.0",
     "husky": "^1.2.1",
+    "lerna": "^3.13.1",
     "prettier": "^1.15.3",
     "pretty-quick": "^1.8.0"
   },
   "scripts": {
+    "dev": "lerna exec yarn dev",
+    "bootstrap": "yarn && lerna bootstrap",
     "format": "prettier --write \"{api,www}/**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\""
   },
   "husky": {

@@ -1,5 +1,5 @@
 {
-  "name": "trends",
+  "name": "trends-api",
   "scripts": {
     "dev": "ncc run index.tsx",
     "start": "NODE_ENV=production ncc run index.tsx",
