@@ -78,13 +78,20 @@ const Navbar = styled.nav`
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: ${({ theme }) => theme};
   width: 100%;
   border-top: 1rem solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   padding: 1rem 0;
+  background-color: ${({ theme }) => theme};
 
+  @supports (backdrop-filter: blur(10px)) {
+    backdrop-filter: blur(10px);
+    background-color: ${({ theme }) => theme}95;
+    border-top: 0 transparent;
+  }
+
+  /* detect if launched from homescreen */
   @media all and (display-mode: standalone) {
     border-top: 0;
   }
@@ -96,11 +103,6 @@ const Navbar = styled.nav`
     bottom: 0;
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
     border-top: 0;
-
-    @supports (-webkit-overflow-scrolling: touch) {
-      backdrop-filter: blur(10px);
-      background-color: ${({ theme }) => theme}95;
-    }
   }
 `;
 
