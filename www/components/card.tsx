@@ -49,6 +49,10 @@ const Card = styled.a`
   padding: 1.6rem;
   transition: all 135ms cubic-bezier(0.4, 0, 0.2, 1);
 
+  @media (prefers-color-scheme: dark) {
+    background: #424242;
+  }
+
   @media (min-width: 767px) {
     &:hover {
       transform: scale(1.0125);
@@ -63,6 +67,10 @@ const Fork = styled.div`
   color: rgba(0, 0, 0, 0.9);
   font-size: 1.4rem;
   border-top-left-radius: 0.4rem;
+
+  @media (prefers-color-scheme: dark) {
+    color: rgba(255, 255, 255, 0.75);
+  }
 `;
 
 const Stars = styled.div`
@@ -98,6 +106,10 @@ const Name = styled.h1`
   font-size: 2.4rem;
   color: rgba(0, 0, 0, 0.87);
   display: block;
+
+  @media (prefers-color-scheme: dark) {
+    color: rgba(255, 255, 255, 0.75);
+  }
 `;
 
 const Description = styled.p`
@@ -107,6 +119,10 @@ const Description = styled.p`
   margin: 0;
   color: rgba(0, 0, 0, 0.87);
   padding-bottom: 1.6rem;
+
+  @media (prefers-color-scheme: dark) {
+    color: rgba(255, 255, 255, 0.75);
+  }
 `;
 
 const Secondary = styled.h3`
@@ -120,4 +136,8 @@ const Secondary = styled.h3`
   color: rgba(0, 0, 0, 0.54);
   display: block;
   padding: 0.8rem 0 1.6rem;
+
+  @media (prefers-color-scheme: dark) {
+    color: rgba(255, 255, 255, 0.55);
+  }
 `;

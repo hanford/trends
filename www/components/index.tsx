@@ -51,6 +51,10 @@ const Hero = styled.div`
   flex-direction: column;
   background-color: #f4f3f4;
 
+  @media (prefers-color-scheme: dark) {
+    background: #303030;
+  }
+
   @media (max-width: 767px) {
     flex-direction: column-reverse;
   }
