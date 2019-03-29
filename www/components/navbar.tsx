@@ -10,9 +10,10 @@ import { gridGap, maxWidth } from "./style-constants";
 interface Props {
   language: string;
   time: number;
+  dark: boolean;
 }
 
-export default ({ language, time }: Props) => {
+export default ({ language, time, dark }: Props) => {
   const hasTheme = Object.entries(languageOptions).find(
     ([_, value]) => value === language
   );
@@ -58,7 +59,7 @@ export default ({ language, time }: Props) => {
           </SelectContainer>
         </Form>
         <Container>
-          <a href="?dark=true">
+          <a href={`?dark=${!dark}`}>
             <Moon />
           </a>
 

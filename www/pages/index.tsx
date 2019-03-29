@@ -35,6 +35,7 @@ export default class IndexPage extends React.Component<Props> {
 
   render() {
     const { language, time, dark } = this.props;
+    console.log(dark);
 
     return (
       <Query<Data, Variables> query={GET_REPOS} variables={{ language, time }}>
