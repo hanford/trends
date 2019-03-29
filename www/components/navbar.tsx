@@ -16,6 +16,7 @@ export default ({ language, time }: Props) => {
   const hasTheme = Object.entries(languageOptions).find(
     ([_, value]) => value === language
   );
+
   const theme = hasTheme ? hasTheme[0] : false;
 
   return (
@@ -57,6 +58,10 @@ export default ({ language, time }: Props) => {
           </SelectContainer>
         </Form>
         <Container>
+          <a href="?dark=true">
+            <Moon />
+          </a>
+
           <Link
             href="https://github.com/hanford/trends"
             target="_blank"
@@ -69,6 +74,27 @@ export default ({ language, time }: Props) => {
     </Navbar>
   );
 };
+
+const Moon = () => (
+  <MoonIcon version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
+    <path
+      d="M35.143 11C19.81 16.682 11 31.448 11 48.757 11 70.983 29.017 89 51.243 89 68.55 89 83.318 80.19 89 64.857c-4.583 1.843-9.585 2.786-14.828 2.786-21.967 0-41.815-19.848-41.815-41.815 0-5.243.943-10.245 2.786-14.828z"
+      style={{ color: "#000000" }}
+      fill="#FFF"
+      marker="none"
+      visibility="visible"
+      display="inline"
+      overflow="visible"
+    />
+  </MoonIcon>
+);
+
+const MoonIcon = styled.svg`
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  fill: white;
+`;
 
 const Option = styled.option`
   color: black;

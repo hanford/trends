@@ -9,15 +9,16 @@ import { gridGap, maxWidth } from "./style-constants";
 interface Props {
   time: number;
   language: string;
+  dark: boolean;
   repos: Repo[];
 }
 
 export default class Index extends React.Component<Props> {
   render() {
-    const { time, language, repos = [] } = this.props;
+    const { time, language, repos = [], dark } = this.props;
 
     return (
-      <Hero>
+      <Hero style={{ backgroundColor: dark ? "#303030" : "#f4f3f4" }}>
         <Navbar time={time} language={language} />
 
         <Container>
@@ -49,7 +50,6 @@ const Hero = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color: #f4f3f4;
 
   @media (prefers-color-scheme: dark) {
     background: #303030;
