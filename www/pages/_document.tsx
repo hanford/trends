@@ -102,6 +102,7 @@ const clientSideJS = `
   document.addEventListener('DOMContentLoaded', event => {
     document.querySelector('select[name=language]').addEventListener('change', () => document.tune.submit())
     document.querySelector('select[name=time]').addEventListener('change', () => document.tune.submit())
+    document.querySelector('input[name=dark]').addEventListener('change', () => document.tune.submit())
   })
 `;
 

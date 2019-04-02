@@ -57,12 +57,13 @@ export default ({ language, time, dark }: Props) => {
               ))}
             </select>
           </SelectContainer>
+
+          <DarkmodeContainer>
+            <input type="checkbox" checked={dark} name="dark" />
+            <div style={{ color: "white", paddingLeft: "8px" }}>Dark mode</div>
+          </DarkmodeContainer>
         </Form>
         <Container>
-          <a href={`?dark=${!dark}`}>
-            <Moon />
-          </a>
-
           <Link
             href="https://github.com/hanford/trends"
             target="_blank"
@@ -99,6 +100,11 @@ const MoonIcon = styled.svg`
 
 const Option = styled.option`
   color: black;
+`;
+
+const DarkmodeContainer = styled.label`
+  align-items: center;
+  display: flex;
 `;
 
 const Navbar = styled.nav`
@@ -204,7 +210,7 @@ const Form = styled.form`
   width: 100%;
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-area: Form;
   grid-gap: ${gridGap};
   padding-left: ${gridGap};

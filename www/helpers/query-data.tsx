@@ -12,5 +12,7 @@ export default function getQueryData(query: Query = {}) {
   const language = langQuery ? langQuery : languages["Top Overall"];
   const time = timeQuery ? timeQuery : times["Past Week"];
 
+  console.log({ dark });
+
   return { language, time, dark };
 }
