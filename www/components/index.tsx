@@ -23,10 +23,8 @@ export default class Index extends React.Component<Props> {
 
         <Container>
           <Row>
-            {repos.length
-              ? repos.map((repo, index) => (
-                  <Card key={index} repo={repo} dark={dark} />
-                ))
+            {repos.length > 0
+              ? repos.map((r, i) => <Card key={i} repo={r} dark={dark} />)
               : "Rate limit exceeded, try again in a moment"}
           </Row>
 
