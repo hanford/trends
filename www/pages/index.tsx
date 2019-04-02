@@ -19,26 +19,32 @@ interface Props {
   children: React.ReactNode;
   language: string;
   time: number;
+  dark: boolean;
 }
 
 export default class IndexPage extends React.Component<Props> {
   static async getInitialProps(ctx: NextContext) {
     const { query } = ctx;
-    const { language, time } = getQueryData(query);
+    const { language, time, dark } = getQueryData(query);
 
     return {
       time,
-      language
+      language,
+      dark
     };
   }
 
   render() {
-    const { language, time } = this.props;
+    const { language, time, dark } = this.props;
 
     return (
       <Query<Data, Variables> query={GET_REPOS} variables={{ language, time }}>
         {({ data }) => (
-          <Index repos={(data && data.repos) || []} {...this.props} />
+          <Index
+            repos={(data && data.repos) || []}
+            dark={dark}
+            {...this.props}
+          />
         )}
       </Query>
     );

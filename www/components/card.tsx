@@ -4,30 +4,43 @@ import { Repo } from "../@types/graphql";
 
 interface Props {
   repo: Repo;
+  dark: boolean;
 }
 
 export default class extends React.Component<Props> {
   render() {
     const {
+      dark,
       repo: { name, forks, full_name, description, stargazers_count }
     } = this.props;
+
+    const primary = dark ? "rgba(255, 255, 255, 0.75)" : "rgba(0, 0, 0, 0.87)";
 
     return (
       <Card
         href={`https://github.com/${full_name}`}
         target="_blank"
         rel="noopener"
+        style={{ backgroundColor: dark ? "#424242" : "white" }}
       >
         <About>
           <div>
-            <Name>{name}</Name>
-            <Secondary>{full_name}</Secondary>
+            <Name style={{ color: primary }}>{name}</Name>
+            <Secondary
+              style={{
+                color: dark
+                  ? "rgba(255, 255, 255, 0.55)"
+                  : "rgba(0, 0, 0, 0.54)"
+              }}
+            >
+              {full_name}
+            </Secondary>
           </div>
 
-          <Description>{description}</Description>
+          <Description style={{ color: primary }}>{description}</Description>
 
           <Bottom>
-            <Fork>Forks {forks}</Fork>
+            <Fork style={{ color: primary }}>Forks {forks}</Fork>
             <Stars>Stars {stargazers_count}</Stars>
           </Bottom>
         </About>
