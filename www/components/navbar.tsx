@@ -117,10 +117,6 @@ const DarkmodeContainer = styled.label`
   @media (max-width: 767px) {
     justify-content: flex-start;
   }
-
-  @supports (prefers-color-scheme: dark;) {
-    display: none;
-  }
 `;
 
 const Navbar = styled.nav`
