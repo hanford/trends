@@ -100,9 +100,15 @@ export default class MyDocument extends Document<Props> {
 
 const clientSideJS = `
   document.addEventListener('DOMContentLoaded', event => {
-    document.querySelector('select[name=language]').addEventListener('change', () => document.tune.submit())
-    document.querySelector('select[name=time]').addEventListener('change', () => document.tune.submit())
-    document.querySelector('input[name=dark]').addEventListener('change', () => document.tune.submit())
+    const checkbox = document.querySelector('input[name=dark]')
+    document.querySelector('select[name=language]').addEventListener('change', submit)
+    document.querySelector('select[name=time]').addEventListener('change', submit)
+    checkbox.addEventListener('change', submit)
+
+    function submit () {
+      checkbox.value = checkbox.checked
+      document.tune.submit()
+    }
   })
 `;
 

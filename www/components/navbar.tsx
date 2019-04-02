@@ -22,57 +22,48 @@ export default ({ language, time, dark }: Props) => {
 
   return (
     <Navbar theme={themeOptions[theme || 0]}>
-      <Grid>
-        <Form aria-label="search" name="tune" method="GET">
-          <SelectContainer htmlFor="language">
-            <Label>Language</Label>
+      <Form aria-label="search" name="tune" method="GET">
+        <SelectContainer htmlFor="language">
+          <Label>Language</Label>
 
-            <select
-              aria-label="select language"
-              name="language"
-              id="language"
-              defaultValue={language}
-            >
-              {Object.entries(languageOptions).map(([key, value]) => (
-                <Option key={key} value={value}>
-                  {key}
-                </Option>
-              ))}
-            </select>
-          </SelectContainer>
-
-          <SelectContainer htmlFor="time">
-            <Label>Time</Label>
-
-            <select
-              aria-label="select time"
-              name="time"
-              id="time"
-              defaultValue={String(time)}
-            >
-              {Object.entries(timeOptions).map(([key, value]) => (
-                <Option key={key} value={value}>
-                  {key}
-                </Option>
-              ))}
-            </select>
-          </SelectContainer>
-
-          <DarkmodeContainer>
-            <input type="checkbox" checked={dark} name="dark" />
-            <div style={{ color: "white", paddingLeft: "8px" }}>Dark mode</div>
-          </DarkmodeContainer>
-        </Form>
-        <Container>
-          <Link
-            href="https://github.com/hanford/trends"
-            target="_blank"
-            rel="noopener"
+          <select
+            aria-label="select language"
+            name="language"
+            id="language"
+            defaultValue={language}
           >
-            GitHub
-          </Link>
-        </Container>
-      </Grid>
+            {Object.entries(languageOptions).map(([key, value]) => (
+              <Option key={key} value={value}>
+                {key}
+              </Option>
+            ))}
+          </select>
+        </SelectContainer>
+
+        <SelectContainer htmlFor="time">
+          <Label>Time</Label>
+
+          <select
+            aria-label="select time"
+            name="time"
+            id="time"
+            defaultValue={String(time)}
+          >
+            {Object.entries(timeOptions).map(([key, value]) => (
+              <Option key={key} value={value}>
+                {key}
+              </Option>
+            ))}
+          </select>
+        </SelectContainer>
+
+        <DarkmodeContainer>
+          <input type="checkbox" checked={dark} name="dark" id="dark" />
+          <div style={{ color: "white", paddingLeft: "8px" }}>
+            <Moon />
+          </div>
+        </DarkmodeContainer>
+      </Form>
     </Navbar>
   );
 };
@@ -81,12 +72,7 @@ const Moon = () => (
   <MoonIcon version="1.1" x="0px" y="0px" viewBox="0 0 100 100">
     <path
       d="M35.143 11C19.81 16.682 11 31.448 11 48.757 11 70.983 29.017 89 51.243 89 68.55 89 83.318 80.19 89 64.857c-4.583 1.843-9.585 2.786-14.828 2.786-21.967 0-41.815-19.848-41.815-41.815 0-5.243.943-10.245 2.786-14.828z"
-      style={{ color: "#000000" }}
       fill="#FFF"
-      marker="none"
-      visibility="visible"
-      display="inline"
-      overflow="visible"
     />
   </MoonIcon>
 );
@@ -105,6 +91,10 @@ const Option = styled.option`
 const DarkmodeContainer = styled.label`
   align-items: center;
   display: flex;
+  justify-content: flex-end;
+  @media (max-width: 767px) {
+    justify-content: flex-start;
+  }
 `;
 
 const Navbar = styled.nav`
@@ -115,7 +105,7 @@ const Navbar = styled.nav`
   border-top: 1rem solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  padding: 1rem 0;
+  padding: 1rem 1.6rem;
   background-color: ${({ theme }) => theme};
 
   @supports (backdrop-filter: blur(10px)) {
@@ -134,28 +124,10 @@ const Navbar = styled.nav`
       0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
     top: auto;
     bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
     border-top: 0;
-  }
-`;
-
-const Grid = styled.div`
-  max-width: ${maxWidth};
-  margin: 0 auto;
-
-  display: grid;
-  grid-gap: ${gridGap};
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-areas: "Form Form . GithubHeader";
-
-  @media (max-width: 1200px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "Form Form GithubHeader";
-  }
-
-  @media (max-width: 767px) {
-    grid-template-columns: 1fr;
-    grid-template-areas: "Form Form";
   }
 `;
 
@@ -168,6 +140,7 @@ const Label = styled.span`
 `;
 
 const SelectContainer = styled.label`
+  min-width: calc(30rem - ${gridGap});
   width: 100%;
   cursor: pointer;
   position: relative;
@@ -209,37 +182,11 @@ const SelectContainer = styled.label`
 const Form = styled.form`
   width: 100%;
   position: relative;
+  padding: 0 ${gridGap};
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-area: Form;
+  grid-template-columns: 1fr 1fr 2fr;
   grid-gap: ${gridGap};
-  padding-left: ${gridGap};
-
   @media (max-width: 767px) {
-    padding: 0 ${gridGap};
     grid-template-columns: 1fr;
   }
-`;
-
-const Container = styled.div`
-  grid-area: GithubHeader;
-  padding-right: 2rem;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: flex-end;
-
-  @media (max-width: 767px) {
-    display: none;
-  }
-
-  & > a:first-of-type {
-    padding-right: 1.6rem;
-  }
-`;
-
-const Link = styled.a`
-  color: rgba(255, 255, 255, 0.9) !important;
-  cursor: pointer;
-  text-decoration: none;
 `;

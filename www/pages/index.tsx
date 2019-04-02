@@ -42,8 +42,8 @@ export default class IndexPage extends React.Component<Props> {
         {({ data }) => (
           <Index
             repos={(data && data.repos) || []}
-            {...this.props}
             dark={dark}
+            {...this.props}
           />
         )}
       </Query>

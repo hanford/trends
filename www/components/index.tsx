@@ -16,22 +16,21 @@ interface Props {
 export default class Index extends React.Component<Props> {
   render() {
     const { time, language, repos = [], dark } = this.props;
-    const darkMode = dark == "true";
 
     return (
-      <Hero style={{ backgroundColor: darkMode ? "#303030" : "#f4f3f4" }}>
-        <Navbar time={time} language={language} dark={darkMode} />
+      <Hero style={{ backgroundColor: dark ? "#303030" : "#f4f3f4" }}>
+        <Navbar time={time} language={language} dark={dark} />
 
         <Container>
           <Row>
             {repos.length
               ? repos.map((repo, index) => (
-                  <Card key={index} repo={repo} dark={darkMode} />
+                  <Card key={index} repo={repo} dark={dark} />
                 ))
               : "Rate limit exceeded, try again in a moment"}
           </Row>
 
-          <Footer />
+          <Footer dark={dark} />
         </Container>
       </Hero>
     );

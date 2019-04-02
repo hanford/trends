@@ -4,6 +4,7 @@ import { Repo } from "../@types/graphql";
 
 interface Props {
   repo: Repo;
+  dark: boolean;
 }
 
 export default class extends React.Component<Props> {
