@@ -5,8 +5,6 @@ import {
   NormalizedCacheObject
 } from "apollo-boost";
 import fetch from "isomorphic-fetch";
-import getConfig from "next/config";
-const { publicRuntimeConfig } = getConfig();
 
 let apolloClient: ApolloClient<{}> | null = null;
 
@@ -16,9 +14,10 @@ if (!process.browser) {
 }
 
 function create(host: string, initialState: NormalizedCacheObject | null) {
-  const url = publicRuntimeConfig.isDev
-    ? "http://localhost:2999"
-    : `https://${host}`;
+  const url =
+    process.env.NODE_ENV === "production"
+      ? `https://${host}`
+      : "http://localhost:2999";
 
   return new ApolloClient({
     connectToDevTools: process.browser,

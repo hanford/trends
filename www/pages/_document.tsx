@@ -1,11 +1,11 @@
 import { extractCritical } from "emotion-server";
-import getConfig from "next/config";
 import Document, { Main } from "next/document";
-const { publicRuntimeConfig } = getConfig();
 
 interface Props {
   css: any;
 }
+
+const isProduction = process.env.NODE_ENV === "production";
 
 export default class MyDocument extends Document<Props> {
   static getInitialProps({ renderPage }) {
@@ -72,7 +72,7 @@ export default class MyDocument extends Document<Props> {
             dangerouslySetInnerHTML={{ __html: clientSideJS }}
           />
 
-          {!publicRuntimeConfig.isDev && (
+          {isProduction && (
             <>
               <script
                 type="text/javascript"
@@ -81,9 +81,9 @@ export default class MyDocument extends Document<Props> {
 
               <script
                 async={true}
-                src={`https://www.googletagmanager.com/gtag/js?id=${
-                  publicRuntimeConfig.googleAnalytics
-                }`}
+                src={
+                  "https://www.googletagmanager.com/gtag/js?id=UA-45226320-5"
+                }
               />
 
               <script

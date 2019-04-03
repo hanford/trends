@@ -6,10 +6,7 @@ const withTypescript = moduleExists("@zeit/next-typescript")
 const isDev = process.env.NODE_ENV !== "production";
 
 const nextConfig = {
-  publicRuntimeConfig: {
-    googleAnalytics: isDev ? "" : "UA-45226320-5",
-    isDev
-  },
+  target: "serverless",
   dontAutoRegisterSw: true,
   workboxOpts: {
     swDest: "static/service-worker.js",

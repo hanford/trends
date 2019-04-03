@@ -16,7 +16,7 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "isomorphic-fetch": "^2.2.1",
-    "next": "^7.0.2-canary.42",
+    "next": "^8.0.4",
     "next-offline": "^3.3.6",
     "react": "^16.8.1",
     "react-apollo": "^2.3.3",
