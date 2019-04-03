@@ -1,9 +1,5 @@
-const withOffline = moduleExists("next-offline") ? require("next-offline") : {};
-const withTypescript = moduleExists("@zeit/next-typescript")
-  ? require("@zeit/next-typescript")
-  : {};
-
-const isDev = process.env.NODE_ENV !== "production";
+const withOffline = require("next-offline");
+const withTypescript = require("@zeit/next-typescript");
 
 const nextConfig = {
   target: "serverless",
@@ -43,15 +39,4 @@ const nextConfig = {
   }
 };
 
-module.exports =
-  moduleExists("next-offline") && moduleExists("@zeit/next-typescript")
-    ? withOffline(withTypescript(nextConfig))
-    : nextConfig;
-
-function moduleExists(name) {
-  try {
-    return require.resolve(name);
-  } catch (error) {
-    return false;
-  }
-}
+module.exports = withOffline(withTypescript(nextConfig));
