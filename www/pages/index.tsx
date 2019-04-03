@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import { NextContext } from "next";
 import React from "react";
 import { Query } from "react-apollo";
+
 import { Repo } from "../@types/graphql";
 import Index from "../components/index";
 import getQueryData from "../helpers/query-data";

@@ -22,8 +22,14 @@ export default ({ language, time, dark }: Props) => {
 
   return (
     <Navbar theme={themeOptions[theme || 0]}>
-      <Form aria-label="search" name="tune" method="GET">
-        <SelectContainer htmlFor="language">
+      <Form
+        aria-label="search"
+        name="tune"
+        method="GET"
+        target="_top"
+        action="/"
+      >
+        {/* <SelectContainer htmlFor="language">
           <Label>Language</Label>
 
           <select
@@ -38,9 +44,9 @@ export default ({ language, time, dark }: Props) => {
               </Option>
             ))}
           </select>
-        </SelectContainer>
+        </SelectContainer> */}
 
-        <SelectContainer htmlFor="time">
+        {/* <SelectContainer htmlFor="time">
           <Label>Time</Label>
 
           <select
@@ -55,7 +61,55 @@ export default ({ language, time, dark }: Props) => {
               </Option>
             ))}
           </select>
-        </SelectContainer>
+        </SelectContainer> */}
+
+        <div className="ampstart-input inline-block relative m0 p0 mb3 ">
+          <select
+            aria-label="select language"
+            name="language"
+            id="language"
+            defaultValue={language}
+          >
+            {Object.entries(languageOptions).map(([key, value]) => (
+              <option key={key} value={value}>
+                {key}
+              </option>
+            ))}
+          </select>
+          <label
+            for="ip12"
+            className="absolute top-0 right-0 bottom-0 left-0"
+            aria-hidden="true"
+          >
+            Language
+          </label>
+        </div>
+
+        <div className="ampstart-input inline-block relative m0 p0 mb3 ">
+          <select
+            id="ip12"
+            className="block border-none  p0 m0"
+            aria-label="select time"
+            name="time"
+            id="time"
+            defaultValue={String(time)}
+          >
+            {Object.entries(timeOptions).map(([key, value]) => (
+              <option key={key} value={value}>
+                {key}
+              </option>
+            ))}
+          </select>
+          <label
+            for="ip12"
+            className="absolute top-0 right-0 bottom-0 left-0"
+            aria-hidden="true"
+          >
+            Time
+          </label>
+        </div>
+
+        <button>submit</button>
 
         <DarkmodeContainer>
           {dark ? <Moon /> : <Sun />}
@@ -212,7 +266,7 @@ const Form = styled.form`
   position: relative;
   padding: 0 ${gridGap};
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: ${gridGap};
   @media (max-width: 767px) {
     grid-template-columns: 1fr;

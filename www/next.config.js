@@ -2,6 +2,7 @@ const withOffline = require("next-offline");
 const withTypescript = require("@zeit/next-typescript");
 
 const nextConfig = {
+  experimental: { amp: true },
   target: "serverless",
   dontAutoRegisterSw: true,
   workboxOpts: {
