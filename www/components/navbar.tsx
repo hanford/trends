@@ -77,7 +77,7 @@ export default ({ language, time, dark }: Props) => {
             ))}
           </select>
           <label
-            for="ip12"
+            htmlFor="language"
             className="absolute top-0 right-0 bottom-0 left-0"
             aria-hidden="true"
           >
@@ -101,7 +101,7 @@ export default ({ language, time, dark }: Props) => {
             ))}
           </select>
           <label
-            for="ip12"
+            htmlFor="time"
             className="absolute top-0 right-0 bottom-0 left-0"
             aria-hidden="true"
           >

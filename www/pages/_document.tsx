@@ -1,5 +1,5 @@
 import { extractCritical } from "emotion-server";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Html, Head, Main } from "next/document";
 
 interface Props {
   css: any;
@@ -50,17 +50,14 @@ export default class MyDocument extends Document<Props> {
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#3362c6" />
 
-          <style
+          {/* <style
             amp-custom
             dangerouslySetInnerHTML={{
               __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`
             }}
           />
 
-          <style
-            amp-custom
-            dangerouslySetInnerHTML={{ __html: this.props.css }}
-          />
+          <style amp-custom dangerouslySetInnerHTML={{ __html: this.props.css }} /> */}
 
           <link
             rel="apple-touch-icon"
@@ -94,7 +91,7 @@ export default class MyDocument extends Document<Props> {
         </Head>
         <body>
           <Main />
-          <NextScript />
+          {/* <NextScript /> */}
 
           {/* <script
             type="text/javascript"
