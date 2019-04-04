@@ -63,7 +63,7 @@ const Card = styled.a`
   transition: all 135ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (prefers-color-scheme: dark) {
-    background: #424242;
+    background: #424242 !important;
   }
 
   @media (min-width: 767px) {
@@ -82,7 +82,7 @@ const Fork = styled.div`
   border-top-left-radius: 0.4rem;
 
   @media (prefers-color-scheme: dark) {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75) !important;
   }
 `;
 
@@ -121,7 +121,7 @@ const Name = styled.h1`
   display: block;
 
   @media (prefers-color-scheme: dark) {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75) !important;
   }
 `;
 
@@ -134,7 +134,7 @@ const Description = styled.p`
   padding-bottom: 1.6rem;
 
   @media (prefers-color-scheme: dark) {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75) !important;
   }
 `;
 
@@ -151,6 +151,6 @@ const Secondary = styled.h3`
   padding: 0.8rem 0 1.6rem;
 
   @media (prefers-color-scheme: dark) {
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.55) !important;
   }
 `;

@@ -52,7 +52,7 @@ const Hero = styled.div`
   flex-direction: column;
 
   @media (prefers-color-scheme: dark) {
-    background: #303030;
+    background: #303030 !important;
   }
 
   @media (max-width: 767px) {

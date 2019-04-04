@@ -117,6 +117,14 @@ const DarkmodeContainer = styled.label`
   @media (max-width: 767px) {
     justify-content: flex-start;
   }
+
+  @media (prefers-color-scheme: dark) {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: light) {
+    display: none;
+  }
 `;
 
 const Navbar = styled.nav`
