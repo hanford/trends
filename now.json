@@ -24,7 +24,7 @@
   "builds": [
     {
       "src": "www/next.config.js",
-      "use": "@now/next@canary"
+      "use": "@now/next"
     },
     {
       "src": "api/index.tsx",
