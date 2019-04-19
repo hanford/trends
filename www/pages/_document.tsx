@@ -1,8 +1,10 @@
 import { extractCritical } from "emotion-server";
-import Document, { Main } from "next/document";
+import Document, { Html, Head, Main } from "next/document";
+import { useAmp } from "next/amp";
 
 interface Props {
   css: any;
+  amphtml: boolean;
 }
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -19,15 +21,19 @@ export default class MyDocument extends Document<Props> {
   }
 
   render() {
+    const { amphtml } = this.props;
+
     return (
-      <html lang="en">
-        <head>
+      <Html lang="en">
+        <Head>
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width, viewport-fit=cover"
-          />
+          {!amphtml && (
+            <meta
+              name="viewport"
+              content="initial-scale=1.0, width=device-width, viewport-fit=cover"
+            />
+          )}
           <title>Trends</title>
           <meta name="name" content="trends" />
           <meta
@@ -38,12 +44,13 @@ export default class MyDocument extends Document<Props> {
           <meta name="theme-color" content="#3362c6" />
 
           <style
+            amp-custom="true"
             dangerouslySetInnerHTML={{
-              __html: `* { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`
+              __html: `${
+                this.props.css
+              } * { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`
             }}
           />
-
-          <style dangerouslySetInnerHTML={{ __html: this.props.css }} />
 
           <link
             rel="apple-touch-icon"
@@ -63,21 +70,21 @@ export default class MyDocument extends Document<Props> {
             href="/static/favicon-16x16.png"
           />
           <link rel="manifest" href="/static/manifest.json" />
-        </head>
+
+          <script
+            async
+            custom-element="amp-script"
+            src="https://cdn.ampproject.org/v0/amp-script-0.1.js"
+          />
+        </Head>
         <body>
           <Main />
 
-          <script
-            type="text/javascript"
-            dangerouslySetInnerHTML={{ __html: clientSideJS }}
-          />
+          <Script src={clientSideJS} />
 
           {isProduction && (
             <>
-              <script
-                type="text/javascript"
-                dangerouslySetInnerHTML={{ __html: serviceWorkerRegistration }}
-              />
+              <Script src={serviceWorkerRegistration} />
 
               <script
                 async={true}
@@ -86,17 +93,28 @@ export default class MyDocument extends Document<Props> {
                 }
               />
 
-              <script
-                type="text/javascript"
-                dangerouslySetInnerHTML={{ __html: GA }}
-              />
+              <Script src={GA} />
             </>
           )}
         </body>
-      </html>
+      </Html>
     );
   }
 }
+
+const Script = ({ src }) => {
+  const isAmp = useAmp();
+
+  // if (isAmp) {
+  //   return (
+  //     <amp-script type="text/javascript" layout="container" dangerouslySetInnerHTML={{ __html: src }} />
+  //   )
+  // }
+
+  return (
+    <script type="text/javascript" dangerouslySetInnerHTML={{ __html: src }} />
+  );
+};
 
 const clientSideJS = `
   document.addEventListener('DOMContentLoaded', event => {

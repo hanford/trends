@@ -5,7 +5,7 @@ import {
   themes as themeOptions,
   times as timeOptions
 } from "../helpers/constants";
-import { gridGap } from "./style-constants";
+import { gridGap, maxWidth } from "./style-constants";
 
 interface Props {
   language: string;
@@ -222,6 +222,8 @@ const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   grid-gap: ${gridGap};
+  max-width: ${maxWidth};
+  margin: auto;
   @media (max-width: 767px) {
     grid-template-columns: 1fr;
   }
