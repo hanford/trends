@@ -9,7 +9,7 @@
       "src": "/api/(.*)",
       "dest": "/api/index.tsx",
       "headers": {
-        "cache-control": "public, max-age=43200, immutable"
+        "cache-control": "public, s-maxage=43200, max-age=43200, immutable"
       }
     },
     {
