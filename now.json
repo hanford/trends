@@ -16,7 +16,7 @@
       "src": "/(.*)",
       "dest": "/www/$1",
       "headers": {
-        "cache-control": "public, max-age=43200, immutable",
+        "cache-control": "public, s-maxage=43200, max-age=43200, immutable",
         "Service-Worker-Allowed": "/"
       }
     }
