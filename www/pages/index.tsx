@@ -1,7 +1,5 @@
 import gql from "graphql-tag";
-import { NextContext } from "next";
 import React from "react";
-import { withAmp } from "next/amp";
 import { Query } from "react-apollo";
 
 import { Repo } from "../@types/graphql";
@@ -25,7 +23,7 @@ interface Props {
 }
 
 class IndexPage extends React.Component<Props> {
-  static async getInitialProps(ctx: NextContext) {
+  static async getInitialProps(ctx: any) {
     const { query } = ctx;
     const { language, time, dark } = getQueryData(query);
 
@@ -53,7 +51,7 @@ class IndexPage extends React.Component<Props> {
   }
 }
 
-export default withAmp(IndexPage);
+export default IndexPage;
 
 const GET_REPOS = gql`
   query trendingRepos($language: String!, $time: Int!) {

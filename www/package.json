@@ -8,7 +8,6 @@
     "lint": "tslint '**/*.ts' '**/*.tsx' -e '**/node_modules/**'"
   },
   "dependencies": {
-    "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.1.22",
     "apollo-client": "^2.4.7",
     "emotion": "^9.0.2",
@@ -16,7 +15,7 @@
     "graphql": "^14.0.2",
     "graphql-tag": "^2.9.2",
     "isomorphic-fetch": "^2.2.1",
-    "next": "^8.1.0",
+    "next": "^9.0.0",
     "next-offline": "4.0.2",
     "react": "^16.8.1",
     "react-apollo": "^2.3.3",
@@ -30,9 +29,6 @@
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
     "babel-plugin-emotion": "~9.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-prettier": "^1.17.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "^3.2.2"
+    "typescript": "^3.5.3"
   }
 }

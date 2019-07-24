@@ -29,7 +29,6 @@ Checkout the perfect performance audit 💯
 - Next.js
 - Now 2.0
 - lerna / yarn workspace
-- [AMP](https://nextjs.org/blog/next-8-1)
 - automatic darkmode [(in supported browsers)](https://caniuse.com/#search=prefers-color-scheme)
 
 ## Setting the project up locally

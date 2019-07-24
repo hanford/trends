@@ -1,10 +1,8 @@
 import { extractCritical } from "emotion-server";
 import Document, { Html, Head, Main } from "next/document";
-import { useAmp } from "next/amp";
 
 interface Props {
   css: any;
-  amphtml: boolean;
 }
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -21,19 +19,15 @@ export default class MyDocument extends Document<Props> {
   }
 
   render() {
-    const { amphtml } = this.props;
-
     return (
       <Html lang="en">
         <Head>
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-          {!amphtml && (
-            <meta
-              name="viewport"
-              content="initial-scale=1.0, width=device-width, viewport-fit=cover"
-            />
-          )}
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width, viewport-fit=cover"
+          />
           <title>Trends</title>
           <meta name="name" content="trends" />
           <meta
@@ -44,7 +38,6 @@ export default class MyDocument extends Document<Props> {
           <meta name="theme-color" content="#3362c6" />
 
           <style
-            amp-custom="true"
             dangerouslySetInnerHTML={{
               __html: `${
                 this.props.css
@@ -70,12 +63,6 @@ export default class MyDocument extends Document<Props> {
             href="/static/favicon-16x16.png"
           />
           <link rel="manifest" href="/static/manifest.json" />
-
-          <script
-            async
-            custom-element="amp-script"
-            src="https://cdn.ampproject.org/v0/amp-script-0.1.js"
-          />
         </Head>
         <body>
           <Main />
@@ -103,14 +90,6 @@ export default class MyDocument extends Document<Props> {
 }
 
 const Script = ({ src }) => {
-  const isAmp = useAmp();
-
-  // if (isAmp) {
-  //   return (
-  //     <amp-script type="text/javascript" layout="container" dangerouslySetInnerHTML={{ __html: src }} />
-  //   )
-  // }
-
   return (
     <script type="text/javascript" dangerouslySetInnerHTML={{ __html: src }} />
   );
