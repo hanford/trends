@@ -1,5 +1,5 @@
 import { ApolloClient } from "apollo-boost";
-import App, { Container } from "next/app";
+import App from "next/app";
 import React from "react";
 import { ApolloProvider } from "react-apollo";
 
@@ -14,11 +14,9 @@ class TrendsApp extends App<Props> {
     const { Component, pageProps, apolloClient } = this.props;
 
     return (
-      <Container>
-        <ApolloProvider client={apolloClient}>
-          <Component {...pageProps} />
-        </ApolloProvider>
-      </Container>
+      <ApolloProvider client={apolloClient}>
+        <Component {...pageProps} />
+      </ApolloProvider>
     );
   }
 }
