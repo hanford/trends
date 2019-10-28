@@ -7,14 +7,6 @@ interface Props {
 const isProduction = process.env.NODE_ENV === "production";
 
 export default class MyDocument extends Document<Props> {
-  static getInitialProps({ renderPage }) {
-    const page = renderPage();
-
-    return {
-      ...page
-    };
-  }
-
   render() {
     return (
       <Html lang="en">
