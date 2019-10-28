@@ -22,7 +22,7 @@
     "@types/isomorphic-fetch": "0.0.35",
     "@types/lru-cache": "^5.1.0",
     "@types/node": "^12.11.7",
-    "@zeit/ncc": "^0.5.3",
+    "@zeit/ncc": "^0.20.5",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.2"
