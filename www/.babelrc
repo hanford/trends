@@ -1,4 +1,6 @@
 {
-  "presets": ["next/babel"],
-  "plugins": [["emotion", { "inline": true }]]
+  "presets": [
+    "next/babel",
+    "@emotion/babel-preset-css-prop"
+  ]
 }
