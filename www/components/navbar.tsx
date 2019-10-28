@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "react-emotion";
+import styled from "@emotion/styled";
 import {
   languages as languageOptions,
   themes as themeOptions,
@@ -127,6 +127,7 @@ const DarkmodeContainer = styled.label`
   }
 `;
 
+// TODO: Remove the 'any' types when https://github.com/emotion-js/emotion/issues/1457 is resolved
 const Navbar = styled.nav`
   position: sticky;
   top: 0;
@@ -136,11 +137,11 @@ const Navbar = styled.nav`
   box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   padding: 1rem 1.6rem;
-  background-color: ${({ theme }) => theme};
+  background-color: ${({ theme }: any) => theme};
 
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
-    background-color: ${({ theme }) => theme}95;
+    background-color: ${({ theme }: any) => theme}95;
     border-top: 0 transparent;
   }
 
