@@ -1,4 +1,3 @@
-import { extractCritical } from "emotion-server";
 import Document, { Html, Head, Main } from "next/document";
 
 interface Props {
@@ -10,11 +9,9 @@ const isProduction = process.env.NODE_ENV === "production";
 export default class MyDocument extends Document<Props> {
   static getInitialProps({ renderPage }) {
     const page = renderPage();
-    const styles = extractCritical(page.html);
 
     return {
-      ...page,
-      ...styles
+      ...page
     };
   }
 
