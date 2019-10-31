@@ -33,9 +33,9 @@ export default ({ language, time, dark }: Props) => {
             defaultValue={language}
           >
             {Object.entries(languageOptions).map(([key, value]) => (
-              <Option key={key} value={value}>
+              <option key={key} value={value}>
                 {key}
-              </Option>
+              </option>
             ))}
           </select>
         </SelectContainer>
@@ -50,9 +50,9 @@ export default ({ language, time, dark }: Props) => {
             defaultValue={String(time)}
           >
             {Object.entries(timeOptions).map(([key, value]) => (
-              <Option key={key} value={value}>
+              <option key={key} value={value}>
                 {key}
-              </Option>
+              </option>
             ))}
           </select>
         </SelectContainer>
@@ -102,10 +102,6 @@ const Icon = styled.svg`
   width: 20px;
   margin-right: 10px;
   fill: white;
-`;
-
-const Option = styled.option`
-  color: black;
 `;
 
 const DarkmodeContainer = styled.label`
@@ -207,6 +203,10 @@ const SelectContainer = styled.label`
     &:hover {
       background-color: rgba(255, 255, 255, 0.3);
     }
+  }
+
+  option {
+    color: black;
   }
 
   @media (min-width: 767px) {

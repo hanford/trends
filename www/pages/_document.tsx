@@ -1,12 +1,9 @@
 import Document, { Html, Head, Main } from "next/document";
-
-interface Props {
-  css: any;
-}
+import { Global, css } from "@emotion/core";
 
 const isProduction = process.env.NODE_ENV === "production";
 
-export default class MyDocument extends Document<Props> {
+export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
@@ -26,12 +23,20 @@ export default class MyDocument extends Document<Props> {
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="theme-color" content="#3362c6" />
 
-          <style
-            dangerouslySetInnerHTML={{
-              __html: `${
-                this.props.css
-              } * { box-sizing: border-box !important; } html { font-size: 10px } body { font-size: 1.6rem; margin: 0; }`
-            }}
+          <Global
+            styles={css`
+              * {
+                box-sizing: border-box !important;
+              }
+              html {
+                font-size: 10px;
+              }
+              body {
+                font-size: 1.6rem;
+                margin: 0;
+                overflow-x: hidden;
+              }
+            `}
           />
 
           <link
