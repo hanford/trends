@@ -1,8 +1,8 @@
 import { gql } from "apollo-server-core";
+import { makeExecutableSchema } from "graphql-tools";
 import fetch from "isomorphic-fetch";
 import LRUCache from "lru-cache";
 import { stringify } from "querystring";
-
 const dev = process.env.NODE_ENV !== "production";
 
 const cache = new LRUCache({
@@ -10,7 +10,7 @@ const cache = new LRUCache({
   maxAge: 1000 * 60 * 60 * 6 // 6 hour cache
 });
 
-export const typeDefs = gql`
+const typeDefs = gql`
   type Query @cacheControl(maxAge: 36000) {
     repos(language: String!, time: Int): [Repo]!
   }
@@ -26,7 +26,7 @@ export const typeDefs = gql`
   }
 `;
 
-export const resolvers = {
+const resolvers = {
   Query: {
     async repos(_root, args, _context) {
       const { time = 7, language: lang } = args;
@@ -76,3 +76,10 @@ export const resolvers = {
     }
   }
 };
+
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
+});
+
+export default schema;

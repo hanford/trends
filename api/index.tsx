@@ -1,11 +1,11 @@
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
 
-import { resolvers, typeDefs } from "./graphql";
+import schema from "./graphql";
 
-const port = parseInt(process.env.PORT || "2999", 10);
+const port = parseInt(process.env.PORT || "2999", 10) || 2999;
 
-const server = new ApolloServer({ typeDefs, resolvers, introspection: true });
+const server = new ApolloServer({ schema, introspection: true });
 
 const app = express();
 
