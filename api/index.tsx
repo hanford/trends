@@ -19,7 +19,7 @@ app.get("/api/repos", async (req, res) => {
 
   const repos = await getRepos(params);
 
-  return res.send(repos);
+  return res.send({ items: repos });
 });
 
 app.listen(port, (err: Error) => {
