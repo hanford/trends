@@ -7,14 +7,14 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.tsx",
+      "dest": "/packages/api/index.tsx",
       "headers": {
         "cache-control": "public, s-maxage=43200, max-age=43200, immutable"
       }
     },
     {
       "src": "/(.*)",
-      "dest": "/www/$1",
+      "dest": "/packages/www/$1",
       "headers": {
         "cache-control": "public, s-maxage=43200, max-age=43200, immutable",
         "Service-Worker-Allowed": "/"
@@ -23,15 +23,15 @@
   ],
   "builds": [
     {
-      "src": "www/next.config.js",
+      "src": "packages/www/next.config.js",
       "use": "@now/next"
     },
     {
-      "src": "api/index.tsx",
+      "src": "packages/api/index.tsx",
       "use": "@now/node-server@canary"
     },
     {
-      "src": "www/static/*",
+      "src": "packages/www/static/*",
       "use": "@now/static"
     }
   ]
