@@ -1,4 +1,4 @@
-import Document, { Html, Head, Main } from "next/document";
+import Document, { Html, Main } from "next/document";
 import { Global, css } from "@emotion/core";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -7,7 +7,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
+        <head>
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="black" />
           <meta
@@ -57,7 +57,7 @@ export default class MyDocument extends Document {
             href="/static/favicon-16x16.png"
           />
           <link rel="manifest" href="/static/manifest.json" />
-        </Head>
+        </head>
         <body>
           <Main />
 
