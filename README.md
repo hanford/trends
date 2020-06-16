@@ -23,7 +23,7 @@ Checkout the perfect performance audit 💯
 - Progressive web app
   - offline
   - install prompts on supported platforms
-- [15 lines of client side code](https://github.com/hanford/trends/blob/master/www/pages/_document.tsx#L98)
+- [15 lines of client side code](https://github.com/hanford/trends/blob/master/packages/www/pages/_document.tsx#L92)
 - Server side rendering
 - GraphQL
 - Next.js
