@@ -13,27 +13,25 @@ interface Props {
   repos: Repo[];
 }
 
-export default class Index extends React.Component<Props> {
-  render() {
-    const { time, language, repos = [], dark } = this.props;
+export default (props: Props) => {
+  const { time, language, repos = [], dark } = props;
 
-    return (
-      <Hero style={{ backgroundColor: dark ? "#303030" : "#f4f3f4" }}>
-        <Navbar time={time} language={language} dark={dark} />
+  return (
+    <Hero style={{ backgroundColor: dark ? "#303030" : "#f4f3f4" }}>
+      <Navbar time={time} language={language} dark={dark} />
 
-        <Container>
-          <Row>
-            {repos.length > 0
-              ? repos.map((r, i) => <Card key={i} repo={r} dark={dark} />)
-              : "Rate limit exceeded, try again in a moment"}
-          </Row>
+      <Container>
+        <Row>
+          {repos.length > 0
+            ? repos.map((r, i) => <Card key={i} repo={r} dark={dark} />)
+            : "Rate limit exceeded, try again in a moment"}
+        </Row>
 
-          <Footer dark={dark} />
-        </Container>
-      </Hero>
-    );
-  }
-}
+        <Footer dark={dark} />
+      </Container>
+    </Hero>
+  );
+};
 
 const Container = styled.div`
   display: flex;
