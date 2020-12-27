@@ -1,5 +1,6 @@
 {
   "name": "trends",
+  "license": "MIT",
   "devDependencies": {
     "concurrently": "^4.1.0",
     "husky": "^1.2.1",
@@ -10,7 +11,8 @@
   "scripts": {
     "dev": "npx lerna exec yarn dev",
     "bootstrap": "yarn && npx lerna bootstrap",
-    "format": "prettier --write \"{api,www}/**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\""
+    "format": "prettier --write \"{api,www}/**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\"",
+    "postinstall": "npx lerna bootstrap"
   },
   "husky": {
     "hooks": {

@@ -1,3 +1,4 @@
+import * as React from "react";
 import Document, { Html, Main } from "next/document";
 import { Global, css } from "@emotion/core";
 
@@ -62,6 +63,7 @@ export default class MyDocument extends Document {
           <Main />
 
           <Script src={clientSideJS} />
+          {/* <NextScript /> */}
 
           {isProduction && (
             <>

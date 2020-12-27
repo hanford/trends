@@ -23,19 +23,6 @@ const nextConfig = {
         }
       }
     ]
-  },
-  webpack: config => {
-    // .mjs before .js for apollo and graphql (fixing failing now.sh deploy)
-    config.resolve.extensions = [
-      ".wasm",
-      ".mjs",
-      ".ts",
-      ".tsx",
-      ".js",
-      ".jsx",
-      ".json"
-    ];
-    return config;
   }
 };
 

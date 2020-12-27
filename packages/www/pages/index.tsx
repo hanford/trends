@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import React from "react";
+import * as React from "react";
 import { Query } from "react-apollo";
 
 import { Repo } from "../@types/graphql";
