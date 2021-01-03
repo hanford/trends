@@ -11,10 +11,6 @@
   "dependencies": {
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.22",
-    "apollo-boost": "^0.1.22",
-    "apollo-client": "^2.4.7",
-    "graphql": "^14.0.2",
-    "graphql-tag": "^2.9.2",
     "isomorphic-fetch": "^2.2.1",
     "next": "^10.0.4",
     "next-offline": "^5.0.0",
@@ -25,7 +21,6 @@
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@emotion/babel-preset-css-prop": "^10.0.22",
-    "@types/graphql": "^14.0.3",
     "@types/isomorphic-fetch": "0.0.34",
     "@types/next": "^9.0.0",
     "@types/react": "^17.0.0",

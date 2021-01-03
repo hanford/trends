@@ -22,7 +22,7 @@ export function formatParams(lang, time) {
       order: "desc",
       q: "created:>" + key,
       per_page: "100",
-      access_token: process.env.GITHUB_ACCESS_TOKEN
+      access_token: process.env.GH_ACCESS
     })
   );
 
@@ -30,10 +30,12 @@ export function formatParams(lang, time) {
 }
 
 export async function getRepos(searchParams) {
-  const res = await fetch(
-    `https://api.github.com/search/repositories?${searchParams}`,
-    { headers: { Accept: "application/vnd.github.preview" } }
-  );
+  const url = `https://api.github.com/search/repositories?${searchParams}`;
+
+  const res = await fetch(url, {
+    headers: { Accept: "application/vnd.github.preview" }
+  });
+
   const data = await res.json();
   const items = await data.items;
 

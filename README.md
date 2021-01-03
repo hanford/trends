@@ -1,10 +1,11 @@
 ## trends
 
+<!--
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=Performance)](https://github.com/ebidel/lighthouse-badge)
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=PWA)](https://github.com/ebidel/lighthouse-badge)
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=Accessibility)](https://github.com/ebidel/lighthouse-badge)
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=Best%20Practices)](https://github.com/ebidel/lighthouse-badge)
-[![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=SEO)](https://github.com/ebidel/lighthouse-badge)
+[![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=SEO)](https://github.com/ebidel/lighthouse-badge) -->
 
 > browse trending github repos written in your favorite language with this high performance progressive web application
 
@@ -12,7 +13,7 @@
 
 [View the application](https://trends.now.sh)
 
-Trends is an ultra high performance progressive web application built with React + Next.js and GraphQL. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/master/packages/www/pages/_document.tsx#L92)
+Trends is an ultra high performance progressive web application built with Next.js. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/master/packages/www/pages/_document.tsx#L92)
 
 Checkout the perfect performance audit 💯
 <img src='https://github.com/hanford/trends/blob/master/audit.jpg' alt='perf audit' width='600px' />
@@ -25,7 +26,6 @@ Checkout the perfect performance audit 💯
   - install prompts on supported platforms
 - [15 lines of client side code](https://github.com/hanford/trends/blob/master/packages/www/pages/_document.tsx#L92)
 - Server side rendering
-- GraphQL
 - Next.js
 - Now 2.0
 - lerna / yarn workspace

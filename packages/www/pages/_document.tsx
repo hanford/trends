@@ -63,7 +63,6 @@ export default class MyDocument extends Document {
           <Main />
 
           <Script src={clientSideJS} />
-          {/* <NextScript /> */}
 
           {isProduction && (
             <>

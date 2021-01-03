@@ -1,68 +1,108 @@
-import gql from "graphql-tag";
 import * as React from "react";
-import { Query } from "react-apollo";
+import styled from "@emotion/styled";
 
 import { Repo } from "../@types/graphql";
-import Index from "../components/index";
+import Card from "../components/card";
+import Footer from "../components/footer";
+import Navbar from "../components/navbar";
+import { gridGap, maxWidth } from "../components/style-constants";
 import getQueryData from "../helpers/query-data";
-
-interface Data {
-  repos: Repo[];
-}
-
-interface Variables {
-  language: string;
-  time: number;
-}
 
 interface Props {
   children: React.ReactNode;
   language: string;
   time: number;
   dark: boolean;
+  repos: Repo[];
 }
 
-class IndexPage extends React.Component<Props> {
-  static async getInitialProps(ctx: any) {
-    const { query } = ctx;
-    const { language, time, dark } = getQueryData(query);
+function TrendsApp(props: Props) {
+  const { time, language, dark, repos } = props;
 
-    return {
-      time,
-      language,
-      dark
-    };
-  }
+  return (
+    <Hero style={{ backgroundColor: dark ? "#303030" : "#f4f3f4" }}>
+      <Navbar time={time} language={language} dark={dark} />
 
-  render() {
-    const { language, time, dark } = this.props;
+      <Container>
+        <Row>
+          {repos.length > 0
+            ? repos.map((r, i) => <Card key={i} repo={r} dark={dark} />)
+            : "Rate limit exceeded, try again in a moment"}
+        </Row>
 
-    return (
-      <Query<Data, Variables> query={GET_REPOS} variables={{ language, time }}>
-        {({ data }) => (
-          <Index
-            repos={(data && data.repos) || []}
-            dark={dark}
-            {...this.props}
-          />
-        )}
-      </Query>
-    );
-  }
+        <Footer dark={dark} />
+      </Container>
+    </Hero>
+  );
 }
 
-export default IndexPage;
+TrendsApp.getInitialProps = async function(ctx: any) {
+  const { query } = ctx;
+  const { language, time, dark } = getQueryData(query);
 
-const GET_REPOS = gql`
-  query trendingRepos($language: String!, $time: Int!) {
-    repos(language: $language, time: $time) {
-      id
-      name
-      forks
-      language
-      full_name
-      description
-      stargazers_count
-    }
+  const endpoint =
+    process.env.NODE_ENV === "production"
+      ? `https://${ctx.req.headers.host}`
+      : "http://localhost:2999";
+
+  const res = await fetch(
+    `${endpoint}/api/repos?language=${language}&time=${time}`
+  );
+
+  const data = await res.json();
+  const repos = await data.items;
+
+  return {
+    time,
+    language,
+    dark,
+    repos
+  };
+};
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const Hero = styled.div`
+  width: 100%;
+  color: #333;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @media (prefers-color-scheme: dark) {
+    background: #303030 !important;
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
   }
 `;
+
+const Row = styled.div`
+  display: grid;
+  margin: 2rem auto;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(calc(30rem - ${gridGap}), 1fr)
+  );
+  grid-gap: ${gridGap};
+  padding: 0 ${gridGap};
+  padding-bottom: 5rem;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: ${maxWidth};
+
+  @media (max-width: 767px) {
+    margin-top: 0;
+    padding: ${gridGap};
+  }
+`;
+
+export default TrendsApp;
