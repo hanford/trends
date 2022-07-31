@@ -24,15 +24,15 @@
   "builds": [
     {
       "src": "packages/www/next.config.js",
-      "use": "@now/next"
+      "use": "@vercel/next"
     },
     {
       "src": "packages/api/index.tsx",
-      "use": "@now/node-server@canary"
+      "use": "@vercel/node"
     },
     {
       "src": "packages/www/static/*",
-      "use": "@now/static"
+      "use": "@vercel/static"
     }
   ]
 }
