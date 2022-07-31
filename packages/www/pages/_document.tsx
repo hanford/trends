@@ -66,7 +66,7 @@ export default class MyDocument extends Document {
 
           {isProduction && (
             <>
-              <Script src={serviceWorkerRegistration} />
+              {/* <Script src={serviceWorkerRegistration} /> */}
 
               <script
                 async={true}
@@ -104,19 +104,19 @@ const clientSideJS = `
   })
 `;
 
-const serviceWorkerRegistration = `
-  document.addEventListener('DOMContentLoaded', event => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/_next/static/service-worker.js', { scope: "/" }).then(registration => {
-          console.log('SW registered: ', registration)
-        }).catch(registrationError => {
-          console.log('SW registration failed: ', registrationError)
-        })
-      })
-    }
-  })
-`;
+// const serviceWorkerRegistration = `
+//   document.addEventListener('DOMContentLoaded', event => {
+//     if ('serviceWorker' in navigator) {
+//       window.addEventListener('load', () => {
+//         navigator.serviceWorker.register('/_next/static/service-worker.js', { scope: "/" }).then(registration => {
+//           console.log('SW registered: ', registration)
+//         }).catch(registrationError => {
+//           console.log('SW registration failed: ', registrationError)
+//         })
+//       })
+//     }
+//   })
+// `;
 
 const GA = `
   window.dataLayer = window.dataLayer || [];
