@@ -36,6 +36,10 @@ function TrendsApp(props: Props) {
   );
 }
 
+export const config = {
+  unstable_runtimeJS: false
+};
+
 TrendsApp.getInitialProps = async function(ctx: any) {
   const { query } = ctx;
   const { language, time, dark } = getQueryData(query);

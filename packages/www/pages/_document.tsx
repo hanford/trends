@@ -1,5 +1,5 @@
 import * as React from "react";
-import Document, { Html, Main } from "next/document";
+import Document, { Html, NextScript, Main } from "next/document";
 import { Global, css } from "@emotion/core";
 
 const isProduction = process.env.NODE_ENV === "production";
@@ -61,6 +61,8 @@ export default class MyDocument extends Document {
         </head>
         <body>
           <Main />
+
+          <NextScript />
 
           <Script src={clientSideJS} />
 
