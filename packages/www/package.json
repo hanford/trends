@@ -1,5 +1,5 @@
 {
-  "name": "trends-www",
+  "name": "www",
   "license": "MIT",
   "scripts": {
     "dev": "next",
@@ -12,7 +12,7 @@
     "@emotion/core": "^10.0.22",
     "@emotion/styled": "^10.0.22",
     "isomorphic-fetch": "^2.2.1",
-    "next": "^10.0.4",
+    "next": "^12.2.3",
     "next-offline": "^5.0.0",
     "react": "^17.0.1",
     "react-apollo": "^2.3.3",
@@ -23,8 +23,8 @@
     "@emotion/babel-preset-css-prop": "^10.0.22",
     "@types/isomorphic-fetch": "0.0.34",
     "@types/next": "^9.0.0",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.48",
     "@types/react-dom": "^17.0.0",
-    "typescript": "^4.1.3"
+    "typescript": "^4.7.4"
   }
 }

@@ -22,9 +22,7 @@ app.get("/api/repos", async (req, res) => {
   return res.send({ items });
 });
 
-app.listen(port, (err: Error) => {
-  if (err) throw err;
-
+app.listen(port, () => {
   // tslint:disable: no-console
   console.log(`Listening at http://localhost:${port}/`);
 });
