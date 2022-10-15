@@ -2,7 +2,7 @@ import { languages, times } from "./constants";
 
 interface Query {
   language?: string;
-  time?: string;
+  time?: number;
   dark?: boolean;
 }
 

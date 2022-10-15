@@ -1,0 +1,65 @@
+:root {
+  --gridGap: 1.6rem;
+  --maxWidth: 140rem;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Foo */
+
+.hero {
+  width: 100%;
+  color: #333;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  @media (prefers-color-scheme: dark) {
+    background: #303030 !important;
+  }
+
+  @media (max-width: 767px) {
+    flex-direction: column-reverse;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.row {
+  display: grid;
+  margin: 2rem auto;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(calc(30rem - var(--gridGap)), 1fr)
+  );
+  grid-gap: var(--gridGap);
+  padding: 0 var(--gridGap);
+  padding-bottom: 5rem;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: var(--maxWidth);
+
+  @media (max-width: 767px) {
+    margin-top: 0;
+    padding: var(--gridGap);
+  }
+}

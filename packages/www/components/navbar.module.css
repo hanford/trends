@@ -1,0 +1,87 @@
+.icon {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  fill: white;
+}
+
+.darkmodeContainer {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+
+  @media (max-width: 767px) {
+    justify-content: flex-start;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    display: none;
+  }
+
+  @media (prefers-color-scheme: light) {
+    display: none;
+  }
+}
+
+/* label {
+  color: white;
+} */
+
+/* @media (max-width: 767px) {
+  label {
+    width: 100%;
+  }
+} */
+
+.big-label:first-of-type {
+  margin-right: 0.8rem;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  border-top: 1rem solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
+    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  padding: 1rem 1.6rem;
+  /* background-color: ${({ theme }: any) => theme}; */
+
+  @supports (backdrop-filter: blur(10px)) {
+    backdrop-filter: blur(10px);
+    /* background-color: ${({ theme }: any) => theme}95; */
+    border-top: 0 transparent;
+  }
+
+  /* detect if launched from homescreen */
+  @media all and (display-mode: standalone) {
+    border-top: 0;
+  }
+
+  @media (max-width: 767px) {
+    box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+    top: auto;
+    bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    border-top: 0;
+  }
+}
+
+.form {
+  width: 100%;
+  position: relative;
+  padding: 0 var(--gridGap);
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-gap: var(--gridGap);
+  max-width: var(--maxWidth);
+  margin: auto;
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+}
