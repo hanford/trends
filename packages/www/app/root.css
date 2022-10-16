@@ -28,12 +28,15 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
-  @media (prefers-color-scheme: dark) {
+}
+@media (prefers-color-scheme: dark) {
+  .hero {
     background: #303030 !important;
   }
+}
 
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
+  .hero {
     flex-direction: column-reverse;
   }
 }
@@ -57,8 +60,10 @@ body {
   width: 100%;
   margin-top: 2rem;
   max-width: var(--maxWidth);
+}
 
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
+  .row {
     margin-top: 0;
     padding: var(--gridGap);
   }

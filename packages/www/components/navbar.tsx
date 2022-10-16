@@ -1,10 +1,10 @@
 import {
   languages as languageOptions,
   themes as themeOptions,
-  times as timeOptions
+  times as timeOptions,
 } from "../helpers/constants";
 import styles from "./navbar.module.css";
-import Select from "./Select";
+import Select from "./select";
 
 interface Props {
   language: string;
@@ -22,7 +22,7 @@ export default ({ language, time, dark }: Props) => {
   return (
     <div
       className={styles.navbar}
-      style={{ background: themeOptions[theme || 0] }}
+      style={{ backgroundColor: `${themeOptions[theme || 0]}95` }}
     >
       <form
         aria-label="search"
@@ -30,27 +30,6 @@ export default ({ language, time, dark }: Props) => {
         method="GET"
         className={styles.form}
       >
-        {/* <label className={styles.bigLabel} htmlFor="language">
-          <div className={styles.labelLabel}>Language</div>
-
-          <select
-            className={styles.selector}
-            aria-label="select language"
-            name="language"
-            id="language"
-            defaultValue={language}
-            // onChange={(e) => {
-            //   console.log({ e });
-            // }}
-          >
-            {Object.entries(languageOptions).map(([key, value]) => (
-              <option className="selectable" key={key} value={value}>
-                {key}
-              </option>
-            ))}
-          </select>
-        </label> */}
-
         <Select
           queryParam="language"
           options={languageOptions}
@@ -58,23 +37,6 @@ export default ({ language, time, dark }: Props) => {
         />
 
         <Select queryParam="time" options={timeOptions} value={time} />
-
-        {/* <select
-            className={styles.selector}
-            aria-label="select time"
-            name="time"
-            id="time"
-            defaultValue={String(time)}
-            // onChange={(e) => {
-            //   console.log({ e });
-            // }}
-          >
-            {Object.entries(timeOptions).map(([key, value]) => (
-              <option className="selectable" key={key} value={value}>
-                {key}
-              </option>
-            ))}
-          </select> */}
 
         <label className={styles.darkmodeContainer}>
           {dark ? <Moon /> : <Sun />}

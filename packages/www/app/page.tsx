@@ -6,11 +6,15 @@ import Card from "../components/card";
 import Footer from "../components/footer";
 import Navbar from "../components/navbar";
 import getQueryData from "../helpers/query-data";
-import "./root.css";
-import { useSearchParam } from "next/navigation";
 
-export default function TrendsApp({ searchParams }) {
-  const { time, language, dark, repos } = use(fetchRepos({ ...searchParams }));
+import "./root.css";
+
+export default function TrendsApp({
+  searchParams: { language: languageArg, time: timeArg },
+}) {
+  const { time, language, dark, repos } = use(
+    fetchRepos({ language: languageArg, time: timeArg })
+  );
 
   return (
     <div
@@ -21,7 +25,7 @@ export default function TrendsApp({ searchParams }) {
 
       <div className="container">
         <div className="row">
-          {repos.length > 0
+          {!repos.length || repos.length > 0
             ? repos.map((r, i) => <Card key={i} repo={r} dark={dark} />)
             : "Rate limit exceeded, try again in a moment"}
         </div>
@@ -41,7 +45,7 @@ interface Res {
 
 async function fetchRepos({
   language: languageArg,
-  time: timeArg
+  time: timeArg,
 }): Promise<Res> {
   const headersList = headers();
 
@@ -49,7 +53,7 @@ async function fetchRepos({
 
   const { language, time, dark } = getQueryData({
     language: languageArg,
-    time: timeArg
+    time: timeArg,
   });
 
   const endpoint =
@@ -69,6 +73,6 @@ async function fetchRepos({
     time,
     language,
     dark,
-    repos
+    repos,
   };
 }
