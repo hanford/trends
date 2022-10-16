@@ -27,7 +27,7 @@
   color: black;
 }
 
-.bigLabel {
+.labelContainer {
   min-width: calc(30rem - var(--gridGap));
   width: 100%;
   cursor: pointer;
@@ -37,7 +37,7 @@
   align-items: center;
 }
 
-.labelLabel {
+.labelCopy {
   position: absolute;
   top: 0.5rem;
   font-size: 1rem;

@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "./select.module.css";
+import styles from "./Select.module.css";
 
 interface Todo {
   id: number;
@@ -21,7 +21,7 @@ export default function Todo(props: any) {
   const { queryParam, value: defaultValue, options } = props;
 
   return (
-    <label className={styles.bigLabel}>
+    <label className={styles.labelContainer}>
       <div className={styles.labelLabel}>{queryParam}</div>
 
       <select
@@ -30,7 +30,7 @@ export default function Todo(props: any) {
         name={queryParam}
         id={queryParam}
         defaultValue={String(defaultValue)}
-        onChange={(event) => {
+        onChange={event => {
           event.currentTarget.form.submit();
         }}
       >

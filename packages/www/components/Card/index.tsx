@@ -1,5 +1,4 @@
-import React from "react";
-import { Repo } from "../@types/graphql";
+import { Repo } from "../../@types/graphql";
 
 import styles from "./card.module.css";
 

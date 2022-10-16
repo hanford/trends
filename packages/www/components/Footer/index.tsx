@@ -1,6 +1,4 @@
-import React from "react";
-
-import styles from "./footer.module.css";
+import styles from "./Footer.module.css";
 
 export default function FooterComponent({ dark }: { dark: boolean }) {
   return (

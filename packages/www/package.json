@@ -9,12 +9,11 @@
     "lint": "tslint '**/*.ts' '**/*.tsx' -e '**/node_modules/**'"
   },
   "dependencies": {
-    "next": "^12.3.2-canary.28",
+    "next": "^12.3.2-canary.29",
     "react": "^0.0.0-experimental-3b814327e-20221014",
     "react-dom": "^0.0.0-experimental-3b814327e-20221014"
   },
   "devDependencies": {
-    "@types/isomorphic-fetch": "0.0.34",
     "@types/next": "^9.0.0",
     "@types/react": "^17.0.48",
     "@types/react-dom": "^17.0.0",

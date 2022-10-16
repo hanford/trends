@@ -1,10 +1,10 @@
 import {
   languages as languageOptions,
   themes as themeOptions,
-  times as timeOptions,
-} from "../helpers/constants";
-import styles from "./navbar.module.css";
-import Select from "./select";
+  times as timeOptions
+} from "../../helpers/constants";
+import styles from "./Navbar.module.css";
+import Select from "../Select";
 
 interface Props {
   language: string;

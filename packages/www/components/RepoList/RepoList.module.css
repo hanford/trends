@@ -1,0 +1,21 @@
+.row {
+  display: grid;
+  margin: 2rem auto;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(calc(30rem - var(--gridGap)), 1fr)
+  );
+  grid-gap: var(--gridGap);
+  padding: 0 var(--gridGap);
+  padding-bottom: 5rem;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: var(--maxWidth);
+}
+
+@media (max-width: 767px) {
+  .row {
+    margin-top: 0;
+    padding: var(--gridGap);
+  }
+}

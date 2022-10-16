@@ -2,15 +2,15 @@ import { experimental_use as use } from "react";
 import { headers } from "next/headers";
 
 import { Repo } from "../@types/graphql";
-import Card from "../components/card";
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
+import RepoList from "../components/RepoList";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import getQueryData from "../helpers/query-data";
 
 import "./root.css";
 
 export default function TrendsApp({
-  searchParams: { language: languageArg, time: timeArg },
+  searchParams: { language: languageArg, time: timeArg }
 }) {
   const { time, language, dark, repos } = use(
     fetchRepos({ language: languageArg, time: timeArg })
@@ -24,11 +24,7 @@ export default function TrendsApp({
       <Navbar time={time} language={language} dark={dark} />
 
       <div className="container">
-        <div className="row">
-          {!repos.length || repos.length > 0
-            ? repos.map((r, i) => <Card key={i} repo={r} dark={dark} />)
-            : "Rate limit exceeded, try again in a moment"}
-        </div>
+        <RepoList repos={repos} dark={dark} />
 
         <Footer dark={dark} />
       </div>
@@ -45,7 +41,7 @@ interface Res {
 
 async function fetchRepos({
   language: languageArg,
-  time: timeArg,
+  time: timeArg
 }): Promise<Res> {
   const headersList = headers();
 
@@ -53,7 +49,7 @@ async function fetchRepos({
 
   const { language, time, dark } = getQueryData({
     language: languageArg,
-    time: timeArg,
+    time: timeArg
   });
 
   const endpoint =
@@ -73,6 +69,6 @@ async function fetchRepos({
     time,
     language,
     dark,
-    repos,
+    repos
   };
 }

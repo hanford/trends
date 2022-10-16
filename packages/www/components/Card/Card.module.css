@@ -11,6 +11,7 @@
   padding: 1.6rem;
   transition: all 135ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 @media (min-width: 767px) {
   .card:hover {
     transform: scale(1.0125);
