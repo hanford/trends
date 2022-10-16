@@ -1,17 +1,15 @@
 import { experimental_use as use } from "react";
 import { headers } from "next/headers";
 
-import getQueryData from "../helpers/query-data";
+import getQueryData from "../../helpers/query-data";
 
-import { Repo } from "../@types/graphql";
-import RepoList from "../components/RepoList";
+import { Repo } from "../../@types/graphql";
+import RepoList from "../../components/RepoList";
 
-export default function TrendsApp(props) {
-  const {
-    searchParams: { time: timeArg },
-    params: { language: languageArg }
-  } = props;
-
+export default function TrendsApp({
+  params: { language: languageArg },
+  searchParams: { time: timeArg }
+}) {
   const { dark, repos } = use(
     fetchRepos({ language: languageArg, time: timeArg })
   );

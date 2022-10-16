@@ -1,8 +1,17 @@
-export default function RootLayout({
-  children
-}: {
-  children: React.ReactNode;
-}) {
+import { experimental_use as use } from "react";
+import { headers } from "next/headers";
+
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import getQueryData from "../helpers/query-data";
+
+import "./root.css";
+
+export default function RootLayout({ children, ...args }) {
+  const time = 8;
+  const language = "overall";
+  const dark = false;
+
   return (
     <html lang="en">
       <head>
@@ -43,7 +52,20 @@ export default function RootLayout({
         <link rel="manifest" href="/static/manifest.json" />
       </head>
 
-      <body>{children}</body>
+      <body>
+        <div
+          className="hero"
+          style={{ backgroundColor: dark ? "#303030" : "#f4f3f4" }}
+        >
+          <Navbar time={time} language={language} dark={dark} />
+
+          <div className="container">
+            {children}
+
+            <Footer dark={dark} />
+          </div>
+        </div>
+      </body>
     </html>
   );
 }

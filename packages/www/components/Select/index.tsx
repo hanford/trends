@@ -1,38 +1,38 @@
 "use client";
 
-import styles from "./Select.module.css";
+import { useCallback } from "react";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 
-interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
+// import styles from "./Select.module.css";
 
-// async function update(queryParam, value, router) {
-//   await fetch(`http://localhost:3000/?${queryParam}=${value}`);
-
-//   router.replace(`/?${queryParam}=${value}`);
-
-//   // Refresh the current route and fetch new data from the server
-//   router.reload();
-// }
-
-export default function Todo(props: any) {
+export default function Select(props: any) {
   const { queryParam, value: defaultValue, options } = props;
+  const param = useSelectedLayoutSegment();
+  const router = useRouter();
+  const capitalized = capitalizeFirstLetter(queryParam);
+
+  const onChange = useCallback(
+    event => {
+      if (queryParam === "language") {
+        router.push(`/${event.currentTarget.value}`);
+      } else {
+        router.push(`/${param}?time=${event.currentTarget.value}`);
+      }
+    },
+    [param]
+  );
 
   return (
-    <label className={styles.labelContainer}>
-      <div className={styles.labelLabel}>{queryParam}</div>
+    <label className={"labelContainer"}>
+      <div className={"labelCopy"}>{capitalized}</div>
 
       <select
-        className={styles.selector}
-        aria-label="select time"
+        className={"selector"}
+        aria-label={`select ${capitalized}`}
         name={queryParam}
         id={queryParam}
         defaultValue={String(defaultValue)}
-        onChange={event => {
-          event.currentTarget.form.submit();
-        }}
+        onChange={onChange}
       >
         {Object.entries(options).map(([key, value]) => (
           <option className="selectable" key={key} value={value as string}>
@@ -42,4 +42,8 @@ export default function Todo(props: any) {
       </select>
     </label>
   );
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }

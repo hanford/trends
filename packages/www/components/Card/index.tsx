@@ -20,16 +20,16 @@ export default function CardComponent(props: Props) {
       href={`https://github.com/${full_name}`}
       target="_blank"
       rel="noopener"
-      className={styles.card}
+      className={"card"}
       style={{ backgroundColor: dark ? "#424242" : "white" }}
     >
-      <div className={styles.about}>
+      <div className={"about"}>
         <div>
-          <div className={styles.name} style={{ color: primary }}>
+          <div className={"name"} style={{ color: primary }}>
             {name}
           </div>
           <h3
-            className={styles.secondary}
+            className={"secondary"}
             style={{
               color: dark ? "rgba(255, 255, 255, 0.55)" : "rgba(0, 0, 0, 0.54)"
             }}
@@ -38,18 +38,18 @@ export default function CardComponent(props: Props) {
           </h3>
         </div>
 
-        <p className={styles.description} style={{ color: primary }}>
+        <p className={"description"} style={{ color: primary }}>
           {description}
         </p>
 
-        <div className={styles.bottom}>
-          <div className={styles.detail} style={{ color: primary }}>
+        <div className={"bottom"}>
+          <div className={"detail"} style={{ color: primary }}>
             {language}
           </div>
-          <div className={styles.detail} style={{ color: primary }}>
+          <div className={"detail"} style={{ color: primary }}>
             Forks {forks}
           </div>
-          <div className={styles.stars}>Stars {stargazers_count}</div>
+          <div className={"stars"}>Stars {stargazers_count}</div>
         </div>
       </div>
     </a>

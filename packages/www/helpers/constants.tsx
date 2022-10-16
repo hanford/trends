@@ -1,7 +1,5 @@
 export const languages = {
-  "Top Overall": encodeURIComponent(
-    "javascript language:typescript language:python language:ruby language:go language:html language:css language:java language:swift language:php language:rust"
-  ),
+  "Top Overall": "overall",
   JavaScript: "javascript",
   TypeScript: "typescript",
   Go: "go",
@@ -16,14 +14,14 @@ export const languages = {
   "C++": "cpp",
   Python: "python",
   Ruby: "ruby",
-  Java: "java",
+  Java: "java"
 };
 
 export const times = {
   "Past Day": 2,
   "Past Week": 8,
   "Past Month": 32,
-  "Past Year": 365,
+  "Past Year": 365
 };
 
 export const themes = {
@@ -42,5 +40,5 @@ export const themes = {
   "C++": "#16427F",
   Python: "#607d8b",
   Ruby: "#e91e63",
-  Java: "#795548",
+  Java: "#795548"
 };
