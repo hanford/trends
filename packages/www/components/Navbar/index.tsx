@@ -8,7 +8,7 @@ import {
 import Select from "../Select";
 import { useSelectedLayoutSegment } from "next/navigation";
 
-// import styles from "./Navbar.module.css";
+import styles from "./Navbar.module.css";
 
 interface Props {
   language: string;
