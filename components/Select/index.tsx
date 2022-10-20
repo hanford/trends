@@ -1,6 +1,5 @@
 "use client";
 
-import { useCallback } from "react";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 
 // import styles from "./Select.module.css";
@@ -11,16 +10,24 @@ export default function Select(props: any) {
   const router = useRouter();
   const capitalized = capitalizeFirstLetter(queryParam);
 
-  const onChange = useCallback(
-    event => {
-      if (queryParam === "language") {
-        router.push(`/${event.currentTarget.value}`);
-      } else {
-        router.push(`/${param}?time=${event.currentTarget.value}`);
-      }
-    },
-    [param]
-  );
+  // const onChange = useCallback(
+  //   event => {
+  //     if (queryParam === "language") {
+  //       router.push(`/${event.currentTarget.value}`);
+  //     } else {
+  //       router.push(`/${param}?time=${event.currentTarget.value}`);
+  //     }
+  //   },
+  //   [param]
+  // );
+
+  const onChange = event => {
+    if (queryParam === "language") {
+      router.push(`/${event.currentTarget.value}`);
+    } else {
+      router.push(`/${param}?time=${event.currentTarget.value}`);
+    }
+  };
 
   return (
     <label className={"labelContainer"}>
