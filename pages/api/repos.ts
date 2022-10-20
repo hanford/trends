@@ -1,7 +1,16 @@
-import fetch from "isomorphic-fetch";
 import { stringify } from "querystring";
+import fetch from "isomorphic-fetch";
 
-export function formatParams(lang, time) {
+export default async function handler(req, res) {
+  const { language, time = 7 } = req.query;
+  const { params } = formatParams(language, time);
+
+  const items = await getRepos(params);
+
+  return res.send({ items });
+}
+
+function formatParams(lang, time) {
   const language = lang ? ` language:${lang}` : "";
 
   const startDate = new Date();
@@ -29,7 +38,7 @@ export function formatParams(lang, time) {
   return { key, params };
 }
 
-export async function getRepos(searchParams) {
+async function getRepos(searchParams) {
   const url = `https://api.github.com/search/repositories?${searchParams}`;
 
   const res = await fetch(url, {

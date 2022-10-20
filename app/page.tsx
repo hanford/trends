@@ -42,12 +42,15 @@ async function fetchRepos({
   const endpoint =
     process.env.NODE_ENV === "production"
       ? `https://${host}`
-      : "http://localhost:2999";
+      : "http://localhost:3000";
+
+  console.log({ endpoint });
 
   const res = await fetch(
-    `${endpoint}/api/repos?language=${language}&time=${time}`,
-    {}
+    `${endpoint}/api/repos?language=${language}&time=${time}`
   );
+
+  console.log({ res });
 
   const data = await res.json();
   const repos = await data.items;

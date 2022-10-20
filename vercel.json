@@ -3,28 +3,5 @@
   "alias": ["trends.vercel.app"],
   "env": {
     "GITHUB_ACCESS_TOKEN": "@github-access-token"
-  },
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/packages/api/index.tsx",
-      "headers": {
-        "cache-control": "public, s-maxage=43200, max-age=43200, immutable"
-      }
-    }
-  ],
-  "builds": [
-    {
-      "src": "packages/www/next.config.js",
-      "use": "@vercel/next@canary"
-    },
-    {
-      "src": "packages/api/index.tsx",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "packages/www/static/*",
-      "use": "@vercel/static"
-    }
-  ]
+  }
 }

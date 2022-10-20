@@ -40,7 +40,7 @@ async function fetchRepos({
   const endpoint =
     process.env.NODE_ENV === "production"
       ? `https://${host}`
-      : "http://localhost:2999";
+      : "http://localhost:3000";
 
   const res = await fetch(
     `${endpoint}/api/repos?language=${language}&time=${time}`,
