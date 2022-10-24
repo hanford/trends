@@ -7,10 +7,9 @@ import getQueryData from "../helpers/query-data";
 
 import "./root.css";
 
-export default function RootLayout({ children, ...args }) {
+export default function RootLayout({ children }) {
   const time = 8;
   const language = "overall";
-  const dark = false;
 
   return (
     <html lang="en">
@@ -53,16 +52,13 @@ export default function RootLayout({ children, ...args }) {
       </head>
 
       <body>
-        <div
-          className="hero"
-          style={{ backgroundColor: dark ? "#303030" : "#f4f3f4" }}
-        >
-          <Navbar time={time} language={language} dark={dark} />
+        <div className="hero">
+          <Navbar time={time} language={language} />
 
           <div className="container">
             {children}
 
-            <Footer dark={dark} />
+            <Footer />
           </div>
         </div>
       </body>

@@ -6,15 +6,16 @@ import getQueryData from "../helpers/query-data";
 import { Repo } from "../@types/graphql";
 import RepoList from "../components/RepoList";
 
-export default function TrendsApp(props) {
-  const {
-    searchParams: { time: timeArg },
-    params: { language: languageArg }
-  } = props;
+export default async function Page({
+  searchParams: { time: timeArg },
+  params: { language: languageArg }
+}) {
+  console.log({ languageArg, timeArg });
 
-  const { dark, repos } = use(
-    fetchRepos({ language: languageArg, time: timeArg })
-  );
+  const { dark, repos } = await getData({
+    language: languageArg,
+    time: timeArg
+  });
 
   return <RepoList repos={repos} dark={dark} />;
 }
@@ -26,10 +27,7 @@ interface Res {
   repos: Repo[];
 }
 
-async function fetchRepos({
-  language: languageArg,
-  time: timeArg
-}): Promise<Res> {
+async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
   const headersList = headers();
 
   const host = headersList.get("host");
@@ -45,15 +43,14 @@ async function fetchRepos({
       : "http://localhost:3000";
 
   console.log({ endpoint });
-
   const res = await fetch(
     `${endpoint}/api/repos?language=${language}&time=${time}`
   );
 
-  console.log({ res });
-
   const data = await res.json();
   const repos = await data.items;
+
+  console.log({ res });
 
   return {
     time,
