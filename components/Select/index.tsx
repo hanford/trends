@@ -1,13 +1,23 @@
 "use client";
 
-import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import {
+  useRouter,
+  usePathname,
+  useSelectedLayoutSegment
+} from "next/navigation";
 
 // import styles from "./Select.module.css";
 
 export default function Select(props: any) {
   const { queryParam, value: defaultValue, options } = props;
-  // const param = useSelectedLayoutSegment();
-  const param = "overall";
+
+  let params = "overall";
+  const pathname = usePathname();
+
+  if (pathname !== "/") {
+    params = useSelectedLayoutSegment();
+  }
+
   const router = useRouter();
   const capitalized = capitalizeFirstLetter(queryParam);
 
@@ -23,10 +33,11 @@ export default function Select(props: any) {
   // );
 
   const onChange = event => {
+    console.log(event);
     if (queryParam === "language") {
       router.push(`/${event.currentTarget.value}`);
     } else {
-      router.push(`/${param}?time=${event.currentTarget.value}`);
+      router.push(`/${params}?time=${event.currentTarget.value}`);
     }
   };
 

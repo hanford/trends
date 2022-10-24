@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   const items = await getRepos(params);
 
-  return res.send(items);
+  return res.send({ items });
 }
 
 function formatParams(lang, time) {
@@ -48,5 +48,20 @@ async function getRepos(searchParams) {
   const data = await res.json();
   const items = await data.items;
 
-  return items;
+  const cleaned = items.map(
+    ({ name, forks, full_name, description, language, stargazers_count }) => {
+      return {
+        name: name || "",
+        forks: forks || "",
+        full_name: full_name || "",
+        description: description || "",
+        language: language || "",
+        stargazers_count: stargazers_count || ""
+      };
+    }
+  );
+
+  // console.log(JSON.stringify(cleaned.slice(0, 4)));
+
+  return cleaned.slice(0, 80);
 }

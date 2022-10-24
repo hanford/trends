@@ -9,8 +9,8 @@ import RepoList from "../../components/RepoList";
 export default async function LanguagePage({
   params: { language: languageArg },
   searchParams: { time: timeArg }
-}) {
-  const { dark, repos } = await fetchRepos({
+}: any) {
+  const { dark, repos } = await getData({
     language: languageArg,
     time: timeArg
   });
@@ -25,10 +25,7 @@ interface Res {
   repos: Repo[];
 }
 
-async function fetchRepos({
-  language: languageArg,
-  time: timeArg
-}): Promise<Res> {
+async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
   const headersList = headers();
 
   const host = headersList.get("host");
@@ -44,8 +41,7 @@ async function fetchRepos({
       : "http://localhost:3000";
 
   const res = await fetch(
-    `${endpoint}/api/repos?language=${language}&time=${time}`,
-    {}
+    `${endpoint}/api/repos?language=${language}&time=${time}`
   );
 
   const data = await res.json();

@@ -7,7 +7,8 @@ interface Query {
 }
 
 export default function getQueryData(query: Query = {}) {
-  const { language: langQuery, time: timeQuery, dark } = query;
+  const langQuery = query.language;
+  const timeQuery = query.time;
 
   const language = langQuery || languages["Top Overall"];
   const time = timeQuery || times["Past Week"];
@@ -15,7 +16,7 @@ export default function getQueryData(query: Query = {}) {
   return {
     language: language === "Overall" ? encodedOverall : language,
     time,
-    dark
+    dark: false
   };
 }
 

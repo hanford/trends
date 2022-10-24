@@ -6,9 +6,9 @@ import {
   times as timeOptions
 } from "../../helpers/constants";
 import Select from "../Select";
-import { useSelectedLayoutSegment } from "next/navigation";
+import { useSelectedLayoutSegment, usePathname } from "next/navigation";
 
-import styles from "./Navbar.module.css";
+// import styles from "./Navbar.module.css";
 
 interface Props {
   language: string;
@@ -17,8 +17,12 @@ interface Props {
 
 export default function Navbar({ language, time }: Props) {
   // const params = useSelectedLayoutSegment();
-  // console.log(params);
-  const params = "javascript";
+  let params = "overall";
+  const pathname = usePathname();
+
+  if (pathname !== "/") {
+    params = useSelectedLayoutSegment();
+  }
 
   const hasTheme = Object.entries(languageOptions).find(
     ([_, value]) => value === params
@@ -39,8 +43,9 @@ export default function Navbar({ language, time }: Props) {
         <Select
           queryParam="language"
           options={languageOptions}
-          value={language}
+          value={params}
         />
+
         <Select queryParam="time" options={timeOptions} value={time} />
       </form>
     </div>

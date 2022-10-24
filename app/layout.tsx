@@ -7,9 +7,6 @@ import getQueryData from "../helpers/query-data";
 import "./root.css";
 
 export default function RootLayout({ children }) {
-  const time = 8;
-  const language = "overall";
-
   return (
     <html lang="en">
       <head>
@@ -52,7 +49,7 @@ export default function RootLayout({ children }) {
 
       <body>
         <div className="hero">
-          <Navbar time={time} language={language} />
+          <Navbar />
 
           <div className="container">
             {children}

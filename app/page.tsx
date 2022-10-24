@@ -6,18 +6,15 @@ import getQueryData from "../helpers/query-data";
 import { Repo } from "../@types/graphql";
 import RepoList from "../components/RepoList";
 
-export default async function Page({
-  searchParams: { time: timeArg },
-  params: { language: languageArg }
-}) {
-  const data = await getData({
-    language: languageArg,
-    time: timeArg
-  });
+export default async function Page(
+  {
+    // searchParams: { time: timeArg },
+    // params: { language: languageArg },
+  }
+) {
+  const data = await getData();
 
-  console.log({ data });
-
-  return <RepoList repos={data} dark={false} />;
+  return <RepoList repos={data.items} dark={false} />;
 }
 
 interface Res {
@@ -27,40 +24,28 @@ interface Res {
   repos: Repo[];
 }
 
-async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
+// async function getData() {
+//   const data = await fetch("https://dummyjson.com/products/1");
+//   return data.json();
+// }
+
+async function getData(): Promise<Res> {
   const headersList = headers();
 
   const host = headersList.get("host");
 
   //dark
-  const { language, time } = getQueryData({
-    language: languageArg,
-    time: timeArg
-  });
+  // const { language, time } = getQueryData();
+  // const language = getQueryData().language || "";
+  // const time = getQueryData().time || "";
 
   const endpoint =
     process.env.NODE_ENV === "production"
       ? `https://${host}`
       : "http://localhost:3000";
 
-  const url = `${endpoint}/api/repos?language=${language}&time=${time}`;
-  console.log({ url });
+  const url = `${endpoint}/api/repos`;
   const res = await fetch(url);
-
   return res.json();
-
-  // try {
-  //   repos = data.items;
-  // } catch (error) {
-  //   console.error(error);
-  // }
-
-  // // console.log({ res });
-
-  // return {
-  //   time,
-  //   language,
-  //   dark,
-  //   repos: repos,
-  // };
+  // "https://trends.vercel.app/api/repos"
 }
