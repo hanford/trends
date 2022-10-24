@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "isomorphic-fetch": "^3.0.0",
-    "next": "12.3.2-canary.35",
+    "next": "12.3.2-canary.39",
     "react": "^0.0.0-experimental-e7c5af45c-20221023",
     "react-dom": "^0.0.0-experimental-e7c5af45c-20221023"
   },

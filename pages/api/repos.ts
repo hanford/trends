@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   const items = await getRepos(params);
 
-  return res.send({ items });
+  return res.send(items);
 }
 
 function formatParams(lang, time) {

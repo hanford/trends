@@ -1,4 +1,3 @@
-import { experimental_use as use } from "react";
 import { headers } from "next/headers";
 
 import Navbar from "../components/Navbar";

@@ -1,4 +1,4 @@
-import { experimental_use as use } from "react";
+import { use } from "react";
 import { headers } from "next/headers";
 
 import getQueryData from "../helpers/query-data";
@@ -10,14 +10,14 @@ export default async function Page({
   searchParams: { time: timeArg },
   params: { language: languageArg }
 }) {
-  console.log({ languageArg, timeArg });
-
-  const { dark, repos } = await getData({
+  const data = await getData({
     language: languageArg,
     time: timeArg
   });
 
-  return <RepoList repos={repos} dark={dark} />;
+  console.log({ data });
+
+  return <RepoList repos={data} dark={false} />;
 }
 
 interface Res {
@@ -32,7 +32,8 @@ async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
 
   const host = headersList.get("host");
 
-  const { language, time, dark } = getQueryData({
+  //dark
+  const { language, time } = getQueryData({
     language: languageArg,
     time: timeArg
   });
@@ -42,20 +43,24 @@ async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
       ? `https://${host}`
       : "http://localhost:3000";
 
-  console.log({ endpoint });
-  const res = await fetch(
-    `${endpoint}/api/repos?language=${language}&time=${time}`
-  );
+  const url = `${endpoint}/api/repos?language=${language}&time=${time}`;
+  console.log({ url });
+  const res = await fetch(url);
 
-  const data = await res.json();
-  const repos = await data.items;
+  return res.json();
 
-  console.log({ res });
+  // try {
+  //   repos = data.items;
+  // } catch (error) {
+  //   console.error(error);
+  // }
 
-  return {
-    time,
-    language,
-    dark,
-    repos
-  };
+  // // console.log({ res });
+
+  // return {
+  //   time,
+  //   language,
+  //   dark,
+  //   repos: repos,
+  // };
 }

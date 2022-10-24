@@ -16,7 +16,9 @@ interface Props {
 }
 
 export default function Navbar({ language, time }: Props) {
-  const params = useSelectedLayoutSegment();
+  // const params = useSelectedLayoutSegment();
+  // console.log(params);
+  const params = "javascript";
 
   const hasTheme = Object.entries(languageOptions).find(
     ([_, value]) => value === params

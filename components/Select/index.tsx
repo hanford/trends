@@ -6,7 +6,8 @@ import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 
 export default function Select(props: any) {
   const { queryParam, value: defaultValue, options } = props;
-  const param = useSelectedLayoutSegment();
+  // const param = useSelectedLayoutSegment();
+  const param = "overall";
   const router = useRouter();
   const capitalized = capitalizeFirstLetter(queryParam);
 

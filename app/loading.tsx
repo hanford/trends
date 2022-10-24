@@ -2,7 +2,7 @@
 
 const Cards = new Array(50)
   .fill(true)
-  .map(() => <div className="loadingCard" />);
+  .map((_, i) => <div className="loadingCard" key={i} />);
 
 export default function LoadingRepos() {
   return <div className="row">{Cards}</div>;
