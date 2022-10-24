@@ -3,22 +3,22 @@
 import {
   languages as languageOptions,
   themes as themeOptions,
-  times as timeOptions
+  times as timeOptions,
 } from "../../helpers/constants";
 import Select from "../Select";
-import { useSelectedLayoutSegment, usePathname } from "next/navigation";
+import {
+  useSelectedLayoutSegment,
+  useSearchParams,
+  usePathname,
+} from "next/navigation";
 
-// import styles from "./Navbar.module.css";
+import styles from "./Navbar.module.css";
 
-interface Props {
-  language: string;
-  time: number;
-}
-
-export default function Navbar({ language, time }: Props) {
-  // const params = useSelectedLayoutSegment();
-  let params = "overall";
+export default function Navbar() {
   const pathname = usePathname();
+  const { time = 8 } = useSearchParams();
+
+  let params = "overall";
 
   if (pathname !== "/") {
     params = useSelectedLayoutSegment();
@@ -36,7 +36,7 @@ export default function Navbar({ language, time }: Props) {
       style={{
         backgroundColor: `${
           theme ? themeOptions[theme || 0] : themeOptions["Top Overall"]
-        }95`
+        }95`,
       }}
     >
       <form aria-label="search" name="tune" method="GET" className={"form"}>
@@ -47,6 +47,9 @@ export default function Navbar({ language, time }: Props) {
         />
 
         <Select queryParam="time" options={timeOptions} value={time} />
+
+        {/* here for responsiveness */}
+        {/* <div /> */}
       </form>
     </div>
   );
