@@ -1,13 +1,13 @@
-// import styles from "./Footer.module.css";
+import style from "./Footer.module.css";
 
 export default function FooterComponent() {
   return (
-    <footer className={"footer"}>
+    <footer className={style.footer}>
       <a
         href="https://github.com/hanford/trends"
         rel="noopener"
         target="_blank"
-        className={"link"}
+        className={style.link}
       >
         View source code
       </a>

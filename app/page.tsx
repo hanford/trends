@@ -9,9 +9,11 @@ export default async function Page() {
   return <RepoList repos={data.items} dark={false} />;
 }
 
-async function getData(): Promise<{
+interface Res {
   items: Repo[];
-}> {
+}
+
+async function getData(): Promise<Res> {
   const headersList = headers();
 
   const host = headersList.get("host");

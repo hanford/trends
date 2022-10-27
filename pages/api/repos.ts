@@ -7,6 +7,8 @@ export default async function handler(req, res) {
 
   const items = await getRepos(params);
 
+  res.setHeader("Cache-Control", "public, s-maxage=43200, maxage=43200");
+
   return res.send({ items });
 }
 
@@ -31,7 +33,7 @@ function formatParams(lang, time) {
       order: "desc",
       q: "created:>" + key,
       per_page: "100",
-      access_token: process.env.GH_ACCESS
+      access_token: process.env.GH_ACCESS,
     })
   );
 
@@ -42,7 +44,7 @@ async function getRepos(searchParams) {
   const url = `https://api.github.com/search/repositories?${searchParams}`;
 
   const res = await fetch(url, {
-    headers: { Accept: "application/vnd.github.preview" }
+    headers: { Accept: "application/vnd.github.preview" },
   });
 
   const data = await res.json();
@@ -56,12 +58,10 @@ async function getRepos(searchParams) {
         full_name: full_name || "",
         description: description || "",
         language: language || "",
-        stargazers_count: stargazers_count || ""
+        stargazers_count: stargazers_count || "",
       };
     }
   );
 
-  // console.log(JSON.stringify(cleaned.slice(0, 4)));
-
-  return cleaned.slice(0, 80);
+  return cleaned.slice(0, 50);
 }

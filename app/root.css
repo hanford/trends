@@ -276,7 +276,6 @@ body {
 .form {
   width: 100%;
   position: relative;
-  padding: 0 var(--gridGap);
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   grid-gap: var(--gridGap);
@@ -286,6 +285,7 @@ body {
 
 @media (max-width: 767px) {
   .form {
+    padding: 0 var(--gridGap);
     grid-template-columns: 1fr;
   }
 }
