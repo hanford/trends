@@ -10,12 +10,12 @@ export default async function LanguagePage({
   params: { language: languageArg },
   searchParams: { time: timeArg }
 }: any) {
-  const { dark, repos } = await getData({
+  const { repos } = await getData({
     language: languageArg,
     time: timeArg
   });
 
-  return <RepoList repos={repos} dark={dark} />;
+  return <RepoList repos={repos} />;
 }
 
 interface Res {

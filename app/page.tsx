@@ -6,7 +6,7 @@ import RepoList from "../components/RepoList";
 export default async function Page() {
   const data = await getData();
 
-  return <RepoList repos={data.items} dark={false} />;
+  return <RepoList repos={data.items} />;
 }
 
 interface Res {

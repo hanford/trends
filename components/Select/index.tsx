@@ -3,7 +3,7 @@
 import {
   useRouter,
   usePathname,
-  useSelectedLayoutSegment,
+  useSelectedLayoutSegment
 } from "next/navigation";
 
 import style from "./style.module.css";
@@ -32,7 +32,7 @@ export default function Select(props: any) {
   //   [param]
   // );
 
-  const onChange = (event) => {
+  const onChange = event => {
     if (queryParam === "language") {
       router.push(`/${event.currentTarget.value}`);
     } else {
@@ -41,11 +41,11 @@ export default function Select(props: any) {
   };
 
   return (
-    <label className={style.labelContainer}>
-      <div className={style.labelCopy}>{capitalized}</div>
+    <label className={"labelContainer"}>
+      <div className={"labelCopy"}>{capitalized}</div>
 
       <select
-        className={style.selector}
+        className={"selector"}
         aria-label={`select ${capitalized}`}
         name={queryParam}
         id={queryParam}
