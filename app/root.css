@@ -28,7 +28,9 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #f4f3f4;
 }
+
 @media (prefers-color-scheme: dark) {
   .hero {
     background: #303030 !important;
