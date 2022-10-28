@@ -80,6 +80,7 @@
   grid-gap: var(--gridGap);
   max-width: var(--maxWidth);
   margin: auto;
+  padding: 0 var(--gridGap);
 }
 
 @media (max-width: 767px) {

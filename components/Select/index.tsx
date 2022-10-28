@@ -3,7 +3,7 @@
 import {
   useRouter,
   usePathname,
-  useSelectedLayoutSegment
+  useSelectedLayoutSegment,
 } from "next/navigation";
 
 import style from "./style.module.css";
@@ -32,7 +32,7 @@ export default function Select(props: any) {
   //   [param]
   // );
 
-  const onChange = event => {
+  const onChange = (event) => {
     if (queryParam === "language") {
       router.push(`/${event.currentTarget.value}`);
     } else {

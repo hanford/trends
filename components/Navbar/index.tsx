@@ -14,11 +14,11 @@ import {
 
 import styles from "./Navbar.module.css";
 
-export default function Navbar() {
+export default function Navbar(props) {
   const pathname = usePathname();
   const { time = 8 } = useSearchParams();
 
-  let params = "overall";
+  let params = "";
 
   if (pathname !== "/") {
     params = useSelectedLayoutSegment();
@@ -39,7 +39,12 @@ export default function Navbar() {
         }95`,
       }}
     >
-      <form aria-label="search" name="tune" method="GET" className={"form"}>
+      <form
+        aria-label="search"
+        name="tune"
+        method="GET"
+        className={styles.form}
+      >
         <Select
           queryParam="language"
           options={languageOptions}
