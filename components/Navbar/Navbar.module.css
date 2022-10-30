@@ -72,7 +72,7 @@
   }
 }
 
-.form {
+.form1 {
   width: 100%;
   position: relative;
   display: grid;
@@ -84,7 +84,7 @@
 }
 
 @media (max-width: 767px) {
-  .form {
+  .form1 {
     grid-template-columns: 1fr;
   }
 }

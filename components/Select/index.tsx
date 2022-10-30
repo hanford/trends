@@ -1,44 +1,43 @@
 "use client";
 
+import { SyntheticEvent, useCallback } from "react";
 import {
   useRouter,
   usePathname,
-  useSelectedLayoutSegment,
+  useSearchParams,
+  useSelectedLayoutSegment
 } from "next/navigation";
 
-import style from "./style.module.css";
+// import style from "./style.module.css";
 
-export default function Select(props: any) {
+export default function Slect(props: any) {
   const { queryParam, value: defaultValue, options } = props;
 
-  let params = "overall";
   const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const capitalized = capitalizeFirstLetter(queryParam);
+  const hasTime = searchParams.get("time");
 
+  let params = "overall";
+
+  // conditionally invoke useSelectedLayoutSegment so it doesn't throw on `/`
   if (pathname !== "/") {
     params = useSelectedLayoutSegment();
   }
 
-  const router = useRouter();
-  const capitalized = capitalizeFirstLetter(queryParam);
+  const onChange = useCallback(
+    (event: SyntheticEvent<HTMLSelectElement>) => {
+      if (queryParam === "language") {
+        const hasTimeParam = hasTime ? `?time=${hasTime}` : "";
 
-  // const onChange = useCallback(
-  //   event => {
-  //     if (queryParam === "language") {
-  //       router.push(`/${event.currentTarget.value}`);
-  //     } else {
-  //       router.push(`/${param}?time=${event.currentTarget.value}`);
-  //     }
-  //   },
-  //   [param]
-  // );
-
-  const onChange = (event) => {
-    if (queryParam === "language") {
-      router.push(`/${event.currentTarget.value}`);
-    } else {
-      router.push(`/${params}?time=${event.currentTarget.value}`);
-    }
-  };
+        router.push(`/${event.currentTarget.value}${hasTimeParam}`);
+      } else {
+        router.push(`/${params}?time=${event.currentTarget.value}`);
+      }
+    },
+    [router, params]
+  );
 
   return (
     <label className={"labelContainer"}>

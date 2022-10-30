@@ -1,27 +1,29 @@
 "use client";
 
 import {
-  languages as languageOptions,
-  themes as themeOptions,
-  times as timeOptions,
-} from "../../helpers/constants";
-import Select from "../Select";
-import {
   useSelectedLayoutSegment,
   useSearchParams,
-  usePathname,
+  usePathname
 } from "next/navigation";
 
-import styles from "./Navbar.module.css";
+import {
+  languages as languageOptions,
+  themes as themeOptions,
+  times as timeOptions
+} from "../../helpers/constants";
+import Select from "../Select";
 
-export default function Navbar(props) {
+// import "from" "../../Navbar.module.css";
+
+export default function Navbar() {
   const pathname = usePathname();
-  const { time = 8 } = useSearchParams();
+  const time = useSearchParams().get("time") || 8;
 
   let params = "";
 
   if (pathname !== "/") {
-    params = useSelectedLayoutSegment();
+    let maybeArray = useSelectedLayoutSegment();
+    params = Array.isArray(maybeArray) ? maybeArray[0] : maybeArray;
   }
 
   const hasTheme = Object.entries(languageOptions).find(
@@ -36,15 +38,10 @@ export default function Navbar(props) {
       style={{
         backgroundColor: `${
           theme ? themeOptions[theme || 0] : themeOptions["Top Overall"]
-        }95`,
+        }95`
       }}
     >
-      <form
-        aria-label="search"
-        name="tune"
-        method="GET"
-        className={styles.form}
-      >
+      <form aria-label="search" name="tune" method="GET" className={"form"}>
         <Select
           queryParam="language"
           options={languageOptions}
@@ -52,9 +49,6 @@ export default function Navbar(props) {
         />
 
         <Select queryParam="time" options={timeOptions} value={time} />
-
-        {/* here for responsiveness */}
-        {/* <div /> */}
       </form>
     </div>
   );

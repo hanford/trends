@@ -1,8 +1,5 @@
-import { headers } from "next/headers";
-
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import getQueryData from "../helpers/query-data";
 
 import "./root.css";
 

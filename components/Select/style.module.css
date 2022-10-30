@@ -1,4 +1,4 @@
-/* .selector {
+.selector {
   padding: 0.8rem;
   outline: none;
   padding-top: 2rem;
@@ -43,9 +43,4 @@
   font-size: 1rem;
   left: 0.8rem;
   color: white !important;
-} */
-
-.error {
-  color: white;
-  background-color: red;
 }

@@ -1,6 +1,6 @@
 :root {
   --gridGap: 1.6rem;
-  --maxWidth: 140rem;
+  --maxWidth: 1400px;
 }
 
 * {
@@ -240,12 +240,11 @@ body {
 
 .navbar {
   position: sticky;
+  transition: background-color 0.2s;
   top: 0;
   z-index: 10;
   width: 100%;
   border-top: 1rem solid rgba(0, 0, 0, 0.2);
-  /* box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25), */
-  /* 0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025); */
   padding: 1rem 1.6rem;
 }
 
@@ -253,6 +252,13 @@ body {
   .navbar {
     backdrop-filter: blur(10px);
     border-top: 0 transparent;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .navbar {
+    box-shadow: 0 -13px 27px -5px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   }
 }
 
@@ -289,6 +295,12 @@ body {
   .form {
     padding: 0 var(--gridGap);
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1410px) {
+  .form {
+    padding: 0 var(--gridGap);
   }
 }
 
