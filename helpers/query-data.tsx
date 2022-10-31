@@ -53,11 +53,14 @@ export function formatParams(lang, time) {
 
 export async function getRepos(searchParams = "") {
   const url = `https://api.github.com/search/repositories?${searchParams}`;
-  console.log(url);
 
-  return await fetch(url, {
+  console.log("getRepos URL", { url });
+
+  const res = await fetch(url, {
     headers: { Accept: "application/vnd.github.preview" }
   });
+
+  return res;
 
   // return res.json();
 
