@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
           content="Browse github repos that are currently trending"
         />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#3362c6" />
+        {/* <meta name="theme-color" content="#3362c6" /> */}
 
         <link
           rel="apple-touch-icon"

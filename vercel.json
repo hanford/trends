@@ -1,5 +1,4 @@
 {
-  "version": 2,
   "alias": ["trends.vercel.app"],
   "env": {
     "GITHUB_ACCESS_TOKEN": "@github-access-token"

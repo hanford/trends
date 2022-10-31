@@ -1,12 +1,8 @@
-import { Repo } from "../../@types/graphql";
+import { Repo } from "../../types/repo";
 
 // import style from "./card.module.css";
 
-interface Props {
-  repo: Repo;
-}
-
-export default function CardComponent(props: Props) {
+export default function CardComponent(props: { repo: Repo }) {
   const {
     repo: { name, forks, full_name, description, language, stargazers_count }
   } = props;

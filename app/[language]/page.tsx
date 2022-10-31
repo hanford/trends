@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 
 import getQueryData from "../../helpers/query-data";
 
-import { Repo } from "../../@types/graphql";
+import { Repo } from "../../types/repo";
 import RepoList from "../../components/RepoList";
 
 export default async function LanguagePage({

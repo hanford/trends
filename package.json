@@ -2,7 +2,7 @@
   "name": "trends",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production next start",
     "typecheck": "tsc",

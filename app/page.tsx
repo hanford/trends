@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-import { Repo } from "../@types/graphql";
+import { Repo } from "../types/repo";
 import RepoList from "../components/RepoList";
 
 export default async function Page() {
