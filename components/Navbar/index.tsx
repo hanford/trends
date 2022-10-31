@@ -13,7 +13,7 @@ import {
 } from "../../helpers/constants";
 import Select from "../Select";
 
-// import "from" "../../Navbar.module.css";
+// import styles from "../../Navbar.css";
 
 export default function Navbar() {
   const pathname = usePathname();
