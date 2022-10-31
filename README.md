@@ -35,7 +35,7 @@ $ yarn bootstrap
 $ yarn dev
 ```
 
-Questions? Feedback? [Please let me know](https://github.com/hanford/trends/issues/new)
+Questions? Feedback? [Let me know](https://github.com/hanford/trends/issues/new)
 
 ## License (MIT)
 
