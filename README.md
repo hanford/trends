@@ -7,28 +7,23 @@
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=Best%20Practices)](https://github.com/ebidel/lighthouse-badge)
 [![Lighthouse score: 100/100](https://lighthouse-badge.appspot.com/?score=100&category=SEO)](https://github.com/ebidel/lighthouse-badge) -->
 
-> browse trending github repos written in your favorite language with this high performance progressive web application
+> browse trending github repos written in your favorite language with this high performance application
 
 <img src='https://github.com/hanford/trends/blob/master/trends.gif' alt='preview gif' width='600px' />
 
 [View the application](https://trends.now.sh)
 
-Trends is an ultra high performance progressive web application built with Next.js. Trends pushes the performance needle forward by only using React on the server and then using the absolute minimum client side code to register a service worker totaling around [~15 lines of code](https://github.com/hanford/trends/blob/master/packages/www/pages/_document.tsx#L92)
+Trends is an ultra high performance progressive web application built with Next.js. Trends pushes the performance needle forward by using the latest Next.js 13 features like `appDir` and React server components.
 
 Checkout the perfect performance audit 💯
 <img src='https://github.com/hanford/trends/blob/master/audit.jpg' alt='perf audit' width='600px' />
 
 ## Features
 
-- Filter by time since repo created or by language
-- Progressive web app
-  - offline
-  - install prompts on supported platforms
-- [15 lines of client side code](https://github.com/hanford/trends/blob/master/packages/www/pages/_document.tsx#L92)
+- Filter by time since repo created, by language or both
 - Server side rendering
-- Next.js
-- Now 2.0
-- lerna / yarn workspace
+- Next.js@latest
+- PNPM
 - automatic darkmode [(in supported browsers)](https://caniuse.com/#search=prefers-color-scheme)
 
 ## Setting the project up locally
