@@ -20,7 +20,6 @@ export default async function LanguagePage({
 interface Res {
   language: string;
   time: number;
-  dark: boolean;
   repos: Repo[];
 }
 
@@ -29,7 +28,7 @@ async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
 
   const host = headersList.get("host");
 
-  const { language, time, dark } = getQueryData({
+  const { language, time } = getQueryData({
     language: languageArg,
     time: timeArg
   });
@@ -49,7 +48,6 @@ async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
   return {
     time,
     language,
-    dark,
     repos
   };
 }

@@ -54,14 +54,9 @@ body {
     0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border-radius: 0.4rem;
   background-color: white;
-  position: relative;
-  text-decoration: none;
-  height: 150px;
-  overflow: hidden;
+  height: 180px;
   display: flex;
-  flex-direction: column;
   padding: 1.6rem;
-  transition: all 135ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (prefers-color-scheme: dark) {

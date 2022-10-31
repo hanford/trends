@@ -16,8 +16,13 @@ export default function CardComponent(props: { repo: Repo }) {
     >
       <div className={style.about}>
         <div>
-          <div className={style.name}>{name}</div>
-          <h3 className={style.secondary}>{full_name}</h3>
+          <div className={style.name} title={name}>
+            {name}
+          </div>
+
+          <h3 className={style.secondary} title={full_name}>
+            {full_name}
+          </h3>
         </div>
 
         <p className={style.description} title={description}>

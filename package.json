@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production next start",
-    "typecheck": "tsc",
+    "check": "tsc",
     "lint": "tslint '**/*.ts' '**/*.tsx' -e '**/node_modules/**'",
     "format": "prettier --write \"/**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\""
   },
