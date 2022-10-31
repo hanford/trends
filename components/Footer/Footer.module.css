@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4rem;
+}
+
+.link {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
+  margin-right: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .link {
+    color: rgba(255, 255, 255, 0.75) !important;
+  }
+}

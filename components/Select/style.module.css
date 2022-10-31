@@ -1,0 +1,46 @@
+.selector {
+  padding: 0.8rem;
+  outline: none;
+  padding-top: 2rem;
+  font-size: 1.6rem;
+  -webkit-appearance: none;
+  height: 4.8rem;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 100%;
+  cursor: pointer;
+  color: white;
+  border-radius: 0.2rem;
+}
+
+.selector:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (min-width: 767px) {
+  .selector:last-of-type {
+    margin-right: 0.8rem;
+  }
+}
+
+.selectable {
+  color: black;
+}
+
+.labelContainer {
+  min-width: calc(30rem - var(--gridGap));
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.labelCopy {
+  position: absolute;
+  top: 0.5rem;
+  font-size: 1rem;
+  left: 0.8rem;
+  color: white !important;
+}

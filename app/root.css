@@ -1,0 +1,88 @@
+:root {
+  --gridGap: 1.6rem;
+  --maxWidth: 1400px;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Foo */
+
+.hero {
+  width: 100%;
+  color: #333;
+  margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #f4f3f4;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero {
+    background: #303030 !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    flex-direction: column-reverse;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.loadingCard {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0.4rem;
+  background-color: white;
+  height: 180px;
+  display: flex;
+  padding: 1.6rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .loadingCard {
+    background: #424242 !important;
+  }
+}
+
+.row {
+  display: grid;
+  margin: 2rem auto;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(calc(30rem - var(--gridGap)), 1fr)
+  );
+  grid-gap: var(--gridGap);
+  padding: 0 var(--gridGap);
+  padding-bottom: 5rem;
+  width: 100%;
+  margin-top: 2rem;
+  max-width: var(--maxWidth);
+}
+
+@media (max-width: 767px) {
+  .row {
+    margin-top: 0;
+    padding: var(--gridGap);
+  }
+}
