@@ -20,13 +20,15 @@ export default function CardComponent(props: { repo: Repo }) {
           <h3 className={style.secondary}>{full_name}</h3>
         </div>
 
-        <p className={style.description}>{description}</p>
+        <p className={style.description} title={description}>
+          {description}
+        </p>
+      </div>
 
-        <div className={style.bottom}>
-          <div className={style.detail}>{language}</div>
-          <div className={style.detail}>Forks {forks}</div>
-          <div className={style.stars}>Stars {stargazers_count}</div>
-        </div>
+      <div className={style.bottom}>
+        <div className={style.detail}>{language}</div>
+        <div className={style.detail}>Forks {forks}</div>
+        <div className={style.stars}>Stars {stargazers_count}</div>
       </div>
     </a>
   );

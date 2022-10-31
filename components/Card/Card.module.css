@@ -8,8 +8,14 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 1.6rem;
   transition: all 135ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.about {
+  padding: 1.6rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 @media (min-width: 767px) {
@@ -35,9 +41,7 @@
 }
 
 .bottom {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  justify-content: flex-end;
   display: flex;
   align-items: center;
 }

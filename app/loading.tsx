@@ -1,4 +1,4 @@
-import styles from "../components/RepoList/RepoList.module.css";
+// import styles from "../components/RepoList/RepoList.module.css";
 
 const Cards = new Array(70)
   .fill(true)
