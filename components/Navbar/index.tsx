@@ -13,7 +13,7 @@ import {
 } from "../../helpers/constants";
 import Select from "../Select";
 
-// import styles from "../../Navbar.css";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -34,14 +34,19 @@ export default function Navbar() {
 
   return (
     <div
-      className={"navbar"}
+      className={styles.navbar}
       style={{
         backgroundColor: `${
           theme ? themeOptions[theme || 0] : themeOptions["Top Overall"]
         }95`
       }}
     >
-      <form aria-label="search" name="tune" method="GET" className={"form"}>
+      <form
+        aria-label="search"
+        name="tune"
+        method="GET"
+        className={styles.form}
+      >
         <Select
           queryParam="language"
           options={languageOptions}

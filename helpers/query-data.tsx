@@ -3,7 +3,6 @@ import { languages, times } from "./constants";
 interface Query {
   language?: string;
   time?: number;
-  dark?: boolean;
 }
 
 export default function getQueryData(query: Query = {}) {
@@ -15,8 +14,7 @@ export default function getQueryData(query: Query = {}) {
 
   return {
     language: language === "Overall" ? encodedOverall : language,
-    time,
-    dark: false
+    time
   };
 }
 

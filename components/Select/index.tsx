@@ -8,7 +8,7 @@ import {
   useSelectedLayoutSegment
 } from "next/navigation";
 
-// import style from "./style.module.css";
+import style from "./style.module.css";
 
 export default function Slect(props: any) {
   const { queryParam, value: defaultValue, options } = props;
@@ -40,11 +40,11 @@ export default function Slect(props: any) {
   );
 
   return (
-    <label className={"labelContainer"}>
-      <div className={"labelCopy"}>{capitalized}</div>
+    <label className={style.labelContainer}>
+      <div className={style.labelCopy}>{capitalized}</div>
 
       <select
-        className={"selector"}
+        className={style.selector}
         aria-label={`select ${capitalized}`}
         name={queryParam}
         id={queryParam}

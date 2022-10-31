@@ -1,6 +1,6 @@
 import { Repo } from "../../types/repo";
 
-// import style from "./card.module.css";
+import style from "./Card.module.css";
 
 export default function CardComponent(props: { repo: Repo }) {
   const {
@@ -12,20 +12,20 @@ export default function CardComponent(props: { repo: Repo }) {
       href={`https://github.com/${full_name}`}
       target="_blank"
       rel="noopener"
-      className={"card"}
+      className={style.card}
     >
-      <div className={"about"}>
+      <div className={style.about}>
         <div>
-          <div className={"name"}>{name}</div>
-          <h3 className={"secondary"}>{full_name}</h3>
+          <div className={style.name}>{name}</div>
+          <h3 className={style.secondary}>{full_name}</h3>
         </div>
 
-        <p className={"description"}>{description}</p>
+        <p className={style.description}>{description}</p>
 
-        <div className={"bottom"}>
-          <div className={"detail"}>{language}</div>
-          <div className={"detail"}>Forks {forks}</div>
-          <div className={"stars"}>Stars {stargazers_count}</div>
+        <div className={style.bottom}>
+          <div className={style.detail}>{language}</div>
+          <div className={style.detail}>Forks {forks}</div>
+          <div className={style.stars}>Stars {stargazers_count}</div>
         </div>
       </div>
     </a>
