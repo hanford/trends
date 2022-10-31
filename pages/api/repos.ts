@@ -42,7 +42,7 @@ function formatParams(lang, time) {
 
 async function getRepos(searchParams) {
   const url = `https://api.github.com/search/repositories?${searchParams}`;
-
+  console.log({ url });
   const res = await fetch(url, {
     headers: { Accept: "application/vnd.github.preview" }
   });

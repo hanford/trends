@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-import getQueryData from "../../helpers/query-data";
+import { getQueryData } from "../../helpers/query-data";
 
 import { Repo } from "../../types/repo";
 import RepoList from "../../components/RepoList";
