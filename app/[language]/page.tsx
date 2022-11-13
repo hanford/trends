@@ -1,6 +1,4 @@
-import { headers } from "next/headers";
-
-import { getQueryData } from "../../helpers/query-data";
+import { formatParams, getRepos } from "../../helpers/query-data";
 
 import { Repo } from "../../types/repo";
 import RepoList from "../../components/RepoList";
@@ -9,45 +7,26 @@ export default async function LanguagePage({
   params: { language: languageArg },
   searchParams: { time: timeArg }
 }: any) {
-  const { repos } = await getData({
+  const data = await getData({
     language: languageArg,
     time: timeArg
   });
 
-  return <RepoList repos={repos} />;
+  return <RepoList repos={data.items} />;
 }
 
 interface Res {
-  language: string;
-  time: number;
-  repos: Repo[];
+  items: Repo[];
 }
 
-async function getData({ language: languageArg, time: timeArg }): Promise<Res> {
-  const headersList = headers();
+async function getData({
+  language: languageArg,
+  time: timeArg = 8
+}): Promise<Res> {
+  const { params } = formatParams(languageArg, timeArg);
+  console.log(params);
 
-  const host = headersList.get("host");
+  const res = await getRepos(params);
 
-  const { language, time } = getQueryData({
-    language: languageArg,
-    time: timeArg
-  });
-
-  const endpoint =
-    process.env.NODE_ENV === "production"
-      ? `https://${host}`
-      : "http://localhost:3000";
-
-  const res = await fetch(
-    `${endpoint}/api/repos?language=${language}&time=${time}`
-  );
-
-  const data = await res.json();
-  const repos = await data.items;
-
-  return {
-    time,
-    language,
-    repos
-  };
+  return res.json();
 }

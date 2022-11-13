@@ -7,8 +7,6 @@ import RepoList from "../components/RepoList";
 export default async function Page() {
   const data = await getData();
 
-  console.log({ items: data.items.length });
-
   return <RepoList repos={data.items} />;
 }
 
@@ -20,9 +18,6 @@ async function getData(): Promise<Res> {
   const { params } = formatParams("", 8);
 
   const res = await getRepos(params);
-  return res.json();
-  // const data = await res.json();
-  // res.setHeader("Cache-Control", "public, s-maxage=43200, maxage=43200");
 
-  // return data;
+  return res.json();
 }
