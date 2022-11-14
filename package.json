@@ -15,8 +15,8 @@
   "dependencies": {
     "isomorphic-fetch": "^3.0.0",
     "next": "13.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^0.0.0-experimental-d1e35c703-20221110",
+    "react-dom": "^0.0.0-experimental-d1e35c703-20221110"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",

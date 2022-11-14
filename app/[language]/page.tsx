@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { formatParams, getRepos } from "../../helpers/query-data";
 import { Repo } from "../../types/repo";
 import RepoList from "../../components/RepoList";
@@ -18,7 +19,7 @@ interface Res {
   items: Repo[];
 }
 
-async function getData({
+const getData = cache(async function getDataFn({
   language: languageArg,
   time: timeArg = 8
 }): Promise<Res> {
@@ -27,4 +28,4 @@ async function getData({
   const res = await getRepos(params);
 
   return res.json();
-}
+});
