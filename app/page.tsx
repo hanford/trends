@@ -1,5 +1,4 @@
-import { headers } from "next/headers";
-
+import { formatParams, getRepos } from "../helpers/query-data";
 import { Repo } from "../types/repo";
 import RepoList from "../components/RepoList";
 
@@ -14,18 +13,9 @@ interface Res {
 }
 
 async function getData(): Promise<Res> {
-  const headersList = headers();
+  const { params } = formatParams("", 8);
 
-  const host = headersList.get("host");
-
-  const endpoint =
-    process.env.NODE_ENV === "production"
-      ? `https://${host}`
-      : "http://localhost:3000";
-
-  const url = `${endpoint}/api/repos`;
-
-  const res = await fetch(url);
+  const res = await getRepos(params);
 
   return res.json();
 }
