@@ -1,5 +1,4 @@
 import { formatParams, getRepos } from "../../helpers/query-data";
-
 import { Repo } from "../../types/repo";
 import RepoList from "../../components/RepoList";
 
@@ -24,7 +23,6 @@ async function getData({
   time: timeArg = 8
 }): Promise<Res> {
   const { params } = formatParams(languageArg, timeArg);
-  console.log(params);
 
   const res = await getRepos(params);
 

@@ -1,5 +1,3 @@
-// import { headers } from "next/headers";
-import { use } from "react";
 import { formatParams, getRepos } from "../helpers/query-data";
 import { Repo } from "../types/repo";
 import RepoList from "../components/RepoList";

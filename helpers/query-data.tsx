@@ -1,5 +1,5 @@
-import { languages, times } from "./constants";
 import { stringify } from "querystring";
+import { languages, times } from "./constants";
 
 interface Query {
   language?: string;
@@ -57,7 +57,9 @@ export async function getRepos(searchParams = "") {
   console.log("getRepos URL", { url });
 
   const res = await fetch(url, {
-    headers: { Accept: "application/vnd.github.preview" }
+    headers: {
+      Accept: "application/vnd.github.preview"
+    }
   });
 
   return res;
