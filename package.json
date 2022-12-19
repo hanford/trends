@@ -5,6 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "NODE_ENV=production next start",
+    "build-pages": "npx @cloudflare/next-on-pages --experimental-minify",
     "check": "tsc",
     "lint": "tslint '**/*.ts' '**/*.tsx' -e '**/node_modules/**'",
     "format": "prettier --write \"/**/*.{js,jsx,ts,tsx,json,css,md,html,graphql}\""
@@ -13,9 +14,11 @@
     "node": "16.16.0"
   },
   "dependencies": {
+    "@cloudflare/next-on-pages": "^0.2.0",
     "next": "13.0.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vercel": "^28.9.0"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
